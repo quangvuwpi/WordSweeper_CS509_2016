@@ -376,12 +376,12 @@ public class WordSweeper extends JFrame {
 		label_37.setBounds(688, 324, 158, 17);
 		contentPane.add(label_37);
 		
-		JLabel lblAeijk = new JLabel("AEIJK");
+		JLabel lblAeijk = new JLabel("A");
 		lblAeijk.setFont(new Font("Wawati SC", Font.PLAIN, 26));
 		lblAeijk.setBounds(31, 418, 117, 51);
 		contentPane.add(lblAeijk);
 		
-		JLabel label_28 = new JLabel("10,000");
+		JLabel label_28 = new JLabel("100");
 		label_28.setFont(new Font("Wawati SC", Font.PLAIN, 26));
 		label_28.setBounds(135, 418, 117, 51);
 		contentPane.add(label_28);
