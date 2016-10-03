@@ -2,6 +2,8 @@ package app.boundary;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
+import app.controller.BoardController;
 import app.entity.Board;
 import app.entity.Cell;
 import app.entity.Position;
@@ -10,6 +12,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.event.MouseListener;
 
 public class BoardPanel extends JPanel {
 
@@ -20,14 +24,16 @@ public class BoardPanel extends JPanel {
 	CellPanel cellPanels[][] = new CellPanel[ROW_COUNT][COL_COUNT];
 
 	final Board board;
-
+	final BoardController controller;
+	
 	/**
 	 * Create the panel and bound to a Board.
 	 */
 	public BoardPanel(Board board) {
 		this.board = board;
-
-		setup();
+		this.controller = new BoardController(board, this);
+		
+		setup();				
 	}
 
 	/**
@@ -49,13 +55,28 @@ public class BoardPanel extends JPanel {
 				cellPanels[x][y] = c;
 			}
 		}
+		 
+		addMouseListener(controller);
+		addMouseMotionListener(controller);
+	}
+	
+	public boolean selectCell(Point p) {
+		Position pos = new Position(p.x / CELL_SIZE, p.y / CELL_SIZE);		
+		if (board.selectCell(pos)) {
+			invalidate();
+			repaint();
+			
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
 	 * Teardown the board panel
 	 */
 	void teardown() {
-
+		
 	}
 
 	@Override
@@ -73,31 +94,46 @@ public class BoardPanel extends JPanel {
 	/**
 	 * Private cell panel class
 	 */
-	private class CellPanel extends JPanel {
+	public class CellPanel extends JPanel {
 		final Cell cell;
 
 		public CellPanel(Cell cell) {
 			this.cell = cell;
 		}
-
-		@Override
-		public void paint(Graphics g) {
-			super.paint(g);
+		
+		public Cell getCell() {
+			return cell;
+		}
+		
+		void refresh(Graphics g) {
 			Graphics2D g2 = (Graphics2D) g;
 
 			int h = getHeight();
 			int w = getWidth();
 
-			g2.setColor(new Color(0, 255, 0, 15 * cell.multiplier));
+			if (cell.selected) {
+				g2.setColor(Color.YELLOW);
+			} else {
+				g2.setColor(new Color(0, 255, 0, 15 * cell.multiplier));	
+			}
 			g2.fillRect(0, 0, w, h);
 			
 			g2.setColor(Color.BLACK);
-			g2.drawRect(0, 0, w, h);			
+			g2.drawRect(0, 0, w, h);
+			
+			g2.setColor(Color.BLACK);
 			g2.drawString(String.valueOf(cell.letter), w / 2 - 3, h / 2 + 5);
 			g2.drawString(String.valueOf(cell.point), w / 2 + 13, h / 2 + 20);
 			//g2.drawString(String.valueOf(cell.point), w / 2 + 13, h / 2 - 10);
 			//g2.drawString('x' + String.valueOf(cell.multiplier), w / 2 + 8, h / 2 + 20);			
 		}
+
+		@Override
+		public void paint(Graphics g) {
+			super.paint(g);
+			refresh(g);
+		}
+		
 	}
 
 }
