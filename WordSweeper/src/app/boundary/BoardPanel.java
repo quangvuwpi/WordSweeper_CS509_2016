@@ -8,11 +8,8 @@ import app.entity.Position;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Insets;
 
 public class BoardPanel extends JPanel {
 
@@ -97,8 +94,9 @@ public class BoardPanel extends JPanel {
 			g2.setColor(Color.BLACK);
 			g2.drawRect(0, 0, w, h);			
 			g2.drawString(String.valueOf(cell.letter), w / 2 - 3, h / 2 + 5);
-			g2.drawString(String.valueOf(cell.point), w / 2 + 13, h / 2 - 10);
-			g2.drawString('x' + String.valueOf(cell.multiplier), w / 2 + 8, h / 2 + 20);			
+			g2.drawString(String.valueOf(cell.point), w / 2 + 13, h / 2 + 20);
+			//g2.drawString(String.valueOf(cell.point), w / 2 + 13, h / 2 - 10);
+			//g2.drawString('x' + String.valueOf(cell.multiplier), w / 2 + 8, h / 2 + 20);			
 		}
 	}
 
