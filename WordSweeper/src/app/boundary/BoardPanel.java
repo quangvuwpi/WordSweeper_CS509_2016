@@ -60,23 +60,18 @@ public class BoardPanel extends JPanel {
 		addMouseMotionListener(controller);
 	}
 	
-	public boolean selectCell(Point p) {
-		Position pos = new Position(p.x / CELL_SIZE, p.y / CELL_SIZE);		
-		if (board.selectCell(pos)) {
-			invalidate();
-			repaint();
-			
-			return true;
-		} else {
-			return false;
-		}
+	public static Position pointToPosition(Point p) {
+		return new Position(p.x / CELL_SIZE, p.y / CELL_SIZE);
 	}
 
 	/**
 	 * Teardown the board panel
 	 */
 	void teardown() {
+		removeMouseListener(controller);
+		removeMouseMotionListener(controller);
 		
+		removeAll();
 	}
 
 	@Override
