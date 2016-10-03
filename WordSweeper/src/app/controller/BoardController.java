@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 
 import app.boundary.BoardPanel;
 import app.entity.Board;
+import app.entity.Position;
 
 /**
  * @author quangvu
@@ -25,14 +26,24 @@ public class BoardController extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		panel.selectCell(e.getPoint());
+		Position p = BoardPanel.pointToPosition(e.getPoint());
+		
+		if (board.selectCell(p)) {
+			panel.invalidate();
+			panel.repaint();
+		}
 		
 		e.consume();
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		panel.selectCell(e.getPoint());
+		Position p = BoardPanel.pointToPosition(e.getPoint());
+		
+		if (board.selectCell(p)) {
+			panel.invalidate();
+			panel.repaint();
+		}
 		
 		e.consume();
 	}
