@@ -6,7 +6,7 @@ import org.w3c.dom.NodeList;
 
 import xml.Message;
 import client.model.Model;
-import client.view.Application;
+import client.view.Login;
 
 /**
  * Tells the client whether the model is locked or not BY SOME OTHER CLIENT. This will never be returned to a client
@@ -14,11 +14,11 @@ import client.view.Application;
  */
 public class BoardResponseController {
 
-	public Application app;
+	public Login app;
 	public Model model;
 	
-	public BoardResponseController(Application a, Model m) {
-		this.app = a;
+	public BoardResponseController(Login app, Model m) {
+		this.app = app;
 		this.model = m;
 	}
 	
@@ -28,20 +28,20 @@ public class BoardResponseController {
 		NamedNodeMap map = boardResponse.getAttributes();
 		
 		String gameId = map.getNamedItem("gameId").getNodeValue();
-		app.getResponseArea().append("Board Message received for game:" + gameId + "\n");
-		app.getResponseArea().append("Players:\n");
+		System.out.print("Board Message received for game:" + gameId + "\n");
+		System.out.print("Players:\n");
 		NodeList list = boardResponse.getChildNodes();
 		for (int i = 0; i < list.getLength(); i++) {
 			Node n = list.item(i);
 			String pname = n.getAttributes().getNamedItem("name").getNodeValue();
-			app.getResponseArea().append("  " + pname  + "\n");
+			System.out.print("  " + pname  + "\n");
 		}
 		
 		
 
 		// at this point, you would normally start processing this...
-		app.getResponseArea().append(response.toString());
-		app.getResponseArea().append("\n");
+		System.out.print(response.toString());
+		System.out.print("\n");
 		
 	}
 

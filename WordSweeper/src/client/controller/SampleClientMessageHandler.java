@@ -1,7 +1,7 @@
 package client.controller;
 import xml.Message;
 import client.IMessageHandler;
-import client.view.Application;
+import client.view.Login;
 
 /**
  * Sample implementation of a protocol handler to respond to messages received from the server.
@@ -11,9 +11,9 @@ import client.view.Application;
  */
 public class SampleClientMessageHandler implements IMessageHandler {
 
-	Application app;
+	Login app;
 	
-	public SampleClientMessageHandler(Application app) {
+	public SampleClientMessageHandler(Login app) {
 		this.app = app;
 	}
 	
@@ -26,7 +26,7 @@ public class SampleClientMessageHandler implements IMessageHandler {
 			// What happens now that we are connected?
 			new BoardResponseController(app, app.model).process(response);
 		} else if (type.equals ("connectResponse")) {
-			app.getResponseArea().append(response.toString() + "\n");
+			System.out.print(response.toString() + "\n");
 		}
 		
 		// only here to show messages as they are received by the client

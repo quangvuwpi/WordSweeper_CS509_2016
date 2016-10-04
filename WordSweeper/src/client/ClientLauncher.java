@@ -2,7 +2,7 @@ package client;
 import client.ServerAccess;
 import client.controller.SampleClientMessageHandler;
 import client.model.Model;
-import client.view.Application;
+import client.view.Login;
 import xml.Message;
 
 /** Launch command-line Client to show minimal access needs. */
@@ -30,7 +30,7 @@ public class ClientLauncher {
 		
 		// Initialize the client application and its corresponding model
 		Model model = new Model();
-		Application app = new Application(model);
+		Login app = new Login(model);
 				
 		// try to connect to the server. Once connected, messages are going to be processed by 
 		// SampleClientMessageHandler. For now we just continue on with the initialization because
@@ -52,7 +52,7 @@ public class ClientLauncher {
 		String xmlString = Message.requestHeader() + "<connectRequest/></request>";
 		Message m = new Message (xmlString);
 		sa.sendRequest(m);
-		app.getRequestArea().append(m.toString() + "\n");
+		//app.getRequestArea().append(m.toString() + "\n");
 		
 		// at this point, we need to make app visible, otherwise we would terminate application
 		app.setVisible(true);
