@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import app.boundary.BoardPanel;
+import app.controller.BoardController;
 import app.entity.Board;
 import app.entity.Position;
 
@@ -44,7 +45,8 @@ public class AppLauncher extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		Board b = new Board();
-		BoardPanel bp = new BoardPanel(b);
+		BoardController bc = new BoardController(b);
+		BoardPanel bp = new BoardPanel(b, bc);
 		bp.setBounds(new Rectangle(bp.getPreferredSize()));
 		
 		contentPane.add(bp);
