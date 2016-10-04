@@ -14,7 +14,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class BoardPanel extends JPanel {
+@SuppressWarnings("serial")
+public class BoardPanel extends JPanel implements IBoundary {
 
 	public static int COL_COUNT = 4;
 	public static int ROW_COUNT = 4;
@@ -24,21 +25,21 @@ public class BoardPanel extends JPanel {
 
 	final Board board;
 	final BoardController controller;
-	
+
 	/**
 	 * Create the panel and bound to a Board.
 	 */
-	public BoardPanel(Board board) {
+	public BoardPanel(Board board, BoardController controller) {
 		this.board = board;
-		this.controller = new BoardController(board, this);
-		
-		setup();				
+		this.controller = controller;
+
+		setup();
 	}
 
 	/**
 	 * Initialize the board panel
 	 */
-	void setup() {
+	public boolean setup() {
 		setLayout(null);
 		setBorder(BorderFactory.createEmptyBorder());
 		setPreferredSize(new Dimension(ROW_COUNT * CELL_SIZE, COL_COUNT * CELL_SIZE));
@@ -54,23 +55,27 @@ public class BoardPanel extends JPanel {
 				cellPanels[x][y] = c;
 			}
 		}
-		 
+
 		addMouseListener(controller);
 		addMouseMotionListener(controller);
-	}
-	
-	public static Position pointToPosition(Point p) {
-		return new Position(p.x / CELL_SIZE, p.y / CELL_SIZE);
+
+		return true;
 	}
 
 	/**
 	 * Teardown the board panel
 	 */
-	void teardown() {
+	public boolean teardown() {
 		removeMouseListener(controller);
 		removeMouseMotionListener(controller);
-		
+
 		removeAll();
+
+		return true;
+	}
+
+	public static Position pointToPosition(Point p) {
+		return new Position(p.x / CELL_SIZE, p.y / CELL_SIZE);
 	}
 
 	@Override
@@ -94,11 +99,11 @@ public class BoardPanel extends JPanel {
 		public CellPanel(Cell cell) {
 			this.cell = cell;
 		}
-		
+
 		public Cell getCell() {
 			return cell;
 		}
-		
+
 		void refresh(Graphics g) {
 			Graphics2D g2 = (Graphics2D) g;
 
@@ -108,18 +113,20 @@ public class BoardPanel extends JPanel {
 			if (cell.selected) {
 				g2.setColor(Color.YELLOW);
 			} else {
-				g2.setColor(new Color(0, 255, 0, 15 * cell.multiplier));	
+				g2.setColor(new Color(0, 255, 0, 15 * cell.multiplier));
 			}
 			g2.fillRect(0, 0, w, h);
-			
+
 			g2.setColor(Color.BLACK);
 			g2.drawRect(0, 0, w, h);
-			
+
 			g2.setColor(Color.BLACK);
 			g2.drawString(String.valueOf(cell.letter), w / 2 - 3, h / 2 + 5);
 			g2.drawString(String.valueOf(cell.point), w / 2 + 13, h / 2 + 20);
-			//g2.drawString(String.valueOf(cell.point), w / 2 + 13, h / 2 - 10);
-			//g2.drawString('x' + String.valueOf(cell.multiplier), w / 2 + 8, h / 2 + 20);			
+			// g2.drawString(String.valueOf(cell.point), w / 2 + 13, h / 2 -
+			// 10);
+			// g2.drawString('x' + String.valueOf(cell.multiplier), w / 2 + 8, h
+			// / 2 + 20);
 		}
 
 		@Override
@@ -127,7 +134,7 @@ public class BoardPanel extends JPanel {
 			super.paint(g);
 			refresh(g);
 		}
-		
+
 	}
 
 }

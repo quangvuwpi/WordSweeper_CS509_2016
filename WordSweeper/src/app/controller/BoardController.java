@@ -16,12 +16,12 @@ import app.entity.Position;
  */
 public class BoardController extends MouseAdapter {
 	
-	final Board board;
-	final BoardPanel panel;
+	public final Board board;
+	public final BoardPanel panel;
 	
-	public BoardController(Board board, BoardPanel panel) {
-		this.board = board;
-		this.panel = panel;
+	public BoardController(Board b) {
+		board = b;		
+		panel = new BoardPanel(b, this);
 	}
 
 	@Override
