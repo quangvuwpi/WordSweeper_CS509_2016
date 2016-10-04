@@ -1,8 +1,10 @@
 package client;
+import Utility.MessageFactory;
 import client.ServerAccess;
 import client.controller.SampleClientMessageHandler;
 import client.model.Model;
 import client.view.Login;
+import client.view.WordSweeperFrame;
 import xml.Message;
 
 /** Launch command-line Client to show minimal access needs. */
@@ -30,7 +32,8 @@ public class ClientLauncher {
 		
 		// Initialize the client application and its corresponding model
 		Model model = new Model();
-		Login app = new Login(model);
+		//Login app = new Login(model);
+		WordSweeperFrame app = new WordSweeperFrame();
 				
 		// try to connect to the server. Once connected, messages are going to be processed by 
 		// SampleClientMessageHandler. For now we just continue on with the initialization because
@@ -45,12 +48,11 @@ public class ClientLauncher {
 		
 		// Should we on the client ever need to communicate with the server, we need this ServerAccess
 		// object.
-		app.setServerAccess(sa);
+		//app.setServerAccess(sa);
 		
 		// send an introductory connect request now that we have created (but not made visible!)
 		// the GUI
-		String xmlString = Message.requestHeader() + "<connectRequest/></request>";
-		Message m = new Message (xmlString);
+		Message m = MessageFactory.connectRequest();
 		sa.sendRequest(m);
 		//app.getRequestArea().append(m.toString() + "\n");
 		
