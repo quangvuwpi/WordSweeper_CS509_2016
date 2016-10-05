@@ -3,10 +3,10 @@ package client;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import xml.Message;
-import client.IController;
-import client.IMessageHandler;
-import client.ServerAccess;
+import external.client.IController;
+import external.client.IMessageHandler;
+import external.client.ServerAccess;
+import external.xml.Message;
 
 /**
  * Mock Server Access replaces the entire functionality of the ServerAccess

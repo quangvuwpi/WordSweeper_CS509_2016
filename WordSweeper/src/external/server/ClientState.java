@@ -1,6 +1,6 @@
-package server;
+package external.server;
 
-import xml.Message;
+import external.xml.Message;
 
 /** Server-side interface to per-client state. Exposes only the methods of ServerThread that are safe. */
 public interface ClientState {

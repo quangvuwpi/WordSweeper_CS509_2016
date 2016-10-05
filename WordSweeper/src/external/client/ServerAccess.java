@@ -1,11 +1,12 @@
-package client;
+package external.client;
 
 import java.io.*;
 import java.net.*;
 import java.util.*;
 
-import server.ServerThread;
-import xml.*;
+import external.server.ServerThread;
+import external.xml.Message;
+import external.xml.Parser;
 
 /** 
  * Responsible for all communication to/from server.

@@ -1,8 +1,8 @@
 package client.controller;
-import xml.Message;
-import client.IMessageHandler;
 import client.view.Login;
 import client.view.WordSweeperFrame;
+import external.client.IMessageHandler;
+import external.xml.Message;
 
 /**
  * Sample implementation of a protocol handler to respond to messages received from the server.

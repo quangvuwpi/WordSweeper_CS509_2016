@@ -1,9 +1,9 @@
 package client.controller;
 
 
-import xml.Message;
 import client.model.Model;
 import client.view.Login;
+import external.xml.Message;
 
 public class JoinGameController {
 

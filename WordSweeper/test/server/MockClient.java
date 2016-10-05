@@ -2,8 +2,8 @@ package server;
 
 import java.util.ArrayList;
 
-import server.ClientState;
-import xml.Message;
+import external.server.ClientState;
+import external.xml.Message;
 
 /**
  * Represent "client" from the point of view of the server.

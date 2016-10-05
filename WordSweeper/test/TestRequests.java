@@ -1,4 +1,4 @@
-import xml.Message;
+import external.xml.Message;
 import junit.framework.TestCase;
 
 

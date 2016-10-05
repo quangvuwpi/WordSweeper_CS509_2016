@@ -1,12 +1,12 @@
-package server.controller;
+package external.server.controller;
 
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import server.ClientState;
-import server.IProtocolHandler;
-import server.model.ServerModel;
-import xml.Message;
+import external.server.ClientState;
+import external.server.IProtocolHandler;
+import external.server.model.ServerModel;
+import external.xml.Message;
 
 /**
  * Controller on server to package up the current state of the model

@@ -1,10 +1,10 @@
-package server.controller;
+package external.server.controller;
 import org.w3c.dom.Node;
 
-import server.ClientState;
-import server.IShutdownHandler;
-import server.model.ServerModel;
-import xml.*;
+import external.server.ClientState;
+import external.server.IShutdownHandler;
+import external.server.model.ServerModel;
+import external.xml.Message;
 
 /**
  * Sample implementation of a protocol handler to respond to messages received from clients.

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import client.MockServerAccess;
 import client.model.Model;
 import client.view.Login;
-import xml.Message;
+import external.xml.Message;
 import junit.framework.TestCase;
 
 /**

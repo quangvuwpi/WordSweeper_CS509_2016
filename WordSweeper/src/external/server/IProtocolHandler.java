@@ -1,6 +1,6 @@
-package server;
+package external.server;
 
-import xml.*;
+import external.xml.Message;
 
 /** 
  * ServerThread out-sources processing of protocol to implementors 

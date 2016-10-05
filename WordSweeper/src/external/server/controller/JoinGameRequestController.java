@@ -1,10 +1,10 @@
-package server.controller;
+package external.server.controller;
 
-import server.ClientState;
-import server.IProtocolHandler;
-import server.Server;
-import server.model.ServerModel;
-import xml.Message;
+import external.server.ClientState;
+import external.server.IProtocolHandler;
+import external.server.Server;
+import external.server.model.ServerModel;
+import external.xml.Message;
 
 /**
  * Controller on server to package up the current state of the model

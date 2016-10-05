@@ -17,10 +17,10 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 
-import client.ServerAccess;
 import client.controller.CreateGameController;
 import client.controller.JoinGameController;
 import client.model.Model;
+import external.client.ServerAccess;
 
 public class Login extends JFrame implements MouseListener{
 

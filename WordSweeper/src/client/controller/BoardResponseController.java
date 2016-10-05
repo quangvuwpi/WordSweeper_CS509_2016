@@ -4,9 +4,9 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import xml.Message;
 import client.model.Model;
 import client.view.Login;
+import external.xml.Message;
 
 /**
  * Tells the client whether the model is locked or not BY SOME OTHER CLIENT. This will never be returned to a client

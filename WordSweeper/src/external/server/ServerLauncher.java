@@ -1,10 +1,9 @@
-package server;
+package external.server;
 import java.io.*;
 
-import server.Server;
-import server.controller.SampleProtocolHandler;
-import server.model.ServerModel;
-import xml.Message;
+import external.server.controller.SampleProtocolHandler;
+import external.server.model.ServerModel;
+import external.xml.Message;
 
 /** Code to launch Server  from the command line. */
 public class ServerLauncher {

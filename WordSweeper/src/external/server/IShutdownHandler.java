@@ -1,4 +1,4 @@
-package server;
+package external.server;
 
 /** 
  * If you want to be told when a client exits, make sure your ProtocolHandler

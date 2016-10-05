@@ -3,7 +3,7 @@
  */
 package Utility;
 
-import xml.Message;
+import external.xml.Message;
 
 /**
  * @author quangvu

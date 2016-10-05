@@ -2,12 +2,12 @@ package server.controller;
 
 import org.w3c.dom.NamedNodeMap;
 
+import external.server.Server;
+import external.server.controller.CreateGameRequestController;
+import external.server.controller.JoinGameRequestController;
+import external.server.model.ServerModel;
+import external.xml.Message;
 import server.MockClient;
-import server.Server;
-import server.controller.CreateGameRequestController;
-import server.controller.JoinGameRequestController;
-import server.model.ServerModel;
-import xml.Message;
 import junit.framework.TestCase;
 
 // validate that server generates appropriate modelResponse for each modelRequest.
