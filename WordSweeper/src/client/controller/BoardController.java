@@ -19,9 +19,9 @@ public class BoardController extends MouseAdapter {
 	public final Board board;
 	public final BoardPanel panel;
 	
-	public BoardController(Board b) {
+	public BoardController(Board b, BoardPanel p) {
 		board = b;		
-		panel = new BoardPanel(b, this);
+		panel = p;
 	}
 
 	@Override

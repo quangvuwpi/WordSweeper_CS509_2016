@@ -30,7 +30,7 @@ public class Board {
 		for (int i = 0; i < COL_COUNT; i++) {
 			for (int j = 0; j < ROW_COUNT; j++) {
 				Cell c   = new Cell(new Position(i,j));
-				c.letter = fixed_board[i][j];
+				c.letter = String.valueOf(fixed_board[i][j]);
 				c.point  = 1;
 				c.multiplier = mul;
 				mul++;

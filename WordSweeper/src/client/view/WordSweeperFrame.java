@@ -30,7 +30,7 @@ public class WordSweeperFrame extends JFrame {
 	void setupGUI() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 450, 300);
+		setBounds(0, 0, 600, 400);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -56,8 +56,8 @@ public class WordSweeperFrame extends JFrame {
 		
 		pane.removeAll();
 		
-		pane.add((JPanel) b);
 		b.setup();
+		pane.add((JPanel) b);
 		
 		pane.invalidate();
 		pane.repaint();		
@@ -67,9 +67,8 @@ public class WordSweeperFrame extends JFrame {
 		return true;
 	}
 	
-	public boolean switchToBoard() {
-		BoardController bc = new BoardController(new Board());
-		BoardPanel bp = bc.panel;
+	public boolean switchToBoard() {		
+		BoardPanel bp = new BoardPanel(new Board());
 		
 		bp.setBounds(new Rectangle(bp.getPreferredSize()));
 		

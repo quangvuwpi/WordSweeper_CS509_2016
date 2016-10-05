@@ -11,7 +11,7 @@ public class Cell {
 
 	final Position p;
 
-	public char letter;
+	public String letter;
 	public int point;
 	public int multiplier;
 

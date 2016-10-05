@@ -10,6 +10,8 @@ import client.model.Position;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -19,19 +21,28 @@ public class BoardPanel extends JPanel implements IBoundary {
 
 	public static int COL_COUNT = 4;
 	public static int ROW_COUNT = 4;
-	public static int CELL_SIZE = 50;
-
-	CellPanel cellPanels[][] = new CellPanel[ROW_COUNT][COL_COUNT];
+	public static int CELL_WIDTH = 65;
+	public static int CELL_HEIGHT = 68;
+	public static int CELL_GAP = 12;
 
 	final Board board;
 	final BoardController controller;
 
+	public final Dimension size;
+
+	CellPanel cellPanels[][] = new CellPanel[ROW_COUNT][COL_COUNT];
+	Font font = new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29);
+
 	/**
 	 * Create the panel and bound to a Board.
 	 */
-	public BoardPanel(Board board, BoardController controller) {
+	public BoardPanel(Board board) {
 		this.board = board;
-		this.controller = controller;
+		this.controller = new BoardController(board, this);
+
+		int w = COL_COUNT * (CELL_WIDTH + CELL_GAP);
+		int h = ROW_COUNT * (CELL_HEIGHT + CELL_GAP);
+		this.size = new Dimension(w, h);
 
 		setup();
 	}
@@ -42,18 +53,24 @@ public class BoardPanel extends JPanel implements IBoundary {
 	public boolean setup() {
 		setLayout(null);
 		setBorder(BorderFactory.createEmptyBorder());
-		setPreferredSize(new Dimension(ROW_COUNT * CELL_SIZE, COL_COUNT * CELL_SIZE));
+		setPreferredSize(size);
 
-		for (int x = 0; x < COL_COUNT; x++) {
-			for (int y = 0; y < ROW_COUNT; y++) {
-				Cell cell = board.getCell(new Position(x, y));
+		int x = CELL_GAP;
+		int y = CELL_GAP;
+		for (int col = 0; col < COL_COUNT; col++) {
+			for (int row = 0; row < ROW_COUNT; y += CELL_GAP, row++) {
+				Cell cell = board.getCell(new Position(col, row));
 				CellPanel c = new CellPanel(cell);
 
-				c.setBounds(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+				c.setBounds(x, y, CELL_WIDTH, CELL_HEIGHT);
+				y += CELL_HEIGHT;
 
 				add(c);
-				cellPanels[x][y] = c;
+				cellPanels[col][row] = c;
 			}
+
+			y = CELL_GAP;
+			x += CELL_WIDTH + CELL_GAP;
 		}
 
 		addMouseListener(controller);
@@ -75,7 +92,20 @@ public class BoardPanel extends JPanel implements IBoundary {
 	}
 
 	public static Position pointToPosition(Point p) {
-		return new Position(p.x / CELL_SIZE, p.y / CELL_SIZE);
+		/**
+		 * If click on the right or bottom edge, return null
+		 */
+		if ((p.x >= COL_COUNT * (CELL_WIDTH + CELL_GAP)) || (p.y >= ROW_COUNT * (CELL_HEIGHT + CELL_GAP))) {
+			return null;
+		} else {
+			int col = p.x / (CELL_WIDTH + CELL_GAP);
+			int row = p.y / (CELL_HEIGHT + CELL_GAP);
+
+			if ((p.x - col * (CELL_WIDTH + CELL_GAP) > CELL_GAP) && (p.y - row * (CELL_HEIGHT + CELL_GAP) > CELL_GAP)) {
+				return new Position(col, row);
+			}
+		}
+		return null;
 	}
 
 	@Override
@@ -104,7 +134,9 @@ public class BoardPanel extends JPanel implements IBoundary {
 			return cell;
 		}
 
-		void refresh(Graphics g) {
+		@Override
+		public void paint(Graphics g) {
+			super.paint(g);
 			Graphics2D g2 = (Graphics2D) g;
 
 			int h = getHeight();
@@ -117,22 +149,14 @@ public class BoardPanel extends JPanel implements IBoundary {
 			}
 			g2.fillRect(0, 0, w, h);
 
-			g2.setColor(Color.BLACK);
-			g2.drawRect(0, 0, w, h);
+			g2.setFont(font);
+			FontMetrics fm = g2.getFontMetrics();
 
 			g2.setColor(Color.BLACK);
-			g2.drawString(String.valueOf(cell.letter), w / 2 - 3, h / 2 + 5);
-			g2.drawString(String.valueOf(cell.point), w / 2 + 13, h / 2 + 20);
-			// g2.drawString(String.valueOf(cell.point), w / 2 + 13, h / 2 -
-			// 10);
-			// g2.drawString('x' + String.valueOf(cell.multiplier), w / 2 + 8, h
-			// / 2 + 20);
-		}
+			g2.drawString(cell.letter, w/2 - fm.stringWidth(cell.letter)/2, h/2 + fm.getHeight()/4);
 
-		@Override
-		public void paint(Graphics g) {
-			super.paint(g);
-			refresh(g);
+			g2.setColor(Color.BLACK);
+			g2.drawRect(0, 0, w - 1, h - 1);
 		}
 
 	}
