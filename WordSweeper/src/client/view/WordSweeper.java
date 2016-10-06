@@ -18,6 +18,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class WordSweeper extends JFrame {
 
@@ -26,15 +27,17 @@ public class WordSweeper extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	private String GameId;
+	private String UserId;
+	private Boolean ManagingUser;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String gameId, String userId, Boolean managingUser) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WordSweeper frame = new WordSweeper();
+					WordSweeper frame = new WordSweeper(gameId, userId, managingUser);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +49,10 @@ public class WordSweeper extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public WordSweeper() {
+	public WordSweeper(String gameId, String userId, Boolean managingUser) {
+		this.GameId = gameId;
+		this.UserId = userId;
+		this.ManagingUser = managingUser;
 		setTitle("WordSweeper");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 100, 874, 575);
@@ -81,20 +87,20 @@ public class WordSweeper extends JFrame {
 		lblNewLabel.setBounds(6, 6, 117, 51);
 		contentPane.add(lblNewLabel);
 		
-		JLabel label = new JLabel("0000");
-		label.setFont(new Font("Wawati SC", Font.PLAIN, 26));
-		label.setBounds(135, 6, 117, 51);
-		contentPane.add(label);
+		JLabel lbGameId = new JLabel(GameId);
+		lbGameId.setFont(new Font("Wawati SC", Font.PLAIN, 26));
+		lbGameId.setBounds(135, 6, 117, 51);
+		contentPane.add(lbGameId);
 		
 		JLabel lblPlayer = new JLabel("PLAYER:");
 		lblPlayer.setFont(new Font("Wawati SC", Font.PLAIN, 26));
 		lblPlayer.setBounds(271, 6, 117, 51);
 		contentPane.add(lblPlayer);
 		
-		JLabel label_2 = new JLabel("0000");
-		label_2.setFont(new Font("Wawati SC", Font.PLAIN, 26));
-		label_2.setBounds(396, 6, 117, 51);
-		contentPane.add(label_2);
+		JLabel lbUserId = new JLabel(UserId);
+		lbUserId.setFont(new Font("Wawati SC", Font.PLAIN, 26));
+		lbUserId.setBounds(396, 6, 117, 51);
+		contentPane.add(lbUserId);
 		
 		JLabel lblYourScore = new JLabel("Your Score:");
 		lblYourScore.setFont(new Font("Wawati SC", Font.PLAIN, 20));
@@ -293,16 +299,6 @@ public class WordSweeper extends JFrame {
 		label_37.setBounds(688, 324, 158, 17);
 		contentPane.add(label_37);
 		
-		JLabel lblAeijk = new JLabel("A");
-		lblAeijk.setFont(new Font("Wawati SC", Font.PLAIN, 26));
-		lblAeijk.setBounds(31, 418, 117, 51);
-		contentPane.add(lblAeijk);
-		
-		JLabel label_28 = new JLabel("100");
-		label_28.setFont(new Font("Wawati SC", Font.PLAIN, 26));
-		label_28.setBounds(135, 418, 117, 51);
-		contentPane.add(label_28);
-		
 		JButton btnQuit = new JButton("QUIT");
 		btnQuit.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnQuit.setBounds(560, 481, 148, 66);
@@ -312,11 +308,13 @@ public class WordSweeper extends JFrame {
 		btnLock.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnLock.setBounds(469, 412, 148, 66);
 		contentPane.add(btnLock);
+		btnLock.setVisible(ManagingUser);
 		
 		JButton btnReset = new JButton("RESET");
 		btnReset.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnReset.setBounds(664, 412, 148, 66);
 		contentPane.add(btnReset);
+		btnReset.setVisible(ManagingUser);
 		
 		JButton btnCancel = new JButton("CANCEL");
 		btnCancel.setFont(new Font("Wawati SC", Font.PLAIN, 23));
@@ -326,6 +324,32 @@ public class WordSweeper extends JFrame {
 		BoardPanel gamePanel = new BoardPanel(new Board());
 		gamePanel.setBounds(26, 100, 316, 281);
 		contentPane.add(gamePanel);
+		
+		JPanel boardInfo = new JPanel();
+		boardInfo.setBounds(6, 418, 252, 51);
+		contentPane.add(boardInfo);
+		
+		JLabel lbSelectedWords = new JLabel("A");
+		lbSelectedWords.setFont(new Font("Wawati SC", Font.PLAIN, 26));
+		lbSelectedWords.setBounds(0, 418, 117, 51);
+		boardInfo.add(lbSelectedWords);
+		
+		JLabel lbCurrentScore = new JLabel("100");
+		lbCurrentScore.setFont(new Font("Wawati SC", Font.PLAIN, 26));
+		lbCurrentScore.setBounds(100, 418, 117, 51);
+		boardInfo.add(lbCurrentScore);
+		
+		JPanel wordsHistory = new JPanel();
+		wordsHistory.setBounds(391, 119, 122, 275);
+		contentPane.add(wordsHistory);
+		
+		JPanel scoreBoard = new JPanel();
+		scoreBoard.setBounds(560, 119, 286, 275);
+		contentPane.add(scoreBoard);
+		
+		JPanel playerScore = new JPanel();
+		playerScore.setBounds(441, 69, 347, 38);
+		contentPane.add(playerScore);
 		
 	}
 }

@@ -6,6 +6,7 @@ import org.w3c.dom.NodeList;
 
 import client.model.Model;
 import client.view.Login;
+import client.view.WordSweeper;
 import external.xml.Message;
 
 /**
@@ -16,6 +17,7 @@ public class BoardResponseController {
 
 	public Login app;
 	public Model model;
+	public WordSweeper ws;
 	
 	public BoardResponseController(Login app, Model m) {
 		this.app = app;
@@ -26,9 +28,10 @@ public class BoardResponseController {
 		// this refers to the outer node of the Message DOM (in this case, updateResponse).
 		Node boardResponse = response.contents.getFirstChild();
 		NamedNodeMap map = boardResponse.getAttributes();
-		
+		String player = map.getNamedItem("managingUser").getNodeValue();
 		String gameId = map.getNamedItem("gameId").getNodeValue();
-		System.out.print("Board Message received for game:" + gameId + "\n");
+		String managingUser = map.getNamedItem("managingUser").getNodeValue();
+		System.out.print("Board Message received for game:" + gameId + "\n ManagingUser:" + managingUser + "\n");
 		System.out.print("Players:\n");
 		NodeList list = boardResponse.getChildNodes();
 		for (int i = 0; i < list.getLength(); i++) {
@@ -37,8 +40,11 @@ public class BoardResponseController {
 			System.out.print("  " + pname  + "\n");
 		}
 		
-		
-
+		if(app.isActive()){
+			app.dispose();
+			ws = new WordSweeper(gameId, player, player == managingUser);
+			ws.setVisible(true);
+		}
 		// at this point, you would normally start processing this...
 		System.out.print(response.toString());
 		System.out.print("\n");

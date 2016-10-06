@@ -25,7 +25,7 @@ public class SampleClientMessageHandler implements IMessageHandler {
 		// process each response that comes in with its own controller.
 		if (type.equals ("boardResponse")) {
 			// What happens now that we are connected?
-			//new BoardResponseController(app, app.model).process(response);
+			new BoardResponseController(app, app.model).process(response);
 		} else if (type.equals ("connectResponse")) {
 			System.out.print(response.toString() + "\n");
 		}
