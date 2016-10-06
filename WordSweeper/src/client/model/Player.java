@@ -1,21 +1,17 @@
-/**
- * 
- */
 package client.model;
 
-/**
- * @author quangvu
- *
- */
 public class Player {
-	
-	public final String name;
-	public Position position;
-	
-	public int score = 0;
-	 
-	public Player(String name, Position p) {
-		this.name = name;
-		this.position = p;
-	}
+	String id;
+    int score;
+    Position topleft;
+   
+    
+    public void player(String id, int score, Position topleft)
+    {
+       this.id=id;
+       this.score=score;
+       this.topleft=topleft;
+      
+    }
+
 }
