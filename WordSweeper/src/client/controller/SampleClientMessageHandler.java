@@ -1,6 +1,5 @@
 package client.controller;
 import client.view.Login;
-import client.view.WordSweeperFrame;
 import external.client.IMessageHandler;
 import external.xml.Message;
 
@@ -12,9 +11,10 @@ import external.xml.Message;
  */
 public class SampleClientMessageHandler implements IMessageHandler {
 
-	WordSweeperFrame app;
+	//WordSweeperFrame app;
+	Login app;
 	
-	public SampleClientMessageHandler(WordSweeperFrame app) {
+	public SampleClientMessageHandler(Login app) {
 		this.app = app;
 	}
 	

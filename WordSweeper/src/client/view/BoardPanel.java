@@ -22,7 +22,7 @@ public class BoardPanel extends JPanel implements IBoundary {
 	public static int COL_COUNT = 4;
 	public static int ROW_COUNT = 4;
 	public static int CELL_WIDTH = 65;
-	public static int CELL_HEIGHT = 68;
+	public static int CELL_HEIGHT = 55;
 	public static int CELL_GAP = 12;
 
 	final Board board;

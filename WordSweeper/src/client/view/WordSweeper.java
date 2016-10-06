@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import client.model.Board;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -50,91 +53,7 @@ public class WordSweeper extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
-		JButton letter00 = new JButton("A");
-		letter00.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter00.setBounds(31, 100, 68, 65);
-		letter00.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		contentPane.setLayout(null);
-		contentPane.add(letter00);
-		
-		JButton letter01 = new JButton("B");
-		letter01.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter01.setBounds(111, 100, 68, 65);
-		contentPane.add(letter01);
-		
-		JButton letter02 = new JButton("C");
-		letter02.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter02.setBounds(191, 100, 68, 65);
-		contentPane.add(letter02);
-		
-		JButton letter03 = new JButton("D");
-		letter03.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter03.setBounds(271, 100, 68, 65);
-		contentPane.add(letter03);
-		
-		JButton letter10 = new JButton("E");
-		letter10.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter10.setBounds(31, 170, 68, 65);
-		contentPane.add(letter10);
-		
-		JButton letter11 = new JButton("F");
-		letter11.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter11.setBounds(111, 170, 68, 65);
-		contentPane.add(letter11);
-		
-		JButton letter12 = new JButton("G");
-		letter12.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter12.setBounds(191, 170, 68, 65);
-		contentPane.add(letter12);
-		
-		JButton letter13 = new JButton("H");
-		letter13.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter13.setBounds(271, 170, 68, 65);
-		contentPane.add(letter13);
-		
-		JButton letter20 = new JButton("I");
-		letter20.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter20.setBounds(31, 240, 68, 65);
-		contentPane.add(letter20);
-		
-		JButton letter21 = new JButton("J");
-		letter21.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter21.setBounds(111, 240, 68, 65);
-		contentPane.add(letter21);
-		
-		JButton letter22 = new JButton("K");
-		letter22.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter22.setBounds(191, 240, 68, 65);
-		contentPane.add(letter22);
-		
-		JButton letter23 = new JButton("L");
-		letter23.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter23.setBounds(271, 240, 68, 65);
-		contentPane.add(letter23);
-		
-		JButton letter30 = new JButton("M");
-		letter30.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter30.setBounds(31, 310, 68, 65);
-		contentPane.add(letter30);
-		
-		JButton letter31 = new JButton("N");
-		letter31.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter31.setBounds(111, 310, 68, 65);
-		contentPane.add(letter31);
-		
-		JButton letter32 = new JButton("O");
-		letter32.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter32.setBounds(191, 310, 68, 65);
-		contentPane.add(letter32);
-		
-		JButton letter33 = new JButton("P");
-		letter33.setFont(new Font("Lucida Calligraphy", Font.BOLD | Font.ITALIC, 29));
-		letter33.setBounds(271, 310, 68, 65);
-		contentPane.add(letter33);
 		
 		JButton btnUp = new JButton("^");
 		btnUp.setBounds(31, 80, 308, 17);
@@ -154,10 +73,6 @@ public class WordSweeper extends JFrame {
 		
 		JButton btnSubmit = new JButton("SUBMIT");
 		btnSubmit.setFont(new Font("Wawati SC", Font.PLAIN, 23));
-		btnSubmit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnSubmit.setBounds(111, 481, 148, 66);
 		contentPane.add(btnSubmit);
 		
@@ -407,6 +322,10 @@ public class WordSweeper extends JFrame {
 		btnCancel.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnCancel.setBounds(266, 412, 100, 66);
 		contentPane.add(btnCancel);
+		
+		BoardPanel gamePanel = new BoardPanel(new Board());
+		gamePanel.setBounds(26, 100, 316, 281);
+		contentPane.add(gamePanel);
 		
 	}
 }
