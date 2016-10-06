@@ -4,9 +4,14 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import client.model.Board;
 import client.model.Model;
+import client.model.Player;
+import client.model.Position;
+import client.view.Application;
 import client.view.Login;
 import external.xml.Message;
+import utility.XMLParser;
 
 /**
  * Tells the client whether the model is locked or not BY SOME OTHER CLIENT. This will never be returned to a client
@@ -14,10 +19,10 @@ import external.xml.Message;
  */
 public class BoardResponseController {
 
-	public Login app;
+	public Application app;
 	public Model model;
 	
-	public BoardResponseController(Login app, Model m) {
+	public BoardResponseController(Application app, Model m) {
 		this.app = app;
 		this.model = m;
 	}
@@ -28,20 +33,29 @@ public class BoardResponseController {
 		NamedNodeMap map = boardResponse.getAttributes();
 		
 		String gameId = map.getNamedItem("gameId").getNodeValue();
+		String managingUser = map.getNamedItem("managingUser").getNodeValue();		
 		System.out.print("Board Message received for game:" + gameId + "\n");
 		System.out.print("Players:\n");
 		NodeList list = boardResponse.getChildNodes();
 		for (int i = 0; i < list.getLength(); i++) {
 			Node n = list.item(i);
-			String pname = n.getAttributes().getNamedItem("name").getNodeValue();
-			System.out.print("  " + pname  + "\n");
+			String pname  = n.getAttributes().getNamedItem("name").getNodeValue();
+			String pboard = n.getAttributes().getNamedItem("board").getNodeValue();
+			String pposition = n.getAttributes().getNamedItem("position").getNodeValue();
+			String pscore = n.getAttributes().getNamedItem("score").getNodeValue();
+			System.out.print("  " + pname  + " " + pboard + " " + pposition + " " + pscore + "\n");
+			
+			Position p = XMLParser.parseXmlPosition(pposition);
+			Board b = XMLParser.parseXmlBoard(pboard);
+			Player player = new Player(pname, p);
 		}
-		
-		
+		System.out.print("Managing user: " + managingUser + "\n");
 
 		// at this point, you would normally start processing this...
 		System.out.print(response.toString());
 		System.out.print("\n");
+		
+		
 		
 	}
 

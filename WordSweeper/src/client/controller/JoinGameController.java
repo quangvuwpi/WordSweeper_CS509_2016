@@ -2,15 +2,16 @@ package client.controller;
 
 
 import client.model.Model;
+import client.view.Application;
 import client.view.Login;
 import external.xml.Message;
 
 public class JoinGameController {
 
-	Login app;
-	Model model;
-
-	public JoinGameController(Login app, Model model) {
+	Application app;
+	Model model;	
+	
+	public JoinGameController(Application app, Model model) {
 		this.app = app;
 		this.model = model;
 	}
@@ -18,7 +19,7 @@ public class JoinGameController {
 	/** Make the request on the server and wait for response. */
 	public void process() {
 		// send the request to create the game.
-		String xmlString = Message.requestHeader() + "<joinGameRequest gameId='"+ app.gameId.getText() +"' name='"+ app.userId.getText() +"'/></request>";
+		String xmlString = Message.requestHeader() + "<joinGameRequest gameId='"+ model.game.gameId +"' name='"+ model.game.currentUser +"'/></request>";
 		Message m = new Message (xmlString);
 
 		// Request the lock (this might not succeed).

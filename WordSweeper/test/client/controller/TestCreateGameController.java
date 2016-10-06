@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import client.MockServerAccess;
 import client.model.Model;
+import client.view.Application;
 import client.view.Login;
 import external.xml.Message;
 import junit.framework.TestCase;
@@ -22,7 +23,7 @@ public class TestCreateGameController extends TestCase {
 	MockServerAccess mockServer;
 	
 	// client to connect
-	Login client;
+	Application client;
 	
 	// model being maintained by client.
 	Model model;
@@ -35,8 +36,8 @@ public class TestCreateGameController extends TestCase {
 		
 		// prepare client and connect to server.
 		model = new Model();
-		client = new Login (model);
-		client.setVisible(true);
+		client = new Application (model);
+		client.start();
 		
 		// Create mockServer to simulate server, and install 'obvious' handler
 		// that simply dumps to the screen the responses.

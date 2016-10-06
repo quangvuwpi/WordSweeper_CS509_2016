@@ -22,12 +22,12 @@ import client.controller.JoinGameController;
 import client.model.Model;
 import external.client.ServerAccess;
 
-public class Login extends JFrame implements MouseListener{
-
-	public final Model model;
-	ServerAccess serverAccess;
+public class Login extends JPanel implements MouseListener, IBoundary {
 	
-	private JPanel contentPane;
+	final Application app;
+	final Model model;
+	
+	//private JPanel contentPane;
 	public JTextField userId;
 	private JLabel lbUserId;
 	private JLabel lbPassword;
@@ -43,55 +43,58 @@ public class Login extends JFrame implements MouseListener{
 	/**
 	 * Create the frame.
 	 */
-	public Login(Model model) {
+	public Login(Application app, Model model) {
+		this.app = app;
 		this.model = model;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 280);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setBackground(Color.WHITE);
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setBounds(100, 100, 500, 280);
+		//contentPane = new JPanel();
+		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		//contentPane.setBackground(Color.WHITE);
+		//setContentPane(contentPane);
+		//contentPane.setLayout(null);
+		setLayout(null);
 		
 		JLabel lblWelcomeToWordsweeper = new JLabel("Welcome to WordSweeper CLINET");
 		lblWelcomeToWordsweeper.setFont(new Font("Wawati SC", Font.BOLD | Font.ITALIC, 20));
 		lblWelcomeToWordsweeper.setBounds(5, 5, 440, 16);
-		contentPane.add(lblWelcomeToWordsweeper);
+		add(lblWelcomeToWordsweeper);
 		
 		lbUserId = new JLabel("USER ID:", JLabel.RIGHT);
 		lbUserId.setBounds(265, 85, 60, 15);
-		contentPane.add(lbUserId);
+		add(lbUserId);
 		
 		userId = new JTextField();
 		userId.setBounds(338, 81, 130, 26);
-		contentPane.add(userId);
+		add(userId);
 		userId.setColumns(10);
 		
 		lbGameId = new JLabel("GAME ID:", JLabel.RIGHT);
 		lbGameId.setBounds(265, 115, 60, 15);
 		lbGameId.setVisible(false);
-		contentPane.add(lbGameId);
+		add(lbGameId);
 		
 		gameId = new JTextField();
 		gameId.setBounds(338, 111, 130, 26);
 		gameId.setVisible(false);
-		contentPane.add(gameId);
+		add(gameId);
 		
 		lbPassword = new JLabel("PASSWORD:", JLabel.RIGHT);
 		lbPassword.setBounds(245, 145, 80, 15);
 		lbPassword.setVisible(false);
-		contentPane.add(lbPassword);
+		add(lbPassword);
 		
 		password = new JPasswordField();
 		password.setBounds(338, 141, 130, 26);
 		password.setVisible(false);
-		contentPane.add(password);
+		add(password);
 		
 		btnStart = new JButton("START!");
 		btnStart.setName("Start");
 		btnStart.setBounds(302, 196, 117, 50);
 		btnStart.addMouseListener(this);
-		contentPane.add(btnStart);
+		add(btnStart);
 
 		/*Use Label as button to let Player choose game mode*/
 		btnNewGame = new JLabel("NEW GAME", JLabel.CENTER);
@@ -100,7 +103,7 @@ public class Login extends JFrame implements MouseListener{
 		btnNewGame.setName("NewGame");
 		btnNewGame.setFont(new Font("Wawati SC", Font.BOLD, 20));
 		btnNewGame.setBounds(30, 110, 200, 30);
-		contentPane.add(btnNewGame);
+		add(btnNewGame);
 		
 		btnPracticeGame = new JLabel("PRACTICE GAME", JLabel.CENTER);
 		clickMap.put("PracticeGame", true);
@@ -109,7 +112,7 @@ public class Login extends JFrame implements MouseListener{
 		btnPracticeGame.setName("PracticeGame");
 		btnPracticeGame.setFont(new Font("Wawati SC", Font.BOLD, 20));
 		btnPracticeGame.setBounds(30, 150, 200, 30);
-		contentPane.add(btnPracticeGame);
+		add(btnPracticeGame);
 		
 		btnJoinGame = new JLabel("JOIN GAME", JLabel.CENTER);
 		clickMap.put("JoinGame",false);
@@ -118,17 +121,17 @@ public class Login extends JFrame implements MouseListener{
 		btnJoinGame.setName("JoinGame");
 		btnJoinGame.setFont(new Font("Wawati SC", Font.BOLD, 20));
 		btnJoinGame.setBounds(30, 70, 200, 30);
-		contentPane.add(btnJoinGame);
+		add(btnJoinGame);
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(Color.DARK_GRAY);
 		separator.setBounds(30, 100, 200, 20);
-		contentPane.add(separator);
+		add(separator);
 		
 		JSeparator separator2 = new JSeparator();
 		separator2.setForeground(Color.DARK_GRAY);
 		separator2.setBounds(30, 140, 200, 20);
-		contentPane.add(separator2);
+		add(separator2);
 	}
 
 	@Override
@@ -136,11 +139,12 @@ public class Login extends JFrame implements MouseListener{
 		// TODO Auto-generated method stub
 		String name = e.getComponent().getName();
 		if(name == "Start"){
+			model.game.currentUser = userId.getText();
 			System.out.print(userId.getText());
-			if(clickMap.get("NewGame"))
-				new CreateGameController(Login.this, model).process();
+			if(clickMap.get("NewGame"))			
+				new CreateGameController(app, app.model).process();
 			if(clickMap.get("JoinGame"))
-				new JoinGameController(Login.this, model).process();
+				new JoinGameController(app, app.model).process();
 		}
 		else{
 			if(name == "NewGame"){
@@ -210,14 +214,17 @@ public class Login extends JFrame implements MouseListener{
 			clickMap.put(name, !clickMap.get(name));
 		}
 	}
-	
-	/** Record the means to communicate with server. */
-	public void setServerAccess(ServerAccess access) {
-		this.serverAccess = access;
+
+	@Override
+	public boolean setup() {
+		// TODO Auto-generated method stub
+		return true;
 	}
-	
-	/** Get the server access object. */
-	public ServerAccess getServerAccess() {
-		return serverAccess;
+
+	@Override
+	public boolean teardown() {
+		// TODO Auto-generated method stub
+		return true;
 	}
+
 }

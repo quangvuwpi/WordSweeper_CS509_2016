@@ -11,16 +11,23 @@ import javax.swing.border.EmptyBorder;
 
 import client.controller.BoardController;
 import client.model.Board;
+import client.model.Model;
 
 @SuppressWarnings("serial")
 public class WordSweeperFrame extends JFrame {
 
 	private JPanel contentPane;
 	
+	final Application app;
+	final Model model;
+	
 	/**
 	 * Create the frame.
 	 */
-	public WordSweeperFrame() {
+	public WordSweeperFrame(Application app, Model model) {
+		this.app = app;
+		this.model = model;
+		
 		setupGUI();		
 	}
 	
@@ -57,13 +64,17 @@ public class WordSweeperFrame extends JFrame {
 		pane.removeAll();
 		
 		b.setup();
-		pane.add((JPanel) b);
+		pane.add((Component) b);
 		
 		pane.invalidate();
 		pane.repaint();		
 	}
 	
 	public boolean switchToLogin() {
+		Login panel = new Login(app, model);
+		
+		switchScreen(panel);
+		
 		return true;
 	}
 	

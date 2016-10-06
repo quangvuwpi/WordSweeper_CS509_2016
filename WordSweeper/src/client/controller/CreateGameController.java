@@ -1,17 +1,18 @@
 package client.controller;
 
 
-import Utility.MessageFactory;
 import client.model.Model;
+import client.view.Application;
 import client.view.Login;
 import external.xml.Message;
+import utility.MessageFactory;
 
 public class CreateGameController {
 
-	Login app;
+	Application app;
 	Model model;
 
-	public CreateGameController(Login login, Model model) {
+	public CreateGameController(Application login, Model model) {
 		this.app = login;
 		this.model = model;
 	}
@@ -19,7 +20,7 @@ public class CreateGameController {
 	/** Make the request on the server and wait for response. */
 	public void process() {
 		// send the request to create the game.
-		Message m = MessageFactory.createGameRequest(app.userId.getText());
+		Message m = MessageFactory.createGameRequest(model.game.currentUser);
 		
 		// Request the lock (this might not succeed).
 		System.out.print(m.toString());

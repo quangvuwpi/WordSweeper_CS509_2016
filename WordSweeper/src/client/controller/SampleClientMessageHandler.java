@@ -1,4 +1,5 @@
 package client.controller;
+import client.view.Application;
 import client.view.Login;
 import client.view.WordSweeperFrame;
 import external.client.IMessageHandler;
@@ -12,9 +13,9 @@ import external.xml.Message;
  */
 public class SampleClientMessageHandler implements IMessageHandler {
 
-	WordSweeperFrame app;
+	Application app;
 	
-	public SampleClientMessageHandler(WordSweeperFrame app) {
+	public SampleClientMessageHandler(Application app) {
 		this.app = app;
 	}
 	
@@ -25,7 +26,7 @@ public class SampleClientMessageHandler implements IMessageHandler {
 		// process each response that comes in with its own controller.
 		if (type.equals ("boardResponse")) {
 			// What happens now that we are connected?
-			//new BoardResponseController(app, app.model).process(response);
+			new BoardResponseController(app, app.model).process(response);
 		} else if (type.equals ("connectResponse")) {
 			System.out.print(response.toString() + "\n");
 		}
