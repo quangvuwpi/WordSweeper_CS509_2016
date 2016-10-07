@@ -13,7 +13,7 @@ public class ConnectRequest implements IRequest {
 	
 	@Override
 	public String toString() {
-		return Message.requestHeader() + "<connectRequest/></request>";
+		return new XmlStringBuilder("connectRequest").finish().toString();
 	}
 
 	/* (non-Javadoc)
