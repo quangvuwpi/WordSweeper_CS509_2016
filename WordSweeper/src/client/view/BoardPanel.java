@@ -36,10 +36,10 @@ public class BoardPanel extends JPanel implements IBoundary {
 	/**
 	 * Create the panel and bound to a Board.
 	 */
-	public BoardPanel(Board board) {
+	public BoardPanel(Board board, BoardInfoPanel i) {
 		this.board = board;
-		this.controller = new BoardController(board, this);
-
+		this.controller = new BoardController(board, this, i);
+		
 		int w = COL_COUNT * (CELL_WIDTH + CELL_GAP);
 		int h = ROW_COUNT * (CELL_HEIGHT + CELL_GAP);
 		this.size = new Dimension(w, h);
@@ -108,6 +108,16 @@ public class BoardPanel extends JPanel implements IBoundary {
 		return null;
 	}
 
+	public void cancel(){
+		controller.sb.delete(0, controller.sb.length());
+		controller.infoPanel.refreshWord("");
+		controller.infoPanel.invalidate();
+		controller.infoPanel.repaint();
+		board.cancel();
+		validate();
+		repaint();
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 		super.paintComponents(g);

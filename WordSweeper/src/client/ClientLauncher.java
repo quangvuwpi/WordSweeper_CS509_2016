@@ -3,7 +3,6 @@ import Utility.MessageFactory;
 import client.controller.SampleClientMessageHandler;
 import client.model.Model;
 import client.view.Login;
-import client.view.WordSweeperFrame;
 import external.client.ServerAccess;
 import external.xml.Message;
 
