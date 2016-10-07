@@ -19,15 +19,16 @@ import javax.swing.JSeparator;
 
 import client.controller.CreateGameController;
 import client.controller.JoinGameController;
+import client.controller.PracticeGameController;
 import client.model.Model;
 import external.client.ServerAccess;
 
-public class Login extends JPanel implements MouseListener, IBoundary {
+public class Login extends JFrame implements MouseListener, IBoundary {
 	
 	final Application app;
 	final Model model;
 	
-	//private JPanel contentPane;
+	private JPanel contentPane;
 	public JTextField userId;
 	private JLabel lbUserId;
 	private JLabel lbPassword;
@@ -47,54 +48,54 @@ public class Login extends JPanel implements MouseListener, IBoundary {
 		this.app = app;
 		this.model = model;
 		
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setBounds(100, 100, 500, 280);
-		//contentPane = new JPanel();
-		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//contentPane.setBackground(Color.WHITE);
-		//setContentPane(contentPane);
-		//contentPane.setLayout(null);
-		setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 500, 280);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(Color.WHITE);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		//setLayout(null);
 		
 		JLabel lblWelcomeToWordsweeper = new JLabel("Welcome to WordSweeper CLINET");
 		lblWelcomeToWordsweeper.setFont(new Font("Wawati SC", Font.BOLD | Font.ITALIC, 20));
 		lblWelcomeToWordsweeper.setBounds(5, 5, 440, 16);
-		add(lblWelcomeToWordsweeper);
+		contentPane.add(lblWelcomeToWordsweeper);
 		
 		lbUserId = new JLabel("USER ID:", JLabel.RIGHT);
 		lbUserId.setBounds(265, 85, 60, 15);
-		add(lbUserId);
+		contentPane.add(lbUserId);
 		
 		userId = new JTextField();
 		userId.setBounds(338, 81, 130, 26);
-		add(userId);
+		contentPane.add(userId);
 		userId.setColumns(10);
 		
 		lbGameId = new JLabel("GAME ID:", JLabel.RIGHT);
 		lbGameId.setBounds(265, 115, 60, 15);
 		lbGameId.setVisible(false);
-		add(lbGameId);
+		contentPane.add(lbGameId);
 		
 		gameId = new JTextField();
 		gameId.setBounds(338, 111, 130, 26);
 		gameId.setVisible(false);
-		add(gameId);
+		contentPane.add(gameId);
 		
 		lbPassword = new JLabel("PASSWORD:", JLabel.RIGHT);
 		lbPassword.setBounds(245, 145, 80, 15);
 		lbPassword.setVisible(false);
-		add(lbPassword);
+		contentPane.add(lbPassword);
 		
 		password = new JPasswordField();
 		password.setBounds(338, 141, 130, 26);
 		password.setVisible(false);
-		add(password);
+		contentPane.add(password);
 		
 		btnStart = new JButton("START!");
 		btnStart.setName("Start");
 		btnStart.setBounds(302, 196, 117, 50);
 		btnStart.addMouseListener(this);
-		add(btnStart);
+		contentPane.add(btnStart);
 
 		/*Use Label as button to let Player choose game mode*/
 		btnNewGame = new JLabel("NEW GAME", JLabel.CENTER);
@@ -103,7 +104,7 @@ public class Login extends JPanel implements MouseListener, IBoundary {
 		btnNewGame.setName("NewGame");
 		btnNewGame.setFont(new Font("Wawati SC", Font.BOLD, 20));
 		btnNewGame.setBounds(30, 110, 200, 30);
-		add(btnNewGame);
+		contentPane.add(btnNewGame);
 		
 		btnPracticeGame = new JLabel("PRACTICE GAME", JLabel.CENTER);
 		clickMap.put("PracticeGame", true);
@@ -112,7 +113,7 @@ public class Login extends JPanel implements MouseListener, IBoundary {
 		btnPracticeGame.setName("PracticeGame");
 		btnPracticeGame.setFont(new Font("Wawati SC", Font.BOLD, 20));
 		btnPracticeGame.setBounds(30, 150, 200, 30);
-		add(btnPracticeGame);
+		contentPane.add(btnPracticeGame);
 		
 		btnJoinGame = new JLabel("JOIN GAME", JLabel.CENTER);
 		clickMap.put("JoinGame",false);
@@ -121,17 +122,17 @@ public class Login extends JPanel implements MouseListener, IBoundary {
 		btnJoinGame.setName("JoinGame");
 		btnJoinGame.setFont(new Font("Wawati SC", Font.BOLD, 20));
 		btnJoinGame.setBounds(30, 70, 200, 30);
-		add(btnJoinGame);
+		contentPane.add(btnJoinGame);
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(Color.DARK_GRAY);
 		separator.setBounds(30, 100, 200, 20);
-		add(separator);
+		contentPane.add(separator);
 		
 		JSeparator separator2 = new JSeparator();
 		separator2.setForeground(Color.DARK_GRAY);
 		separator2.setBounds(30, 140, 200, 20);
-		add(separator2);
+		contentPane.add(separator2);
 	}
 
 	@Override
@@ -145,6 +146,8 @@ public class Login extends JPanel implements MouseListener, IBoundary {
 				new CreateGameController(app, app.model).process();
 			if(clickMap.get("JoinGame"))
 				new JoinGameController(app, app.model).process();
+			if(clickMap.get("PracticeGame"))
+				new PracticeGameController(app, app.model).process();
 		}
 		else{
 			if(name == "NewGame"){

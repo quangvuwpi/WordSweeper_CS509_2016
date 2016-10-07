@@ -3,6 +3,8 @@
  */
 package client.view;
 
+import javax.swing.JFrame;
+
 import client.model.Model;
 import external.client.ServerAccess;
 
@@ -17,16 +19,38 @@ public class Application {
 	public final Model model;
 	ServerAccess serverAccess;
 	
-	public final WordSweeperFrame frame;
+	//public final WordSweeperFrame frame;
+	JFrame current;
 	
 	public Application(Model model) {
 		this.model = model;		
-		this.frame = new WordSweeperFrame(this, model);
+		//this.frame = new WordSweeperFrame(this, model);
 	}
 	
 	public void start() {
-		frame.switchToLogin();
-		frame.setVisible(true);
+		//frame.switchToLogin();
+		//frame.setVisible(true);
+		switchToLogin();
+	}
+	
+	public void switchToLogin() {
+		if (current != null) {
+			current.setVisible(false);
+			current.dispose();
+		}
+		
+		current = new Login(this, model);
+		current.setVisible(true);
+	}
+	
+	public void switchToBoard() {
+		if (current != null) {
+			current.setVisible(false);
+			current.dispose();
+		}
+		
+		current = new WordSweeper();
+		current.setVisible(true);
 	}
 	
 	/** Record the means to communicate with server. */
