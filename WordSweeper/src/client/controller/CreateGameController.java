@@ -3,9 +3,9 @@ package client.controller;
 
 import client.model.Model;
 import client.view.Application;
-import client.view.Login;
+import external.client.IController;
 import external.xml.Message;
-import utility.MessageFactory;
+import request.CreateGameRequest;
 
 public class CreateGameController {
 
@@ -20,16 +20,21 @@ public class CreateGameController {
 	/** Make the request on the server and wait for response. */
 	public void process() {
 		// send the request to create the game.
-		Message m = MessageFactory.createGameRequest(model.game.currentUser);
+		Message m = new CreateGameRequest(model.game.currentUser).toMessage();
 		
 		// Request the lock (this might not succeed).
 		System.out.print(m.toString());
 		System.out.print("\n");
 		
-		if (app.getServerAccess().sendRequest(m)) {
+		// Only switch to Board view on first response
+		app.getServerAccess().sendRequest(new IController() {
 			
-		} else {
-			
-		}
+			@Override
+			public void process(Message request, Message response) {
+				if (response.success()) {
+					app.switchToBoard();
+				}				
+			}
+		}, m);
 	}
 }

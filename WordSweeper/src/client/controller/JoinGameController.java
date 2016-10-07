@@ -4,6 +4,7 @@ package client.controller;
 import client.model.Model;
 import client.view.Application;
 import client.view.Login;
+import external.client.IController;
 import external.xml.Message;
 
 public class JoinGameController {
@@ -25,6 +26,15 @@ public class JoinGameController {
 		// Request the lock (this might not succeed).
 		System.out.print(m.toString());
 		System.out.print("\n");
-		app.getServerAccess().sendRequest(m);
+		
+		app.getServerAccess().sendRequest(new IController() {
+			
+			@Override
+			public void process(Message request, Message response) {
+				if (response.success()) {
+					app.switchToBoard();
+				}				
+			}
+		}, m);
 	}
 }
