@@ -50,23 +50,12 @@ public class XMLParser {
 	 */
 	public static Board parseXmlBoard(String xml) {
 		if (xml != null && xml.length() >= 16) {
-			String regex = "[A-Z]*(Qu)*[A-Z]*";
+			String regex = "([A-Z]|Qu){16}";
 			Matcher m = Pattern.compile(regex).matcher(xml);
 
 			if (m.matches()) {
-				// If XML length is greater than 16, there has to be a Qu
-				// somewhere
-				
-				
-				Matcher p = Pattern.compile("[A-Z]*Qu[A-Z]*").matcher(xml);
-				System.out.println(p.groupCount());
-				for (int i = 0; i < p.groupCount(); i++) {
-					System.out.println(p.group(i));
-				}
-				
-				if (xml.length() == 16 || (xml.length() > 16 && m.groupCount() >= 2)) {
-					return new Board();
-				}
+				// How to give string to Board???
+				return new Board();
 			}
 		}
 		return null;

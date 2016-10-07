@@ -71,7 +71,9 @@ public class XMLParserTest extends TestCase {
 		// long string case
 		xml = "AKJKOJWOERLKDORHFILRNEBCD";
 		assertNull(XMLParser.parseXmlBoard(xml));
-
+		xml = "QuBCDQuFGHIQuQuLQuMNOP";
+		assertNull(XMLParser.parseXmlBoard(xml));
+		
 		// malformed string case
 		xml = "ABCDEFGHI,KLMNOP";
 		assertNull(XMLParser.parseXmlBoard(xml));
@@ -88,6 +90,8 @@ public class XMLParserTest extends TestCase {
 		xml = "ABCDEFGHIJKLMNOQu";
 		assertNotNull(XMLParser.parseXmlBoard(xml));
 		xml = "QuBCDEFGHIJKLMNOP";
+		assertNotNull(XMLParser.parseXmlBoard(xml));
+		xml = "QuBCDQuFGHIQuQuLMNOP";
 		assertNotNull(XMLParser.parseXmlBoard(xml));
 	}
 
