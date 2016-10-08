@@ -19,9 +19,7 @@ public class CreateGameRequest implements IRequest {
 	
 	@Override
 	public String toString() {
-		String xml = new XmlStringBuilder("createGameRequest").add("name", name).finish().toString();
-		
-		return xml;
+		return new XmlStringBuilder("createGameRequest").add("name", name).finish().toString();
 	}
 
 	/* (non-Javadoc)
