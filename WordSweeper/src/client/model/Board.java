@@ -47,15 +47,24 @@ public class Board {
 		return null;
 	}
 	
-	public boolean selectCell(Position p) {
-		if (p != null && 
-			(p.col >= 0 && p.col < 4) &&
-			(p.row >= 0 && p.row < 4)) {
-			cells[p.col][p.row].selected = true;
-			
-			return true;
+	public void cancel() {
+		for(Cell[] i: cells){
+			for(Cell j: i){
+				j.selected = false;
+				j.added = false;
+			}
 		}
-		return false;
 	}
+	
+//	public boolean selectCell(Position p) {
+//		if (p != null && 
+//			(p.col >= 0 && p.col < 4) &&
+//			(p.row >= 0 && p.row < 4)) {
+//			cells[p.col][p.row].selected = true;
+//			
+//			return true;
+//		}
+//		return false;
+//	}
 
 }

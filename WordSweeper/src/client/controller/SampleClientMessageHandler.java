@@ -1,7 +1,6 @@
 package client.controller;
 import client.view.Application;
 import client.view.Login;
-import client.view.WordSweeperFrame;
 import external.client.IMessageHandler;
 import external.xml.Message;
 

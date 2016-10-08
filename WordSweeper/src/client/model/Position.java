@@ -9,8 +9,8 @@ package client.model;
  */
 public class Position {
 	
-	final int col;
-	final int row;
+	public final int col;
+	public final int row;
 	
 	public Position(int col, int row) {
 		this.col = col;

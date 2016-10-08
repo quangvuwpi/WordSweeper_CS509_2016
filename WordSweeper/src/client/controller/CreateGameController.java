@@ -33,6 +33,7 @@ public class CreateGameController {
 			public void process(Message request, Message response) {
 				if (response.success()) {
 					app.switchToBoard();
+					new BoardResponseController(app, model).process(response);
 				}				
 			}
 		}, m);

@@ -2,12 +2,9 @@ package client;
 import client.controller.SampleClientMessageHandler;
 import client.model.Model;
 import client.view.Application;
-import client.view.Login;
-import client.view.WordSweeperFrame;
 import external.client.ServerAccess;
 import external.xml.Message;
 import request.ConnectRequest;
-import utility.MessageFactory;
 
 /** Launch command-line Client to show minimal access needs. */
 public class ClientLauncher {

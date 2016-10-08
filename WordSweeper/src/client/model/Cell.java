@@ -16,7 +16,8 @@ public class Cell {
 	public int multiplier;
 
 	public boolean selected = false;
-
+	public boolean added = false;
+	
 	public Cell(Position p) {
 		this.p = p;
 	}
