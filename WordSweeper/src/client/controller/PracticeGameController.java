@@ -5,6 +5,7 @@ package client.controller;
 
 import client.model.Model;
 import client.view.Application;
+import utility.BoardFactory;
 
 /**
  * @author quangvu
@@ -21,6 +22,8 @@ public class PracticeGameController {
 	}
 	
 	public void process() {
+		model.game.Board = BoardFactory.randomBoard();
+		
 		app.switchToBoard();
 	}
 }
