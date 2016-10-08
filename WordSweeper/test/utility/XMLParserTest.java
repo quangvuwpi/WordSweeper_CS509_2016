@@ -93,6 +93,8 @@ public class XMLParserTest extends TestCase {
 		assertNotNull(XMLParser.parseXmlBoard(xml));
 		xml = "QuBCDQuFGHIQuQuLMNOP";
 		assertNotNull(XMLParser.parseXmlBoard(xml));
+		xml = "QuBCQQuFGHIQQuLMNOP";
+		assertNotNull(XMLParser.parseXmlBoard(xml));
 	}
 
 }
