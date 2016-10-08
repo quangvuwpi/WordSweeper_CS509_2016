@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import client.model.Board;
+import client.model.Model;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -29,18 +30,22 @@ public class WordSweeper extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private String GameId;
-	private String UserId;
-	private Boolean ManagingUser;
+	
+	Application app;
+	Model model;
+	
+	private String GameId = "";
+	private String UserId = "";
+	private Boolean ManagingUser = true;
 	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String gameId, String userId, Boolean managingUser) {
+	public static void main(Application app, Model model) {		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WordSweeper frame = new WordSweeper(gameId, userId, managingUser);
+					WordSweeper frame = new WordSweeper(app, model);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,10 +57,14 @@ public class WordSweeper extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public WordSweeper(String gameId, String userId, Boolean managingUser) {
-		this.GameId = gameId;
-		this.UserId = userId;
-		this.ManagingUser = managingUser;
+	public WordSweeper(Application app, Model model) {
+		this.app = app;
+		this.model = model;
+		
+		this.GameId = model.game.gameId;
+		this.UserId = model.game.currentUser;
+		this.ManagingUser = model.game.isManagingUser;
+		
 		setTitle("WordSweeper");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 100, 874, 575);
@@ -172,7 +181,7 @@ public class WordSweeper extends JFrame {
 		boardInfo.setBounds(6, 400, 240, 70);
 		contentPane.add(boardInfo);
 		
-		BoardPanel gamePanel = new BoardPanel(new Board(), boardInfo);
+		BoardPanel gamePanel = new BoardPanel(model.game.Board, boardInfo);
 		gamePanel.setBounds(26, 100, 316, 281);
 		contentPane.add(gamePanel);
 		

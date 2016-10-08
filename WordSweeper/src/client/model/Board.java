@@ -22,6 +22,28 @@ public class Board {
 							{'I','J','K','L'},
 							{'M','N','O','P'}};
 	
+	/**
+	 * Initialize the board
+	 * 
+	 * Assuming the letters come in col then row
+	 * 
+	 * @param letters the letters to fill the board with
+	 */
+	public Board(String letters[][]) {
+		int mul = 0;
+		for (int i = 0; i < COL_COUNT; i++) {
+			for (int j = 0; j < ROW_COUNT; j++) {
+				Cell c   = new Cell(new Position(i,j));
+				c.letter = letters[i][j];
+				c.point  = 1;
+				c.multiplier = mul;
+				mul++;
+				
+				cells[i][j] = c;
+			}
+		}
+	}
+	
 	public Board() {
 		/**
 		 * Fill the board
@@ -39,6 +61,8 @@ public class Board {
 			}
 		}
 	}
+	
+	
 	
 	public Cell getCell(Position p) {
 		if (p != null) {

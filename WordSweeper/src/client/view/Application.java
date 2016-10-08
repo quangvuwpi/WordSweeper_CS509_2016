@@ -49,7 +49,7 @@ public class Application {
 			current.dispose();
 		}
 		
-		current = new WordSweeper("","",true);
+		current = new WordSweeper(this, model);
 		current.setVisible(true);
 	}
 	

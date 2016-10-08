@@ -49,6 +49,9 @@ public class BoardResponseController {
 			
 			Position p = XMLParser.parseXmlPosition(pposition);
 			Board b = XMLParser.parseXmlBoard(pboard);
+			
+			model.game.Board = b;
+			
 			//Player player = new Player(pname, p);
 		}
 
