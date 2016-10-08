@@ -58,14 +58,17 @@ public class XMLParser {
 				int col = 0;
 				int row = 0;				
 				while (i < xml.length()) {
-					if (xml.charAt(i) != 'Q') {
+					if (xml.charAt(i) != 'Q') {  // Not Qu, but might be Q
 						array[col][row] = String.valueOf(xml.charAt(i));
 						i++;
-					} else if (i < (xml.length() - 1) && xml.charAt(i+1) == 'u') {
+					} else if (i < (xml.length() - 1) && xml.charAt(i+1) == 'u') {  // Qu
 						char qu[] = {xml.charAt(i), xml.charAt(i+1)};
 						array[col][row] = String.valueOf(qu);
 						i += 2;
-					}					
+					} else {  // Q
+						array[col][row] = String.valueOf(xml.charAt(i));
+						i++;
+					}
 					
 					if (col < Board.COL_COUNT - 1) {
 						col++;
