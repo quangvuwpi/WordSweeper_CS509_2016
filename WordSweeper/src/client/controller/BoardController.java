@@ -71,7 +71,6 @@ public class BoardController extends MouseAdapter {
 			panel.invalidate();
 			panel.repaint();
 		}
-		
 		e.consume();
 	}
 	

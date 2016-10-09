@@ -15,6 +15,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.util.LinkedList;
+import java.util.Queue;
 
 @SuppressWarnings("serial")
 public class BoardPanel extends JPanel implements IBoundary {
@@ -110,13 +112,35 @@ public class BoardPanel extends JPanel implements IBoundary {
 	}
 
 	public void cancel(){
+		clearInfoBoard();
+		board.cancel();
+		validate();
+		repaint();
+	}
+
+	public void submit() {
+		for (int col = 0; col < COL_COUNT; col++) {
+			int i = 0;
+			Queue<Cell> que = new LinkedList<>();
+			while(i < 4){
+				if(!board.getCell(new Position(col, i)).added) que.add(board.getCell(new Position(col, i)));
+				i++;
+			}
+			i = 0;
+			while(i < 4){
+				if(!que.isEmpty()) board.getCell(new Position(col, i)).copy(que.poll());
+				else board.getCell(new Position(col, i)).randome();
+				i++;
+			}
+		}
+		cancel();
+	}
+
+	public void clearInfoBoard() {
 		controller.sb.delete(0, controller.sb.length());
 		controller.infoPanel.refreshWord("");
 		controller.infoPanel.invalidate();
 		controller.infoPanel.repaint();
-		board.cancel();
-		validate();
-		repaint();
 	}
 	
 	@Override

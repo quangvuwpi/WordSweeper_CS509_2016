@@ -201,8 +201,10 @@ public class WordSweeper extends JFrame {
 		btnSubmit.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e) {
 //				System.out.print("\n "+ wordsHistory..lbSelectedWords.getText() +" \n");
-				wordsHistory.addWord(boardInfo.lbSelectedWords.getText());
-				gamePanel.cancel();
+				if(boardInfo.lbSelectedWords.getText() != null){
+					wordsHistory.addWord(boardInfo.lbSelectedWords.getText());
+					gamePanel.submit();
+				}
 			}
 		});
 		add(btnSubmit);
