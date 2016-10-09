@@ -55,15 +55,9 @@ public class Board {
 		}
 	}
 	
-//	public boolean selectCell(Position p) {
-//		if (p != null && 
-//			(p.col >= 0 && p.col < 4) &&
-//			(p.row >= 0 && p.row < 4)) {
-//			cells[p.col][p.row].selected = true;
-//			
-//			return true;
-//		}
-//		return false;
-//	}
+	Board active = null;
+	public Board  getActive(){
+		return active;
+	}
 
 }

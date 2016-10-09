@@ -28,7 +28,7 @@ public class Game {
 //		}		
 		return num;
 	}
-	
+
 	public boolean validate(Word currentWord) {
 		if (currentWord == null) {
 			
@@ -36,12 +36,15 @@ public class Game {
 		}
 		return false;
 	}
-	
+
 	public int calculateScore(Word currentWord){
 		int score = currentWord.point;		
 		return score;
 	}
-	
-	
+
+	Game active = null;
+	public Game  getActive(){
+		return active;
+	}
 
 }
