@@ -1,6 +1,6 @@
-package external.client;
+package client;
 
-import external.xml.Message;
+import xml.Message;
 
 public interface IMessageHandler {
 	

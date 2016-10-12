@@ -1,11 +1,11 @@
 package client.controller;
 
 
+import client.IController;
 import client.model.Model;
 import client.view.Application;
-import external.client.IController;
-import external.xml.Message;
 import request.CreateGameRequest;
+import xml.Message;
 
 public class CreateGameController {
 

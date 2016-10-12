@@ -1,4 +1,4 @@
-package external.server.model;
+package server.model;
 
 /** HACK: Replace with actual functionality! */
 

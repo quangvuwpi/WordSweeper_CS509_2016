@@ -5,8 +5,8 @@ package client.view;
 
 import javax.swing.JFrame;
 
+import client.ServerAccess;
 import client.model.Model;
-import external.client.ServerAccess;
 
 /**
  * The main application class to keep track of miscellaneous data

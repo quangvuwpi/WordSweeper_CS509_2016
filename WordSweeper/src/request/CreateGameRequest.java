@@ -3,7 +3,7 @@
  */
 package request;
 
-import external.xml.Message;
+import xml.Message;
 
 /**
  * @author quangvu

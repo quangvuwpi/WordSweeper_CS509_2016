@@ -1,4 +1,4 @@
-package external.xml;
+package xml;
 
 import java.util.ArrayList;
 import org.xml.sax.*;

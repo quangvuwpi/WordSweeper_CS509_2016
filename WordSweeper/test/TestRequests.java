@@ -1,5 +1,5 @@
-import external.xml.Message;
 import junit.framework.TestCase;
+import xml.Message;
 
 
 public class TestRequests extends TestCase {

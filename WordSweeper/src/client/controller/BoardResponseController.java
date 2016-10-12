@@ -11,8 +11,8 @@ import client.model.Position;
 import client.view.Application;
 import client.view.Login;
 import client.view.WordSweeper;
-import external.xml.Message;
 import utility.XMLParser;
+import xml.Message;
 
 /**
  * Tells the client whether the model is locked or not BY SOME OTHER CLIENT. This will never be returned to a client

@@ -1,6 +1,6 @@
-package external.client;
+package client;
 
-import external.xml.Message;
+import xml.Message;
 
 /**
  * Specialized client-side controller that is asked to respond to a specific response Message

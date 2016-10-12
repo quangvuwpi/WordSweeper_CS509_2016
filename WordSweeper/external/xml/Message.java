@@ -1,4 +1,4 @@
-package external.xml;
+package xml;
 
 import java.io.*;
 import java.util.UUID;

@@ -1,7 +1,7 @@
 package server.model;
 
-import external.server.model.ServerModel;
 import junit.framework.TestCase;
+import server.model.ServerModel;
 
 public class TestServerModel extends TestCase {
 

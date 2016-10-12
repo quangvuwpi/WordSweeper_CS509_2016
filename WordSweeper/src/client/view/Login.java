@@ -17,11 +17,11 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 
+import client.ServerAccess;
 import client.controller.CreateGameController;
 import client.controller.JoinGameController;
 import client.controller.PracticeGameController;
 import client.model.Model;
-import external.client.ServerAccess;
 
 public class Login extends JFrame implements MouseListener, IBoundary {
 	
@@ -57,7 +57,7 @@ public class Login extends JFrame implements MouseListener, IBoundary {
 		contentPane.setLayout(null);
 		//setLayout(null);
 		
-		JLabel lblWelcomeToWordsweeper = new JLabel("Welcome to WordSweeper CLINET");
+		JLabel lblWelcomeToWordsweeper = new JLabel("Welcome to WordSweeper CLIENT");
 		lblWelcomeToWordsweeper.setFont(new Font("Wawati SC", Font.BOLD | Font.ITALIC, 20));
 		lblWelcomeToWordsweeper.setBounds(5, 5, 440, 16);
 		contentPane.add(lblWelcomeToWordsweeper);

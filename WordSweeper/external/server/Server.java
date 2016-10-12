@@ -1,4 +1,4 @@
-package external.server;
+package server;
 
 import java.io.*;
 import java.net.*;

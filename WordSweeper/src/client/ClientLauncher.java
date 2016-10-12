@@ -1,10 +1,10 @@
 package client;
+import client.ServerAccess;
 import client.controller.SampleClientMessageHandler;
 import client.model.Model;
 import client.view.Application;
-import external.client.ServerAccess;
-import external.xml.Message;
 import request.ConnectRequest;
+import xml.Message;
 
 /** Launch command-line Client to show minimal access needs. */
 public class ClientLauncher {

@@ -1,5 +1,5 @@
-package external.server.controller;
-import external.server.ClientState;
+package server.controller;
+import server.ClientState;
 
 /**
  * Controller to detect when terminating client has something to be cleaned up.

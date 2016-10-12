@@ -1,4 +1,4 @@
-package external.server;
+package server;
 
 import java.io.*;
 import java.net.*;
@@ -6,8 +6,8 @@ import java.util.UUID;
 
 import org.w3c.dom.*;
 
-import external.xml.Message;
-import external.xml.Parser;
+import xml.Message;
+import xml.Parser;
 
 /** Thread to handle individual requests from a client. */
 public class ServerThread extends Thread implements ClientState {

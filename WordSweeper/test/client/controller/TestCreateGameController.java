@@ -6,8 +6,8 @@ import client.MockServerAccess;
 import client.model.Model;
 import client.view.Application;
 import client.view.Login;
-import external.xml.Message;
 import junit.framework.TestCase;
+import xml.Message;
 
 /**
  * This test case is needed when the job of a controller is to send a Request to the server.
