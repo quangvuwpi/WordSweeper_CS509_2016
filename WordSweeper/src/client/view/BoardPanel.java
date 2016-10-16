@@ -7,6 +7,7 @@ import client.controller.BoardController;
 import client.model.Board;
 import client.model.Cell;
 import client.model.Position;
+import utility.LetterFactory;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -129,7 +130,9 @@ public class BoardPanel extends JPanel implements IBoundary {
 			i = 0;
 			while(i < 4){
 				if(!que.isEmpty()) board.getCell(new Position(col, i)).copy(que.poll());
-				else board.getCell(new Position(col, i)).randome();
+				else {
+					board.getCell(new Position(col, i)).letter = new LetterFactory().getNext();
+				}
 				i++;
 			}
 		}

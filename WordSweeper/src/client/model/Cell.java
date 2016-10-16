@@ -35,9 +35,4 @@ public class Cell {
 		this.multiplier = c.multiplier;
 	}
 
-	public void randome(){
-		Random rand = new Random();
-		this.letter = BoardFactory.ALPHABET[rand.nextInt(BoardFactory.ALPHABET.length)];
-	}
-
 }
