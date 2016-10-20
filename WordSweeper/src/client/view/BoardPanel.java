@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import client.controller.BoardController;
 import client.model.Board;
 import client.model.Cell;
+import client.model.Model;
 import client.model.Position;
 import utility.LetterFactory;
 
@@ -29,6 +30,7 @@ public class BoardPanel extends JPanel implements IBoundary {
 	public static int CELL_HEIGHT = 55;
 	public static int CELL_GAP = 12;
 
+	final Model model;
 	final Board board;
 	final BoardController controller;
 
@@ -40,7 +42,8 @@ public class BoardPanel extends JPanel implements IBoundary {
 	/**
 	 * Create the panel and bound to a Board.
 	 */
-	public BoardPanel(Board board, BoardInfoPanel i) {
+	public BoardPanel(Model model, Board board, BoardInfoPanel i) {
+		this.model = model;
 		this.board = board;
 		this.controller = new BoardController(board, this, i);
 		
@@ -183,7 +186,7 @@ public class BoardPanel extends JPanel implements IBoundary {
 			if (cell.selected) {
 				g2.setColor(Color.YELLOW);
 			} else {
-				g2.setColor(new Color(0, 255, 0, 15 * cell.multiplier));
+				g2.setColor(new Color(0, 255, 0, 15 * model.game.countPlayer(cell.p)));
 			}
 			g2.fillRect(0, 0, w, h);
 
