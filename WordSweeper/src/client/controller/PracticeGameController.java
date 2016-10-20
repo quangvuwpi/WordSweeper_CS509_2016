@@ -22,7 +22,7 @@ public class PracticeGameController {
 	}
 	
 	public void process() {
-		model.game.Board = BoardFactory.randomBoard();
+		model.game.board = BoardFactory.randomBoard();
 		
 		app.switchToBoard();
 	}
