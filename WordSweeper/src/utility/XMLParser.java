@@ -78,8 +78,7 @@ public class XMLParser {
 					}										
 				}
 				
-				// How to give string to Board???
-				return new Board(array);
+				return BoardFactory.newBoard(array);
 			}
 		}
 		return null;
