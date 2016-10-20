@@ -181,7 +181,7 @@ public class WordSweeper extends JFrame {
 		boardInfo.setBounds(6, 400, 240, 70);
 		contentPane.add(boardInfo);
 		
-		BoardPanel gamePanel = new BoardPanel(model.game.Board, boardInfo);
+		BoardPanel gamePanel = new BoardPanel(model, model.game.board, boardInfo);
 		gamePanel.setBounds(26, 100, 316, 281);
 		contentPane.add(gamePanel);
 		
