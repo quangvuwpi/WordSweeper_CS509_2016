@@ -15,10 +15,14 @@ public class Word implements Iterator<Cell> {
 
     public boolean addCell(Cell p) {
     	if (p != null){
-    		cell.push(p);
+    		cell.addLast(p);
     		return true;
     	}
     	return false;
+    }
+    
+    public int length() {
+    	return cell.size();
     }
 
 	@Override
@@ -29,8 +33,10 @@ public class Word implements Iterator<Cell> {
 	@Override
 	public Cell next() {
 		if (hasNext()) {
+			Cell c = cell.get(current);
 			current++;
-			return cell.iterator().next();
+			
+			return c;
 		}		
 		return null;
 	}
