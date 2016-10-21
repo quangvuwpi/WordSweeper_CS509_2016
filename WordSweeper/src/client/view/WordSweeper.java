@@ -1,27 +1,19 @@
 package client.view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import client.model.Board;
 import client.model.Model;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionEvent;
-import javax.swing.JTable;
 import java.awt.Font;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import java.awt.Color;
-import javax.swing.SwingConstants;
 
 public class WordSweeper extends JFrame {
 
@@ -34,9 +26,10 @@ public class WordSweeper extends JFrame {
 	Application app;
 	Model model;
 	
-	private String GameId = "";
-	private String UserId = "";
-	private Boolean ManagingUser = true;
+	JLabel lbUserId;
+	JLabel lbGameId;
+	JButton btnLock;
+	JButton btnReset;
 	
 	/**
 	 * Launch the application.
@@ -60,10 +53,6 @@ public class WordSweeper extends JFrame {
 	public WordSweeper(Application app, Model model) {
 		this.app = app;
 		this.model = model;
-		
-		this.GameId = model.game.gameId;
-		this.UserId = model.game.currentUser;
-		this.ManagingUser = model.game.isManagingUser;
 		
 		setTitle("WordSweeper");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,7 +83,7 @@ public class WordSweeper extends JFrame {
 		lblNewLabel.setBounds(6, 6, 117, 51);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lbGameId = new JLabel(GameId);
+		lbGameId = new JLabel(model.game.gameId);
 		lbGameId.setFont(new Font("Wawati SC", Font.PLAIN, 26));
 		lbGameId.setBounds(135, 6, 117, 51);
 		contentPane.add(lbGameId);
@@ -104,7 +93,7 @@ public class WordSweeper extends JFrame {
 		lblPlayer.setBounds(271, 6, 117, 51);
 		contentPane.add(lblPlayer);
 		
-		JLabel lbUserId = new JLabel(UserId);
+		lbUserId = new JLabel(model.game.currentUser);
 		lbUserId.setFont(new Font("Wawati SC", Font.PLAIN, 26));
 		lbUserId.setBounds(396, 6, 117, 51);
 		contentPane.add(lbUserId);
@@ -165,13 +154,13 @@ public class WordSweeper extends JFrame {
 		btnLock.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnLock.setBounds(469, 412, 148, 66);
 		contentPane.add(btnLock);
-		btnLock.setVisible(ManagingUser);
+		btnLock.setVisible(model.game.isManagingUser);
 		
 		JButton btnReset = new JButton("RESET");
 		btnReset.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnReset.setBounds(664, 412, 148, 66);
 		contentPane.add(btnReset);
-		btnReset.setVisible(ManagingUser);
+		btnReset.setVisible(model.game.isManagingUser);
 		
 		WordHistory wordsHistory = new WordHistory();
 		wordsHistory.setBounds(391, 119, 122, 275);
@@ -215,7 +204,11 @@ public class WordSweeper extends JFrame {
 		
 		JPanel playerScore = new JPanel();
 		playerScore.setBounds(441, 69, 347, 38);
-		contentPane.add(playerScore);
-		
+		contentPane.add(playerScore);		
+	}
+	
+	public void refresh() {
+		btnLock.setVisible(model.game.isManagingUser);
+		btnReset.setVisible(model.game.isManagingUser);
 	}
 }
