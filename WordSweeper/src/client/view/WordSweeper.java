@@ -172,7 +172,7 @@ public class WordSweeper extends JFrame {
 		wordsHistory.setBounds(391, 119, 122, 275);
 		contentPane.add(wordsHistory);
 		
-		boardInfo = new BoardInfoPanel(model.game.board);
+		boardInfo = new BoardInfoPanel(model.game, model.game.board);
 		boardInfo.setBounds(6, 400, 240, 70);
 		contentPane.add(boardInfo);
 		

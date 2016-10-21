@@ -7,16 +7,24 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import client.model.Board;
+import client.model.IGame;
+import client.model.Model;
+import client.model.Word;
+import utility.ScoreCalculator;
 
 public class BoardInfoPanel extends JPanel implements IBoundary {
 
 	private Dimension size;
 	public JLabel lbSelectedWords;
+	public JLabel lbCurrentScore;
 	
 	final Board board;
+	final ScoreCalculator sc;
 	
-	public BoardInfoPanel(Board board) {
+	public BoardInfoPanel(IGame game, Board board) {
+		this.sc = new ScoreCalculator(game); 
 		this.board = board;
+		
 		setup();
 	}
 	
@@ -33,7 +41,7 @@ public class BoardInfoPanel extends JPanel implements IBoundary {
 		lbSelectedWords.setBounds(0, 6, 117, 51);
 		add(lbSelectedWords);
 		
-		JLabel lbCurrentScore = new JLabel("100");
+		lbCurrentScore = new JLabel("");
 		lbCurrentScore.setFont(new Font("Wawati SC", Font.PLAIN, 26));
 		lbCurrentScore.setBounds( 130, 6, 117, 51);
 		add(lbCurrentScore);
@@ -51,8 +59,13 @@ public class BoardInfoPanel extends JPanel implements IBoundary {
 
 	@Override
 	public void refresh() {
-		lbSelectedWords.setText(board.selectionToString());
-		lbSelectedWords.repaint();		
+		Word current = board.selectionToWord();
+		
+		lbSelectedWords.setText(current.toString());
+		lbCurrentScore.setText(String.valueOf(sc.getScore(current)));
+		
+		lbSelectedWords.repaint();
+		lbCurrentScore.repaint();
 	}
 
 }
