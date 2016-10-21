@@ -2,21 +2,21 @@ package client.view;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import client.model.Board;
 
 public class BoardInfoPanel extends JPanel implements IBoundary {
 
 	private Dimension size;
 	public JLabel lbSelectedWords;
-	private final WordHistory wordHistory;
-	public BoardInfoPanel(WordHistory wh) {
-		this.wordHistory = wh;
+	
+	final Board board;
+	
+	public BoardInfoPanel(Board board) {
+		this.board = board;
 		setup();
 	}
 	
@@ -48,11 +48,11 @@ public class BoardInfoPanel extends JPanel implements IBoundary {
 		removeAll();
 		return true;
 	}
-	
-	public void refreshWord(String word){
-		lbSelectedWords.setText(word);
-		this.validate();
-		this.repaint();
+
+	@Override
+	public void refresh() {
+		lbSelectedWords.setText(board.selectionToString());
+		lbSelectedWords.repaint();		
 	}
 
 }

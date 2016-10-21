@@ -32,7 +32,8 @@ public class JoinGameController {
 			@Override
 			public void process(Message request, Message response) {
 				if (response.success()) {
-					app.switchToBoard();
+					new BoardResponseController(app, model).process(response);
+					app.switchToBoard();					
 				}				
 			}
 		}, m);

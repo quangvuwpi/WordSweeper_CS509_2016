@@ -53,6 +53,14 @@ public class Application {
 		current.setVisible(true);
 	}
 	
+	public void refresh() {
+		if (current != null && current instanceof WordSweeper) {
+			WordSweeper ws = (WordSweeper) current;
+			
+			ws.refresh();
+		}
+	}
+	
 	/** Record the means to communicate with server. */
 	public void setServerAccess(ServerAccess access) {
 		this.serverAccess = access;

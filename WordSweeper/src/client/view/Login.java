@@ -1,9 +1,6 @@
 package client.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -17,7 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 
-import client.ServerAccess;
 import client.controller.CreateGameController;
 import client.controller.JoinGameController;
 import client.controller.PracticeGameController;
@@ -228,6 +224,12 @@ public class Login extends JFrame implements MouseListener, IBoundary {
 	public boolean teardown() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

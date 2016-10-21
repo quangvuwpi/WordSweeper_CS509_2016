@@ -49,4 +49,10 @@ public class WordHistory extends JPanel implements IBoundary {
 		this.validate();
 		this.repaint();
 	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
+	}
 }

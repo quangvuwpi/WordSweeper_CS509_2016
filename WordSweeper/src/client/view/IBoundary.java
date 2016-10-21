@@ -12,6 +12,11 @@ package client.view;
 public interface IBoundary {
 	
 	/**
+	 * Refresh the display
+	 */
+	public void refresh();
+	
+	/**
 	 * Initializing function
 	 * 
 	 * @return true if finished successfully; false otherwise

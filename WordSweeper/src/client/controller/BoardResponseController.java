@@ -42,7 +42,9 @@ public class BoardResponseController {
 			
 			if (pr.name.equals(model.game.currentUser)) {
 				model.game.board.copy(pr.board);
-			}			
+			} else {
+				
+			}
 		}		
 	}
 

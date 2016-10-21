@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import client.controller.BoardController;
+import client.controller.CancelButtonController;
+import client.controller.SubmitButtonController;
 import client.model.Model;
 
 import javax.swing.JButton;
@@ -30,6 +33,9 @@ public class WordSweeper extends JFrame {
 	JLabel lbGameId;
 	JButton btnLock;
 	JButton btnReset;
+	
+	BoardPanel gamePanel;
+	BoardInfoPanel boardInfo;
 	
 	/**
 	 * Launch the application.
@@ -150,13 +156,13 @@ public class WordSweeper extends JFrame {
 		btnQuit.setBounds(560, 481, 148, 66);
 		contentPane.add(btnQuit);
 		
-		JButton btnLock = new JButton("LOCK");
+		btnLock = new JButton("LOCK");
 		btnLock.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnLock.setBounds(469, 412, 148, 66);
 		contentPane.add(btnLock);
 		btnLock.setVisible(model.game.isManagingUser);
 		
-		JButton btnReset = new JButton("RESET");
+		btnReset = new JButton("RESET");
 		btnReset.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnReset.setBounds(664, 412, 148, 66);
 		contentPane.add(btnReset);
@@ -166,36 +172,25 @@ public class WordSweeper extends JFrame {
 		wordsHistory.setBounds(391, 119, 122, 275);
 		contentPane.add(wordsHistory);
 		
-		BoardInfoPanel boardInfo = new BoardInfoPanel(wordsHistory);
+		boardInfo = new BoardInfoPanel(model.game.board);
 		boardInfo.setBounds(6, 400, 240, 70);
 		contentPane.add(boardInfo);
 		
-		BoardPanel gamePanel = new BoardPanel(model.game, model.game.board, boardInfo);
+		BoardController bc = new BoardController(app, model.game.board);
+		gamePanel = new BoardPanel(model.game, model.game.board, bc);
 		gamePanel.setBounds(26, 100, 316, 281);
 		contentPane.add(gamePanel);
 		
 		JButton btnCancel = new JButton("CANCEL");
 		btnCancel.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnCancel.setBounds(266, 412, 100, 66);
-		btnCancel.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e) {
-				gamePanel.cancel();
-			}
-		});
+		btnCancel.addMouseListener(new CancelButtonController(app, model));
 		add(btnCancel);
 		
 		JButton btnSubmit = new JButton("SUBMIT");
 		btnSubmit.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnSubmit.setBounds(111, 481, 148, 66);
-		btnSubmit.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e) {
-//				System.out.print("\n "+ wordsHistory..lbSelectedWords.getText() +" \n");
-				if(boardInfo.lbSelectedWords.getText() != null){
-					wordsHistory.addWord(boardInfo.lbSelectedWords.getText());
-					gamePanel.submit();
-				}
-			}
-		});
+		btnSubmit.addMouseListener(new SubmitButtonController(app, model, wordsHistory));
 		add(btnSubmit);
 		
 		JPanel scoreBoard = new JPanel();
@@ -210,5 +205,8 @@ public class WordSweeper extends JFrame {
 	public void refresh() {
 		btnLock.setVisible(model.game.isManagingUser);
 		btnReset.setVisible(model.game.isManagingUser);
+		
+		gamePanel.refresh();
+		boardInfo.refresh();
 	}
 }

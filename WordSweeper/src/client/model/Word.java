@@ -24,6 +24,20 @@ public class Word implements Iterator<Cell> {
     public int length() {
     	return cell.size();
     }
+    
+    @Override
+    public String toString() {
+    	String result = "";
+    	
+    	int temp = current;
+    	current = 0;
+    	while (hasNext()) {
+    		result += next().letter; 
+    	}
+    	current = temp;
+    	
+    	return result;
+    }
 
 	@Override
 	public boolean hasNext() {

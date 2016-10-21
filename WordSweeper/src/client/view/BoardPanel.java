@@ -7,10 +7,7 @@ import client.controller.BoardController;
 import client.model.Board;
 import client.model.Cell;
 import client.model.IGame;
-import client.model.Model;
 import client.model.Position;
-import utility.LetterFactory;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -18,8 +15,6 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.util.LinkedList;
-import java.util.Queue;
 
 @SuppressWarnings("serial")
 public class BoardPanel extends JPanel implements IBoundary {
@@ -43,10 +38,10 @@ public class BoardPanel extends JPanel implements IBoundary {
 	/**
 	 * Create the panel and bound to a Board.
 	 */
-	public BoardPanel(IGame game, Board board, BoardInfoPanel i) {
+	public BoardPanel(IGame game, Board board, BoardController controller) {
 		this.game = game;
 		this.board = board;
-		this.controller = new BoardController(board, this, i);
+		this.controller = controller;
 		
 		int w = COL_COUNT * (CELL_WIDTH + CELL_GAP);
 		int h = ROW_COUNT * (CELL_HEIGHT + CELL_GAP);
@@ -115,51 +110,22 @@ public class BoardPanel extends JPanel implements IBoundary {
 		}
 		return null;
 	}
-
-	public void cancel(){
-		clearInfoBoard();
-		board.cancel();
-		validate();
-		repaint();
-	}
-
-	public void submit() {
-		for (int col = 0; col < COL_COUNT; col++) {
-			int i = 0;
-			Queue<Cell> que = new LinkedList<>();
-			while(i < 4){
-				if(!board.getCell(new Position(col, i)).added) que.add(board.getCell(new Position(col, i)));
-				i++;
-			}
-			i = 0;
-			while(i < 4){
-				if(!que.isEmpty()) board.getCell(new Position(col, i)).copy(que.poll());
-				else {
-					board.getCell(new Position(col, i)).letter = new LetterFactory().getNext();
-				}
-				i++;
-			}
-		}
-		cancel();
-	}
-
-	public void clearInfoBoard() {
-		controller.sb.delete(0, controller.sb.length());
-		controller.infoPanel.refreshWord("");
-		controller.infoPanel.invalidate();
-		controller.infoPanel.repaint();
-	}
 	
 	@Override
 	public void paint(Graphics g) {
 		super.paintComponents(g);
-		Graphics2D g2 = (Graphics2D) g;
 
 		for (int x = 0; x < COL_COUNT; x++) {
 			for (int y = 0; y < ROW_COUNT; y++) {
 				cellPanels[x][y].repaint();
 			}
 		}
+	}
+	
+	@Override
+	public void refresh() {
+		invalidate();
+		repaint();
 	}
 
 	/**
@@ -201,6 +167,6 @@ public class BoardPanel extends JPanel implements IBoundary {
 			g2.drawRect(0, 0, w - 1, h - 1);
 		}
 
-	}
+	}	
 
 }
