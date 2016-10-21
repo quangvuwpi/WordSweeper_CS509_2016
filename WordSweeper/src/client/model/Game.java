@@ -2,7 +2,7 @@ package client.model;
 
 import java.util.HashMap;
 
-public class Game {
+public class Game implements IGame {
 	public String gameId = null;	
 	public boolean isManagingUser = false;
 	public HashMap<String, Player> players = new HashMap<String, Player>();
@@ -31,12 +31,6 @@ public class Game {
 			return true;
 		}
 		return false;
-	}
-
-	Game active = null;
-
-	public Game getActive() {
-		return active;
 	}
 
 }
