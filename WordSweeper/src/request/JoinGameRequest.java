@@ -9,13 +9,15 @@ import xml.Message;
  * @author quangvu
  *
  */
-public class CreateGameRequest implements IRequest {
+public class JoinGameRequest implements IRequest {
 
 	public final String name;
+	public final String gameId;
 	public final String password;
 
-	public CreateGameRequest(String name, String password) {
+	public JoinGameRequest(String name, String gameId, String password) {
 		this.name = name;
+		this.gameId = gameId;
 
 		if (password != null) {
 			this.password = password;
@@ -26,8 +28,8 @@ public class CreateGameRequest implements IRequest {
 
 	@Override
 	public String toString() {
-		return new XmlStringBuilder("createGameRequest").add("name", name).add("password", password).finish()
-				.toString();
+		return new XmlStringBuilder("joinGameRequest").add("name", name).add("gameId", gameId).add("password", password)
+				.finish().toString();
 	}
 
 	/*

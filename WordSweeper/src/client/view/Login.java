@@ -19,7 +19,7 @@ import client.controller.JoinGameController;
 import client.controller.PracticeGameController;
 import client.model.Model;
 
-public class Login extends JFrame implements MouseListener, IBoundary {
+public class Login extends JFrame implements MouseListener, IBoundary, ILogin {
 	
 	final Application app;
 	final Model model;
@@ -138,10 +138,11 @@ public class Login extends JFrame implements MouseListener, IBoundary {
 		if(name == "Start"){
 			model.game.currentUser = userId.getText();
 			System.out.print(userId.getText());
+			
 			if(clickMap.get("NewGame"))			
-				new CreateGameController(app, app.model).process();
+				new CreateGameController(app, this).process();
 			if(clickMap.get("JoinGame"))
-				new JoinGameController(app, app.model).process();
+				new JoinGameController(app, this).process();
 			if(clickMap.get("PracticeGame"))
 				new PracticeGameController(app, app.model).process();
 		}
@@ -230,6 +231,27 @@ public class Login extends JFrame implements MouseListener, IBoundary {
 	public void refresh() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getUserName() {
+		return userId.getText();
+	}
+
+	@Override
+	public String getGameId() {
+		if (gameId.isVisible()) {
+			return gameId.getText();
+		}
+		return "";
+	}
+
+	@Override
+	public String getPassword() {
+		if (password.isVisible()) {
+			return String.valueOf(password.getPassword());
+		}
+		return "";
 	}
 
 }
