@@ -153,7 +153,7 @@ public class BoardPanel extends JPanel implements IBoundary {
 			if (cell.selected) {
 				g2.setColor(Color.YELLOW);
 			} else {
-				g2.setColor(new Color(0, 255, 0, 15 * game.countPlayer(cell.p)));
+				g2.setColor(new Color(0, 255, 0, 15 * game.countPlayer(cell.position)));
 			}
 			g2.fillRect(0, 0, w, h);
 

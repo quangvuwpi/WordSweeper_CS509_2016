@@ -92,7 +92,7 @@ public class ScoreCalculator {
 			count += cell.letter.length();
 
 			temp = getScore(cell.letter);
-			temp = (long) (temp * Math.pow(2.0, game.countPlayer(cell.p)));
+			temp = (long) (temp * Math.pow(2.0, game.countPlayer(cell.position)));
 			
 			score += temp;
 		}

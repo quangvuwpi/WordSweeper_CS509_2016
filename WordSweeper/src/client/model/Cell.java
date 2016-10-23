@@ -11,14 +11,14 @@ package client.model;
  */
 public class Cell {
 
-	public final Position p;
+	public final Position position;
 
 	public String letter;
 	public boolean bonus = false;
 	public boolean selected = false;
 
 	public Cell(Position p) {
-		this.p = p;
+		this.position = p;
 	}
 
 	/**
