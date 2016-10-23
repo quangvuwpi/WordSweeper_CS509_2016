@@ -6,7 +6,6 @@ package response;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import client.model.Board;
 import client.model.Position;
 
 /**

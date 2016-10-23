@@ -8,10 +8,10 @@ import javax.swing.JPanel;
 
 import client.model.Board;
 import client.model.IGame;
-import client.model.Model;
 import client.model.Word;
 import utility.ScoreCalculator;
 
+@SuppressWarnings("serial")
 public class BoardInfoPanel extends JPanel implements IBoundary {
 
 	private Dimension size;
