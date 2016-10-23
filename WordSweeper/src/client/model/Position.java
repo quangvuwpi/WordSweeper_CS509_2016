@@ -4,8 +4,9 @@
 package client.model;
 
 /**
+ * The Position entity class; represents a 2D coordinate on the board
+ * 
  * @author quangvu
- *
  */
 public class Position {
 	

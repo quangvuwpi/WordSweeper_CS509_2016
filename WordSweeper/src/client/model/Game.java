@@ -2,16 +2,28 @@ package client.model;
 
 import java.util.HashMap;
 
+/**
+ * The Game entity class; keeps track of the state of the current WordSweeper game
+ * 
+ * @author quangvu
+ *
+ */
 public class Game implements IGame {
-	public String gameId = null;	
-	public boolean isManagingUser = false;
-	public HashMap<String, Player> players = new HashMap<String, Player>();
-	public Word currentWord;
-	public Word[] History;
-	public String managingUser = null;
+	
+	/** The current game ID **/
+	public String gameId = "";
+	
+	/** Name of the local player **/
 	public String currentUser = null;
 	
+	/** Whether the local player is the managing user **/
+	public boolean isManagingUser = false;	
+	
+	/** The local player's board **/
 	public Board board = new Board();
+	
+	public HashMap<String, Player> players = new HashMap<String, Player>();
+	public Word[] History;	
 
 	public int countPlayer(Position p) {
 		int num = 1;

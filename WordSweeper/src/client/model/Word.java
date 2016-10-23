@@ -3,13 +3,16 @@ package client.model;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+/**
+ * The Word entity class; represents the sequence of selected Cells on the board
+ * 
+ * @author quangvu
+ */
 public class Word implements Iterator<Cell> {
 	protected int current = 0;
-	public LinkedList<Cell> cell;
-	public int point;
+	protected LinkedList<Cell> cell;
 
     public Word(){
-    	this.point = 0;
     	this.cell = new LinkedList<Cell>();
     }
 

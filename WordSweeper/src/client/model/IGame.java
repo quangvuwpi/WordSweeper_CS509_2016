@@ -4,7 +4,7 @@
 package client.model;
 
 /**
- * Interface of the Game object
+ * Interface of the Game object; separated to easily create test cases
  * 
  * @author quangvu
  *
