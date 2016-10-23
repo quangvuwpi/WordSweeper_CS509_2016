@@ -10,6 +10,8 @@ import client.model.Model;
 import client.view.Application;
 
 /**
+ * Controller class for the CANCEL button
+ * 
  * @author quangvu
  *
  */

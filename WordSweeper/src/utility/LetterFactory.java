@@ -3,13 +3,7 @@
  */
 package utility;
 
-import java.lang.reflect.Array;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Random;
-import java.util.function.Consumer;
-
-import client.model.Cell;
 
 /**
  * @author quangvu
