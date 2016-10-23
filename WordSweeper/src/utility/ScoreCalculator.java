@@ -8,6 +8,7 @@ import java.util.HashMap;
 import client.model.Cell;
 import client.model.IGame;
 import client.model.Word;
+import util.WordTable;
 
 /**
  * Calculate the score of submitted words
@@ -77,7 +78,7 @@ public class ScoreCalculator {
 		
 		if (w == null) {
 			return 0;
-		} else if (w.length() < 3) {
+		} else if (!WordTable.isWord(w.toString())) {
 			return 0;
 		}
 
