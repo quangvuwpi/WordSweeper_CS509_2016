@@ -7,12 +7,19 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import client.model.Game;
+
+@SuppressWarnings("serial")
 public class WordHistory extends JPanel implements IBoundary {
 
 	private Dimension size;
 	private int count;
 	
-	public WordHistory () {
+	final Game game;
+	
+	public WordHistory (Game game) {
+		this.game = game;
+		
 		this.count = 0;
 		setup();
 	}

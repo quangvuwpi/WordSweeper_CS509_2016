@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 
 import client.controller.BoardController;
 import client.controller.CancelButtonController;
+import client.controller.PracticeGameController;
+import client.controller.PracticeSubmitButtonController;
 import client.controller.SubmitButtonController;
 import client.model.Model;
 
@@ -33,9 +35,11 @@ public class WordSweeper extends JFrame {
 	JLabel lbGameId;
 	JButton btnLock;
 	JButton btnReset;
+	JButton btnSubmit;
 	
 	BoardPanel gamePanel;
 	BoardInfoPanel boardInfo;
+	WordHistory wordsHistory;
 	
 	/**
 	 * Launch the application.
@@ -44,7 +48,7 @@ public class WordSweeper extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WordSweeper frame = new WordSweeper(app, model);
+					WordSweeper frame = new WordSweeper(app, model, true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +60,7 @@ public class WordSweeper extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public WordSweeper(Application app, Model model) {
+	public WordSweeper(Application app, Model model, Boolean practiceMode) {
 		this.app = app;
 		this.model = model;
 		
@@ -168,7 +172,7 @@ public class WordSweeper extends JFrame {
 		contentPane.add(btnReset);
 		btnReset.setVisible(model.game.isManagingUser);
 		
-		WordHistory wordsHistory = new WordHistory();
+		wordsHistory = new WordHistory(model.game);
 		wordsHistory.setBounds(391, 119, 122, 275);
 		contentPane.add(wordsHistory);
 		
@@ -187,10 +191,14 @@ public class WordSweeper extends JFrame {
 		btnCancel.addMouseListener(new CancelButtonController(app, model));
 		add(btnCancel);
 		
-		JButton btnSubmit = new JButton("SUBMIT");
+		btnSubmit = new JButton("SUBMIT");
 		btnSubmit.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnSubmit.setBounds(111, 481, 148, 66);
-		btnSubmit.addMouseListener(new SubmitButtonController(app, model, wordsHistory));
+		if (practiceMode) {
+			btnSubmit.addMouseListener(new PracticeSubmitButtonController(app, model, wordsHistory));
+		} else {
+			btnSubmit.addMouseListener(new SubmitButtonController(app, model, wordsHistory));
+		}		
 		add(btnSubmit);
 		
 		JPanel scoreBoard = new JPanel();
@@ -208,5 +216,6 @@ public class WordSweeper extends JFrame {
 		
 		gamePanel.refresh();
 		boardInfo.refresh();
+		wordsHistory.refresh();
 	}
 }

@@ -3,10 +3,13 @@
  */
 package client.view;
 
+import java.io.IOException;
+
 import javax.swing.JFrame;
 
 import client.ServerAccess;
 import client.model.Model;
+import util.WordTable;
 
 /**
  * The main application class to keep track of miscellaneous data
@@ -28,9 +31,13 @@ public class Application {
 	}
 	
 	public void start() {
-		//frame.switchToLogin();
-		//frame.setVisible(true);
-		switchToLogin();
+		try {
+			WordTable.loadWordTable();
+			switchToLogin();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 	
 	public void switchToLogin() {
@@ -49,7 +56,17 @@ public class Application {
 			current.dispose();
 		}
 		
-		current = new WordSweeper(this, model);
+		current = new WordSweeper(this, model, false);
+		current.setVisible(true);
+	}
+	
+	public void switchToPracticeBoard() {
+		if (current != null) {
+			current.setVisible(false);
+			current.dispose();
+		}
+		
+		current = new WordSweeper(this, model, true);
 		current.setVisible(true);
 	}
 	

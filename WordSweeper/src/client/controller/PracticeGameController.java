@@ -22,8 +22,8 @@ public class PracticeGameController {
 	}
 	
 	public void process() {
-		model.game.board = BoardFactory.randomBoard();
+		model.game.setBoard(BoardFactory.randomBoard());
 		
-		app.switchToBoard();
+		app.switchToPracticeBoard();
 	}
 }

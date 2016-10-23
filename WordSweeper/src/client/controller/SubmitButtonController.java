@@ -6,17 +6,15 @@ package client.controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import client.IController;
 import client.model.Board;
 import client.model.Game;
 import client.model.Model;
 import client.model.Word;
 import client.view.Application;
 import client.view.WordHistory;
-import xml.Message;
 
 /**
- * The controller for the submit button
+ * The controller for the SUBMIT button
  * 
  * @author quangvu
  *
@@ -40,6 +38,7 @@ public class SubmitButtonController extends MouseAdapter {
 		Word word = board.selectionToWord();
 		
 		if (game.validate(word)) {
+			game.addToWordHistory(word);
 			wh.addWord(word.toString());
 			
 			// Create a submit message to send to server
