@@ -6,7 +6,7 @@ package client.model;
 import java.util.LinkedList;
 
 /**
- * The Board entity class
+ * The Board entity class; representing the current state of the player's board
  * 
  * @author quangvu
  *
@@ -131,33 +131,43 @@ public class Board {
 	}
 
 	/**
+	 * Get the last Cell selected
+	 * 
+	 * @return the last selected Cell
+	 */
+	public Cell getLastCellSelected() {
+		if (!selected.isEmpty()) {
+			Cell c = selected.getLast();
+			if (c != null && c.selected) {
+				return c;
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * De-select all cells
 	 */
 	public void clearSelection() {
 		for (int row = 0; row < ROW_COUNT; row++) {
 			for (int col = 0; col < COL_COUNT; col++) {
 				cells[col][row].selected = false;
-				cells[col][row].added = false;
-				
 				selected.clear();
 			}
 		}
 	}
-	
+
+	/**
+	 * Return the Word object representing all selected cells
+	 * 
+	 * @return the Word object
+	 */
 	public Word selectionToWord() {
 		Word word = new Word();
 		for (int i = 0; i < selected.size(); i++) {
 			word.addCell(selected.get(i));
 		}
 		return word;
-	}
-	
-	public String selectionToString() {
-		String result = "";
-		for (int i = 0; i < selected.size(); i++) {
-			result += selected.get(i).letter;
-		}
-		return result;
 	}
 
 	@Override
@@ -171,12 +181,20 @@ public class Board {
 		return str;
 	}
 
+	/**
+	 * Copy the content of another Board
+	 * 
+	 * @param b
+	 *            the Board object to copy
+	 */
 	public void copy(Board b) {
-		for (int row = 0; row < ROW_COUNT; row++) {
-			for (int col = 0; col < COL_COUNT; col++) {
-				Position p = new Position(col, row);
+		if (b != null && b instanceof Board) {
+			for (int row = 0; row < ROW_COUNT; row++) {
+				for (int col = 0; col < COL_COUNT; col++) {
+					Position p = new Position(col, row);
 
-				cells[col][row].copy(b.getCell(p));
+					cells[col][row].copy(b.getCell(p));
+				}
 			}
 		}
 	}
