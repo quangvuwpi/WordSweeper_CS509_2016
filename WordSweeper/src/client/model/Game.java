@@ -31,7 +31,7 @@ public class Game implements IGame {
 
 	/** The list of successful Word submission **/
 	public final LinkedList<Word> history = new LinkedList<Word>();
-	
+
 	/** The table of valid words **/
 	final WordTable table = new WordTable();
 
@@ -63,6 +63,81 @@ public class Game implements IGame {
 	 */
 	public void setBoard(Board board) {
 		this.board.copy(board);
+	}
+
+	/**
+	 * Return how many Players in the list
+	 * 
+	 * @return the Player count
+	 */
+	public int playerCount() {
+		return players.values().size();
+	}
+
+	/**
+	 * Return whether the given Player is in the list
+	 * 
+	 * @param player
+	 *            the Player
+	 * @return true if player is in list; false if not
+	 */
+	public boolean playerExist(Player player) {
+		if (player != null) {
+			return players.containsKey(player.name);
+		}
+		return false;
+	}
+
+	/**
+	 * Update an existing Player or add a new Player
+	 * 
+	 * @param player
+	 *            the player to update
+	 * @return true if player is updated; false if not
+	 */
+	public boolean updatePlayer(Player player) {
+		if (playerExist(player)) {
+			players.get(player.name).update(player);
+			return true;
+		} else {
+			return addToPlayerList(player);
+		}
+	}
+
+	/**
+	 * Add a new Player to the current player list
+	 * 
+	 * @param player
+	 *            the new Player
+	 * @return true if Player was added; false if not
+	 */
+	public boolean addToPlayerList(Player player) {
+		if (player != null) {
+			if (!players.containsKey(player.name)) {
+				players.put(player.name, player);
+
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Remove a Player from the current list
+	 * 
+	 * @param player
+	 *            the Player to remove
+	 * @return true if player was removed; false if not
+	 */
+	public boolean removeFromPlayerList(Player player) {
+		if (player != null) {
+			if (players.containsKey(player.name)) {
+				players.remove(player.name);
+
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

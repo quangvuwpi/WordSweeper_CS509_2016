@@ -6,6 +6,7 @@ import org.w3c.dom.NodeList;
 
 import client.model.Board;
 import client.model.Model;
+import client.model.Player;
 import client.model.Position;
 import client.view.Application;
 import client.view.WordSweeper;
@@ -31,27 +32,46 @@ public class BoardResponseController {
 	}
 
 	public void process(Message response) {
+		String user = model.game.currentUser;
 		BoardResponse br = parseMessage(response);
+
+		/** May become the managing user here **/
+		model.game.isManagingUser = br.managingUser.equals(user);
+
+		/** Remove or add Players **/
+		boolean add = br.size > model.game.playerCount();
+
+		//System.out.print(response.toString() + "\n");
 		
 		System.out.print("Board Message received for game:" + br.gameId + "\n ManagingUser:" + br.managingUser + "\n");
 		System.out.print("Players:\n");
 		while (br.hasNext()) {
 			PlayerResponse pr = br.next();
+
+			System.out.print("  " + pr.name + " " + pr.board.toString() + " " + pr.position.toString() + " "
+					+ String.valueOf(pr.score) + "\n");
+
+			Player player = new Player(pr.name, pr.position, pr.score);
 			
-			System.out.print("  " + pr.name + " " + pr.board.toString() + " " + pr.position.toString() + " " + String.valueOf(pr.score) + "\n");
-			
-			if (pr.name.equals(model.game.currentUser)) {
-				model.game.board.copy(pr.board);
-			} else {
-				
+			if (player.name.equals(user)) {				
+				model.game.setBoard(pr.board);
 			}
-		}		
+
+			if (add) {
+				model.game.updatePlayer(player);
+			} else {
+				// How to tell which player is missing?
+			}
+		}
+
+		app.refresh();
 	}
 
 	/**
 	 * Summarize the board response from the server for easy process
 	 * 
-	 * @param m the incoming Message
+	 * @param m
+	 *            the incoming Message
 	 * @return a BoardResponse object
 	 */
 	BoardResponse parseMessage(Message m) {
@@ -61,28 +81,29 @@ public class BoardResponseController {
 		// updateResponse).
 		Node boardResponse = m.contents.getFirstChild();
 		NamedNodeMap map = boardResponse.getAttributes();
-		
+
 		response.gameId = map.getNamedItem("gameId").getNodeValue();
+		response.size = Integer.valueOf(map.getNamedItem("size").getNodeValue());
 		response.managingUser = map.getNamedItem("managingUser").getNodeValue();
-		
+
 		String sbonus = map.getNamedItem("bonus").getNodeValue();
 		response.bonus = XMLParser.parseXmlPosition(sbonus);
-		
+
 		NodeList list = boardResponse.getChildNodes();
 		for (int i = 0; i < list.getLength(); i++) {
 			Node n = list.item(i);
-			
+
 			String name = n.getAttributes().getNamedItem("name").getNodeValue();
-			
+
 			String position = n.getAttributes().getNamedItem("position").getNodeValue();
 			Position p = XMLParser.parseXmlPosition(position);
-			
+
 			String board = n.getAttributes().getNamedItem("board").getNodeValue();
 			Board b = XMLParser.parseXmlBoard(board);
-			
+
 			String score = n.getAttributes().getNamedItem("score").getNodeValue();
 			long s = Long.valueOf(score);
-			
+
 			response.add(new PlayerResponse(name, p, b, s));
 		}
 

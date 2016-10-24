@@ -15,7 +15,7 @@ import client.model.Position;
 public class BoardResponse extends Response implements Iterator<PlayerResponse> {
 	
 	public String gameId = null;
-	public int    size = -1;
+	public int    size = 0;
 	public String managingUser = null;
 	public String content = null;
 	public Position bonus = null;
