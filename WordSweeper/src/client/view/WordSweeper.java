@@ -10,6 +10,7 @@ import client.controller.BoardController;
 import client.controller.CancelButtonController;
 import client.controller.PracticeGameController;
 import client.controller.PracticeSubmitButtonController;
+import client.controller.QuitButtonController;
 import client.controller.SubmitButtonController;
 import client.model.Model;
 
@@ -158,6 +159,7 @@ public class WordSweeper extends JFrame {
 		JButton btnQuit = new JButton("QUIT");
 		btnQuit.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnQuit.setBounds(560, 481, 148, 66);
+		btnQuit.addMouseListener(new QuitButtonController(app, model));
 		contentPane.add(btnQuit);
 		
 		btnLock = new JButton("LOCK");
