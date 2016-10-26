@@ -112,8 +112,8 @@ public class BoardPanel extends JPanel implements IBoundary {
 	}
 	
 	@Override
-	public void paint(Graphics g) {
-		super.paintComponents(g);
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 
 		for (int x = 0; x < COL_COUNT; x++) {
 			for (int y = 0; y < ROW_COUNT; y++) {
@@ -143,8 +143,8 @@ public class BoardPanel extends JPanel implements IBoundary {
 		}
 
 		@Override
-		public void paint(Graphics g) {
-			super.paint(g);
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
 			Graphics2D g2 = (Graphics2D) g;
 
 			int h = getHeight();
