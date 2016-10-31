@@ -19,6 +19,7 @@ import client.controller.JoinGameController;
 import client.controller.PracticeGameController;
 import client.model.Model;
 
+@SuppressWarnings("serial")
 public class Login extends JFrame implements MouseListener, IBoundary, ILogin {
 	
 	final Application app;

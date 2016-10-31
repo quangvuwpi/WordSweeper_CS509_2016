@@ -8,15 +8,12 @@ import javax.swing.border.EmptyBorder;
 
 import client.controller.BoardController;
 import client.controller.CancelButtonController;
-import client.controller.PracticeGameController;
 import client.controller.PracticeSubmitButtonController;
 import client.controller.QuitButtonController;
 import client.controller.SubmitButtonController;
 import client.model.Model;
 
 import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.Color;

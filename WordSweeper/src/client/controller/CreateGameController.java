@@ -2,7 +2,7 @@ package client.controller;
 
 
 import client.IController;
-import client.model.Model;
+import client.messageController.BoardResponseController;
 import client.view.Application;
 import client.view.ILogin;
 import request.CreateGameRequest;
