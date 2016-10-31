@@ -1,6 +1,9 @@
 package client;
 import client.ServerAccess;
-import client.controller.SampleClientMessageHandler;
+import client.messageController.BoardResponseController;
+import client.messageController.ClientMessageHandler;
+import client.messageController.ConnectResponseController;
+import client.messageController.DefaultMessageController;
 import client.model.Model;
 import client.view.Application;
 import request.ConnectRequest;
@@ -32,16 +35,18 @@ public class ClientLauncher {
 		// Initialize the client application and its corresponding model
 		Model model = new Model();
 		Application app = new Application(model);
-		//WordSweeperFrame app = new WordSweeperFrame();
-		//app.setVisible(true);
 		
-		//app.switchToBoard();
+		// Initialize the message handler
+		ClientMessageHandler handler = new ClientMessageHandler(app);
+		handler.addController(new ConnectResponseController());
+		handler.addController(new BoardResponseController(app, model));
+		handler.addController(new DefaultMessageController());
 		
 		// try to connect to the server. Once connected, messages are going to be processed by 
 		// SampleClientMessageHandler. For now we just continue on with the initialization because
 		// no message is actually sent by the connect method.
 		ServerAccess sa = new ServerAccess(host, 11425);
-		if (!sa.connect(new SampleClientMessageHandler(app))) {
+		if (!sa.connect(handler)) {
 			System.out.println("Unable to connect to server (" + host + "). Exiting.");
 			System.exit(0);
 		}

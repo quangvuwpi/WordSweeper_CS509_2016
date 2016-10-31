@@ -1,4 +1,4 @@
-package client.controller;
+package client.messageController;
 
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -20,7 +20,7 @@ import xml.Message;
  * This will never be returned to a client to tell him that HE has the model
  * locked (that is job of LockResponse).
  */
-public class BoardResponseController {
+public class BoardResponseController extends ChainableMessageController {
 
 	public Application app;
 	public Model model;
@@ -31,9 +31,14 @@ public class BoardResponseController {
 		this.model = m;
 	}
 
-	public void process(Message response) {
+	public boolean process(Message message) {
+		String type = message.contents.getFirstChild().getLocalName();
+		if (!type.equals("boardResponse")) {
+			return next.process(message);
+		}
+		
 		String user = model.game.currentUser;
-		BoardResponse br = parseMessage(response);
+		BoardResponse br = parseMessage(message);
 
 		/** May become the managing user here **/
 		model.game.isManagingUser = br.managingUser.equals(user);
@@ -64,7 +69,8 @@ public class BoardResponseController {
 			}
 		}
 
-		app.refresh();
+		app.refresh();		
+		return true;
 	}
 
 	/**
