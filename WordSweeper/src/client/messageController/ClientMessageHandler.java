@@ -1,7 +1,6 @@
 package client.messageController;
 
 import client.IMessageHandler;
-import client.view.Application;
 import xml.Message;
 
 /**
@@ -13,15 +12,9 @@ import xml.Message;
  * window. Nothing that special.
  */
 public class ClientMessageHandler implements IMessageHandler {
-
-	Application app;
 	
 	/** The chain of message controller **/
 	ChainableMessageController chain = null;
-
-	public ClientMessageHandler(Application app) {
-		this.app = app;
-	}
 
 	/**
 	 * Add a new mesage controller to the chain

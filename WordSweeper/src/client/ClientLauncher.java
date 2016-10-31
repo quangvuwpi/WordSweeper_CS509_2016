@@ -37,7 +37,7 @@ public class ClientLauncher {
 		Application app = new Application(model);
 		
 		// Initialize the message handler
-		ClientMessageHandler handler = new ClientMessageHandler(app);
+		ClientMessageHandler handler = new ClientMessageHandler();
 		handler.addController(new ConnectResponseController());
 		handler.addController(new BoardResponseController(app, model));
 		handler.addController(new DefaultMessageController());
@@ -61,10 +61,8 @@ public class ClientLauncher {
 		// the GUI
 		Message m = new ConnectRequest().toMessage();
 		sa.sendRequest(m);
-		//app.getRequestArea().append(m.toString() + "\n");
 		
 		// at this point, we need to make app visible, otherwise we would terminate application
-		//app.setVisible(true);
 		app.start();
 	} 
 }
