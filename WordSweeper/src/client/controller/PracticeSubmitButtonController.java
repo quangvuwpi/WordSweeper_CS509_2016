@@ -5,9 +5,11 @@ package client.controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import java.util.LinkedList;
+import client.model.Board;
 import client.model.Cell;
 import client.model.Model;
+import client.model.Position;
 import client.model.Word;
 import client.view.Application;
 import client.view.WordHistory;
@@ -33,13 +35,31 @@ public class PracticeSubmitButtonController extends MouseAdapter {
 	public void mouseClicked(MouseEvent e) {
 		LetterFactory lf = new LetterFactory();
 		
-		Word word = model.game.board.selectionToWord();
+		Board board = model.game.board;
+		
+		Word word = board.selectionToWord();
 		history.addWord(word.toString());
 		
-		while (word.hasNext()) {
-			Cell c = word.next();
-			c.letter = lf.getNext();
-		}		
+		/** Pack each collumn upward **/
+		Position p;
+		LinkedList<Cell> queue = new LinkedList<Cell>();
+		for (int col = 0; col < Board.COL_COUNT; col++) {
+			for (int row = 0; row < Board.ROW_COUNT; row++) {
+				p = new Position(col, row); 
+				if (!board.isSelected(p)) {
+					queue.add(board.getCell(p));
+				}
+			}
+			for (int row = 0; row < Board.ROW_COUNT; row++) {
+				p = new Position(col, row);
+				if (!queue.isEmpty()) {					
+					Cell c = queue.removeFirst();					
+					board.getCell(p).copy(c);
+				} else {
+					board.getCell(p).letter = lf.getNext();
+				}
+			}
+		}
 		
 		model.game.board.clearSelection();
 		app.refresh();
