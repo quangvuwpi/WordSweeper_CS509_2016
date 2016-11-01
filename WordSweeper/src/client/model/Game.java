@@ -141,6 +141,16 @@ public class Game implements IGame {
 	}
 
 	/**
+	 * Clears the player list
+	 * 
+	 * @return true if the list is cleared; false if not
+	 */
+	public boolean clearPlayerList() {
+		players.clear();
+		return true;
+	}
+
+	/**
 	 * Add a Word to the history of submitted Word's
 	 * 
 	 * @param word

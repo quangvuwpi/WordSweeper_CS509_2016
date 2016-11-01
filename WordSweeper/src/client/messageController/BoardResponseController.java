@@ -36,7 +36,7 @@ public class BoardResponseController extends ChainableMessageController {
 		if (!type.equals("boardResponse")) {
 			return next.process(message);
 		}
-		
+
 		String user = model.game.currentUser;
 		BoardResponse br = parseMessage(message);
 
@@ -45,9 +45,14 @@ public class BoardResponseController extends ChainableMessageController {
 
 		/** Remove or add Players **/
 		boolean add = br.size > model.game.playerCount();
+		if (!add) {
+			/**
+			 * If removing players, clear the current list; the ones who are
+			 * present will be updated in the loop
+			 **/
+			model.game.clearPlayerList();
+		}
 
-		//System.out.print(response.toString() + "\n");
-		
 		System.out.print("Board Message received for game:" + br.gameId + "\n ManagingUser:" + br.managingUser + "\n");
 		System.out.print("Players:\n");
 		while (br.hasNext()) {
@@ -57,19 +62,15 @@ public class BoardResponseController extends ChainableMessageController {
 					+ String.valueOf(pr.score) + "\n");
 
 			Player player = new Player(pr.name, pr.position, pr.score);
-			
-			if (player.name.equals(user)) {				
+
+			if (player.name.equals(user)) {
 				model.game.setBoard(pr.board);
 			}
 
-			if (add) {
-				model.game.updatePlayer(player);
-			} else {
-				// How to tell which player is missing?
-			}
+			model.game.updatePlayer(player);
 		}
 
-		app.refresh();		
+		app.refresh();
 		return true;
 	}
 
