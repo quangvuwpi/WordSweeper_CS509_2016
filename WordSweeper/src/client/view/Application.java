@@ -73,7 +73,7 @@ public class Application {
 	public void refresh() {
 		if (current != null && current instanceof WordSweeper) {
 			WordSweeper ws = (WordSweeper) current;
-			
+			model.game.countPlayers();
 			ws.refresh();
 		}
 	}
