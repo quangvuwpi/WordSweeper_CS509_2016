@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import client.model.Board;
 import client.model.Cell;
+import client.model.Game;
 import client.model.Model;
 import client.model.Position;
 import client.model.Word;
@@ -34,34 +35,35 @@ public class PracticeSubmitButtonController extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		LetterFactory lf = new LetterFactory();
-		
+		Game game = model.game;
 		Board board = model.game.board;
-		
 		Word word = board.selectionToWord();
-		history.addWord(word.toString());
 		
-		/** Pack each collumn upward **/
-		Position p;
-		LinkedList<Cell> queue = new LinkedList<Cell>();
-		for (int col = 0; col < Board.COL_COUNT; col++) {
-			for (int row = 0; row < Board.ROW_COUNT; row++) {
-				p = new Position(col, row); 
-				if (!board.isSelected(p)) {
-					queue.add(board.getCell(p));
+		if (game.validate(word)) {
+			history.addWord(word.toString());
+			/** Pack each collumn upward **/
+			Position p;
+			LinkedList<Cell> queue = new LinkedList<Cell>();
+			for (int col = 0; col < Board.COL_COUNT; col++) {
+				for (int row = 0; row < Board.ROW_COUNT; row++) {
+					p = new Position(col, row); 
+					if (!board.isSelected(p)) {
+						queue.add(board.getCell(p));
+					}
+				}
+				for (int row = 0; row < Board.ROW_COUNT; row++) {
+					p = new Position(col, row);
+					if (!queue.isEmpty()) {					
+						Cell c = queue.removeFirst();					
+						board.getCell(p).copy(c);
+					} else {
+						board.getCell(p).letter = lf.getNext();
+					}
 				}
 			}
-			for (int row = 0; row < Board.ROW_COUNT; row++) {
-				p = new Position(col, row);
-				if (!queue.isEmpty()) {					
-					Cell c = queue.removeFirst();					
-					board.getCell(p).copy(c);
-				} else {
-					board.getCell(p).letter = lf.getNext();
-				}
-			}
+			
+			model.game.board.clearSelection();
+			app.refresh();
 		}
-		
-		model.game.board.clearSelection();
-		app.refresh();
 	}
 }

@@ -121,38 +121,6 @@ public class WordSweeper extends JFrame {
 		lblScore.setBounds(630, 119, 158, 17);
 		contentPane.add(lblScore);
 		
-		JLabel lblPlayer_1 = new JLabel("PLAYER0");
-		lblPlayer_1.setFont(new Font("Wawati SC", Font.PLAIN, 20));
-		lblPlayer_1.setBounds(580, 148, 117, 17);
-		contentPane.add(lblPlayer_1);
-		
-		JLabel label_7 = new JLabel("1,000,000,000");
-		label_7.setFont(new Font("Wawati SC", Font.PLAIN, 20));
-		label_7.setBounds(688, 148, 158, 17);
-		contentPane.add(label_7);
-		
-		JLabel label_16 = new JLabel("PLAYER0");
-		label_16.setFont(new Font("Wawati SC", Font.PLAIN, 20));
-		label_16.setBounds(580, 170, 117, 17);
-		contentPane.add(label_16);
-		
-		JLabel label_17 = new JLabel("PLAYER0");
-		label_17.setForeground(Color.PINK);
-		label_17.setFont(new Font("Wawati SC", Font.PLAIN, 20));
-		label_17.setBounds(580, 192, 117, 17);
-		contentPane.add(label_17);
-		
-		JLabel label_18 = new JLabel("1,000,000,000");
-		label_18.setForeground(Color.PINK);
-		label_18.setFont(new Font("Wawati SC", Font.PLAIN, 20));
-		label_18.setBounds(688, 192, 158, 17);
-		contentPane.add(label_18);
-		
-		JLabel label_19 = new JLabel("1,000,000,000");
-		label_19.setFont(new Font("Wawati SC", Font.PLAIN, 20));
-		label_19.setBounds(688, 170, 158, 17);
-		contentPane.add(label_19);
-		
 		JButton btnQuit = new JButton("QUIT");
 		btnQuit.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnQuit.setBounds(560, 481, 148, 66);
@@ -188,7 +156,7 @@ public class WordSweeper extends JFrame {
 		btnCancel.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnCancel.setBounds(266, 412, 100, 66);
 		btnCancel.addMouseListener(new CancelButtonController(app, model));
-		add(btnCancel);
+		getContentPane().add(btnCancel);
 		
 		btnSubmit = new JButton("SUBMIT");
 		btnSubmit.setFont(new Font("Wawati SC", Font.PLAIN, 23));
@@ -198,15 +166,41 @@ public class WordSweeper extends JFrame {
 		} else {
 			btnSubmit.addMouseListener(new SubmitButtonController(app, model, wordsHistory));
 		}		
-		add(btnSubmit);
-		
-		JPanel scoreBoard = new JPanel();
-		scoreBoard.setBounds(111, 481, 148, 66);
-		contentPane.add(scoreBoard);
+		getContentPane().add(btnSubmit);
 		
 		JPanel playerScore = new JPanel();
 		playerScore.setBounds(441, 69, 347, 38);
 		contentPane.add(playerScore);		
+		
+		JPanel socreBoard = new JPanel();
+		socreBoard.setBounds(560, 148, 287, 249);
+		contentPane.add(socreBoard);
+		
+		JLabel lblPlayer_1 = new JLabel("PLAYER0");
+		socreBoard.add(lblPlayer_1);
+		lblPlayer_1.setFont(new Font("Wawati SC", Font.PLAIN, 20));
+		
+		JLabel label_7 = new JLabel("1,000,000,000");
+		socreBoard.add(label_7);
+		label_7.setFont(new Font("Wawati SC", Font.PLAIN, 20));
+		
+		JLabel label_16 = new JLabel("PLAYER0");
+		socreBoard.add(label_16);
+		label_16.setFont(new Font("Wawati SC", Font.PLAIN, 20));
+		
+		JLabel label_19 = new JLabel("1,000,000,000");
+		socreBoard.add(label_19);
+		label_19.setFont(new Font("Wawati SC", Font.PLAIN, 20));
+		
+		JLabel label_17 = new JLabel("PLAYER0");
+		socreBoard.add(label_17);
+		label_17.setForeground(Color.PINK);
+		label_17.setFont(new Font("Wawati SC", Font.PLAIN, 20));
+		
+		JLabel label_18 = new JLabel("1,000,000,000");
+		socreBoard.add(label_18);
+		label_18.setForeground(Color.PINK);
+		label_18.setFont(new Font("Wawati SC", Font.PLAIN, 20));
 	}
 	
 	public void refresh() {

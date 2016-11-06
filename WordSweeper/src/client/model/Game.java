@@ -35,11 +35,15 @@ public class Game implements IGame {
 	/** The table of valid words **/
 	final WordTable table = new WordTable();
 	
+	/** The game mode to switch on the countPlayers or not **/
+	public boolean offlineMode = false;
+	
 	/** The count of palyers shared same position **/
 	public int[][] playerCounts = new int[4][4];
 	
 	/** Count the number of players share the same area **/
 	public void countPlayers() {
+		if (offlineMode) return;
 		Position p = players.get(currentUser).position;		
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -54,6 +58,7 @@ public class Game implements IGame {
 	}
 	
 	public int countPlayer(Position p) {
+		if (offlineMode) return 1;
 		Position upleft = players.get(currentUser).position;
 		return playerCounts[p.col - upleft.col][p.row - upleft.row];
 	}
