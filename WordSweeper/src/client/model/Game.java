@@ -148,7 +148,6 @@ public class Game implements IGame {
 		if (player != null) {
 			if (players.containsKey(player.name)) {
 				players.remove(player.name);
-
 				return true;
 			}
 		}
@@ -168,5 +167,4 @@ public class Game implements IGame {
 		}
 		return false;
 	}
-
 }
