@@ -10,7 +10,7 @@ import xml.Message;
  *
  */
 public class ConnectRequest implements IRequest {
-	
+
 	@Override
 	public String toString() {
 		return new XmlStringBuilder("connectRequest").finish().toString();

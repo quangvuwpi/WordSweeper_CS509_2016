@@ -34,18 +34,33 @@ public class Game implements IGame {
 
 	/** The table of valid words **/
 	final WordTable table = new WordTable();
-
+	
+	/** The game mode to switch on the countPlayers or not **/
+	public boolean offlineMode = false;
+	
+	/** The count of palyers shared same position **/
+	public int[][] playerCounts = new int[4][4];
+	
+	/** Count the number of players share the same area **/
+	public void countPlayers() {
+		if (offlineMode) return;
+		Position p = players.get(currentUser).position;		
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				for (String player: players.keySet()){
+					Position pplayer = players.get(player).position;
+					if (p != null && ((p.col + i) >= pplayer.col && (p.col + i) < (4 + pplayer.col)) && ((p.row + j) >= pplayer.row && (p.row + j) < (4 + pplayer.row))) {
+						playerCounts[i][j] = playerCounts[i][j] + 1;
+					}
+				}
+			}
+		}
+	}
+	
 	public int countPlayer(Position p) {
-		int num = 1;
-		// for (int i = 0; i < Player.length; i++){
-		// Position pplayer = Player[i].topleft;
-		// if (p != null &&
-		// (p.col >= pplayer.col && p.col < 4+pplayer.col) &&
-		// (p.row >= pplayer.row && p.row < 4+pplayer.row)) {
-		// num = num+1;
-		// }
-		// }
-		return num;
+		if (offlineMode) return 1;
+		Position upleft = players.get(currentUser).position;
+		return playerCounts[p.col - upleft.col][p.row - upleft.row];
 	}
 
 	public boolean validate(Word currentWord) {

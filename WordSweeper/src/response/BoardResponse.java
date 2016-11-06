@@ -13,20 +13,20 @@ import client.model.Position;
  *
  */
 public class BoardResponse extends Response implements Iterator<PlayerResponse> {
-	
+
 	public String gameId = null;
 	public int    size = 0;
 	public String managingUser = null;
 	public String content = null;
 	public Position bonus = null;
-	
+
 	protected int current = 0;
 	LinkedList<PlayerResponse> players = new LinkedList<PlayerResponse>();
 
 	public boolean add(PlayerResponse pr) {
 		return players.add(pr);
 	}
-	
+
 	@Override
 	public boolean hasNext() {
 		return (current < players.size());
@@ -37,7 +37,7 @@ public class BoardResponse extends Response implements Iterator<PlayerResponse> 
 		current++;
 		return players.listIterator().next();
 	}
-	
+
 	public void reset() {
 		current = 0;
 	}
