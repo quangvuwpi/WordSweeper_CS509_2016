@@ -7,10 +7,6 @@ public class Player {
 	
 	public long score = 0;
 	
-	public Player(String name, Position p) {
-		this.name = name;
-		this.position = p;
-	}
 	
 	public Player(String name, Position p, long score) {
 		this.name = name;
