@@ -2,6 +2,7 @@ package client.view;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.Stack;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -14,6 +15,8 @@ public class WordHistory extends JPanel implements IBoundary {
 
 	private Dimension size;
 	private int count;
+	private Stack<JLabel> tempstack = new Stack<>();
+	private Stack<JLabel> labelstack = new Stack<>();
 	
 	final Game game;
 	
@@ -49,10 +52,26 @@ public class WordHistory extends JPanel implements IBoundary {
 	
 	public void addWord(String word) {
 		this.count++;
-		JLabel temp = new JLabel(word);
-		temp.setFont(new Font("Wawati SC", Font.PLAIN, 20));
-		temp.setBounds(10, 25 * count, 117, 17);
-		add(temp);
+		if (count <= 10) {
+			JLabel temp = new JLabel(word);
+			temp.setFont(new Font("Wawati SC", Font.PLAIN, 20));
+			temp.setBounds(10, 25 * count, 117, 17);
+			labelstack.push(temp);
+			add(temp);
+		} else {
+			String oldword = "";
+			for (int i = 0; i < 10; i++) {
+				JLabel temp = labelstack.pop();
+				String thisword = temp.getText();
+				if(i == 0) temp.setText(word);
+				else temp.setText(oldword);
+				oldword = thisword;
+				tempstack.push(temp);
+			}
+			for (int i = 0; i < 10; i++) {
+				labelstack.push(tempstack.pop());
+			}
+		}
 		this.validate();
 		this.repaint();
 	}

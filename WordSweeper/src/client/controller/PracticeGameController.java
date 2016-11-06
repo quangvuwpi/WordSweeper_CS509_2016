@@ -22,6 +22,7 @@ public class PracticeGameController {
 	}
 	
 	public void process() {
+		model.game.offlineMode = true;
 		model.game.setBoard(BoardFactory.randomBoard());
 		
 		app.switchToPracticeBoard();
