@@ -1,5 +1,13 @@
 package client.model;
 import junit.framework.TestCase;
+
+/**
+ * Test case of the Player entity class
+ * 
+ * @author Qihang
+ *
+ */
+
 public class TestPlayer extends TestCase {
 	
 	

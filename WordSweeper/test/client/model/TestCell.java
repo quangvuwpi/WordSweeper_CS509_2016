@@ -3,6 +3,13 @@ package client.model;
 
 import junit.framework.TestCase;
 
+/**
+ * Test case of the Cell entity class
+ * 
+ * @author Qihang
+ *
+ */
+
 public class TestCell extends TestCase{
 	
 	public void testselected()

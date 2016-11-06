@@ -1,8 +1,16 @@
 package client.model;
 
 import java.util.LinkedList;
-import java.util.Stack;
 import junit.framework.TestCase;
+
+/**
+ * Test case of the Word entity class
+ * 
+ * @author Qihang
+ *
+ */
+
+
 
 public class TestWord extends TestCase{
 	
@@ -10,6 +18,9 @@ public class TestWord extends TestCase{
     {
 		Word  w=new Word();
     	w.cell = new LinkedList<Cell>();
+    	
+    	/** List of cells **/
+    	
     	Position p1= new Position(2,3);
         Cell  c1 = new Cell(p1);
         Position p2= new Position(2,4);
@@ -18,11 +29,14 @@ public class TestWord extends TestCase{
         Cell  c3 = new Cell(p3);
         c1.letter = "Qu";
         c2.letter = "i";
-        c3.letter = "z";
+        c3.letter = "t";
     	w.addCell(c1);
     	w.addCell(c2);
     	w.addCell(c3);
-    	assertEquals("Quiz",w.toString());
+    	
+    	/** Add cell to the List **/
+    	
+    	assertEquals("Quit",w.toString());
           
           
     }

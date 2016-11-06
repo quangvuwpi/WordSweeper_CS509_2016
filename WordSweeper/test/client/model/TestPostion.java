@@ -2,6 +2,14 @@ package client.model;
 
 import junit.framework.TestCase;
 
+
+/**
+ * Test case of the Position entity class
+ * 
+ * @author Qihang
+ *
+ */
+
 public class TestPostion extends TestCase {
 
 	public void testposition()
