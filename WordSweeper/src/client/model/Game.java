@@ -44,10 +44,11 @@ public class Game implements IGame {
 	/** Count the number of players share the same area **/
 	public void countPlayers() {
 		if (offlineMode) return;
-		Position p = players.get(currentUser).position;		
+		Position p = players.get(currentUser).position;
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				for (String player: players.keySet()){
+					if(player.equals(currentUser)) continue; 
 					Position pplayer = players.get(player).position;
 					if (p != null && ((p.col + i) >= pplayer.col && (p.col + i) < (4 + pplayer.col)) && ((p.row + j) >= pplayer.row && (p.row + j) < (4 + pplayer.row))) {
 						playerCounts[i][j] = playerCounts[i][j] + 1;
@@ -59,8 +60,7 @@ public class Game implements IGame {
 	
 	public int countPlayer(Position p) {
 		if (offlineMode) return 1;
-		Position upleft = players.get(currentUser).position;
-		return playerCounts[p.col - upleft.col][p.row - upleft.row];
+		return playerCounts[p.col][p.row];
 	}
 
 	public boolean validate(Word currentWord) {
