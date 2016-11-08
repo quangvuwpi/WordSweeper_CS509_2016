@@ -10,14 +10,16 @@ import xml.Message;
  *
  */
 public abstract class AbstractRequest implements IRequest {
+	
+	@Override
+	public abstract String toString();
 
 	/* (non-Javadoc)
 	 * @see request.IRequest#toMessage()
 	 */
 	@Override
 	public Message toMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Message(toString());
 	}
 
 }

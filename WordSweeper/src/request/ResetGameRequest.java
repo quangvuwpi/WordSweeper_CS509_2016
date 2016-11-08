@@ -1,8 +1,6 @@
 package request;
 
-import xml.Message;
-
-public class ResetGameRequest implements IRequest {
+public class ResetGameRequest extends AbstractRequest {
 
 	private String gameId;
 
@@ -14,12 +12,6 @@ public class ResetGameRequest implements IRequest {
 	public String toString() {
 		return new XmlStringBuilder("resetGameRequest").add("gameId", gameId).finish()
 				.toString();
-	}
-
-	@Override
-	public Message toMessage() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

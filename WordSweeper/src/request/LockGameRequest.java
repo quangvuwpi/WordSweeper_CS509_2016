@@ -1,8 +1,6 @@
 package request;
 
-import xml.Message;
-
-public class LockGameRequest implements IRequest {
+public class LockGameRequest extends AbstractRequest {
 
 	private String gameId;
 
@@ -14,12 +12,6 @@ public class LockGameRequest implements IRequest {
 	public String toString() {
 		return new XmlStringBuilder("lockGameRequest").add("gameId", gameId).finish()
 				.toString();
-	}
-
-	@Override
-	public Message toMessage() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

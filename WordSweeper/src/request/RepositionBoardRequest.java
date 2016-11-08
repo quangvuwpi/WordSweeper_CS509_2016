@@ -1,8 +1,6 @@
 package request;
 
-import xml.Message;
-
-public class RepositionBoardRequest implements IRequest {
+public class RepositionBoardRequest extends AbstractRequest {
 
 	private String name;
 	private String gameId;
@@ -20,12 +18,6 @@ public class RepositionBoardRequest implements IRequest {
 	public String toString() {
 		return new XmlStringBuilder("repositionBoardRequest").add("name", name).add("gameId", gameId).add("rowChange", Integer.toString(rowChange)).add("colChange", Integer.toString(colChange)).finish()
 				.toString();
-	}
-
-	@Override
-	public Message toMessage() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

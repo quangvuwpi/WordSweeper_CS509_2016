@@ -3,13 +3,11 @@
  */
 package request;
 
-import xml.Message;
-
 /**
  * @author quangvu
  *
  */
-public class JoinGameRequest implements IRequest {
+public class JoinGameRequest extends AbstractRequest {
 
 	public final String name;
 	public final String gameId;
@@ -30,16 +28,6 @@ public class JoinGameRequest implements IRequest {
 	public String toString() {
 		return new XmlStringBuilder("joinGameRequest").add("name", name).add("gameId", gameId).add("password", password)
 				.finish().toString();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see request.IRequest#toMessage()
-	 */
-	@Override
-	public Message toMessage() {
-		return new Message(toString());
 	}
 
 }

@@ -1,9 +1,8 @@
 package request;
 
 import client.model.Cell;
-import xml.Message;
 
-public class FindWordRequest implements IRequest {
+public class FindWordRequest extends AbstractRequest {
 
 	private String name;
 	private String word;
@@ -21,12 +20,6 @@ public class FindWordRequest implements IRequest {
 	public String toString() {
 		return new XmlStringBuilder("findWordGameRequest").add("name", name).add("word", word).add("gameId", gameId).finish()
 				.toString();
-	}
-
-	@Override
-	public Message toMessage() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

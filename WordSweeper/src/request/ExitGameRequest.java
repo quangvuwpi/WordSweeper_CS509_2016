@@ -1,8 +1,6 @@
 package request;
 
-import xml.Message;
-
-public class ExitGameRequest implements IRequest {
+public class ExitGameRequest extends AbstractRequest {
 
 	private String name;
 	private String gameId;
@@ -16,10 +14,6 @@ public class ExitGameRequest implements IRequest {
 	public String toString() {
 		return new XmlStringBuilder("exitGameRequest").add("name", name).add("gameId", gameId).finish()
 				.toString();
-	}
-	@Override
-	public Message toMessage() {
-		return new Message(toString());
 	}
 
 }
