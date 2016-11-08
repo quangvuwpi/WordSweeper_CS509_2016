@@ -19,8 +19,7 @@ public class ExitGameRequest implements IRequest {
 	}
 	@Override
 	public Message toMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Message(toString());
 	}
 
 }

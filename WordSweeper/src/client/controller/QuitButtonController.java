@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 
 import client.model.Model;
 import client.view.Application;
+import request.ExitGameRequest;
+import xml.Message;
 
 /**
  * The controller for the QUIT button
@@ -27,6 +29,14 @@ public class QuitButtonController extends MouseAdapter {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		// Send exit game request to server
+		Message m = new ExitGameRequest(model.game.currentUser, model.game.gameId).toMessage();
+		app.getServerAccess().sendRequest(m);
+		
+		// Reset game ID
+		model.game.setGameId(null);
+		
+		// Show login screen again
 		app.switchToLogin();
 	}
 
