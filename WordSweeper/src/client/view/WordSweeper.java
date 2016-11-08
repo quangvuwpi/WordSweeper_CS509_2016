@@ -8,8 +8,11 @@ import javax.swing.border.EmptyBorder;
 
 import client.controller.BoardController;
 import client.controller.CancelButtonController;
+import client.controller.LockButtonController;
 import client.controller.PracticeSubmitButtonController;
 import client.controller.QuitButtonController;
+import client.controller.RepositionButtonController;
+import client.controller.ResetButtonController;
 import client.controller.SubmitButtonController;
 import client.model.Model;
 
@@ -71,19 +74,27 @@ public class WordSweeper extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnUp = new JButton("^");
+		btnUp.setName("up");
 		btnUp.setBounds(31, 80, 308, 17);
+		btnUp.addMouseListener(new RepositionButtonController(app, model));
 		contentPane.add(btnUp);
 		
 		JButton btnDown = new JButton("v");
+		btnDown.setName("down");
 		btnDown.setBounds(31, 380, 308, 17);
+		btnDown.addMouseListener(new RepositionButtonController(app, model));
 		contentPane.add(btnDown);
 		
 		JButton btnRight = new JButton(">");
+		btnRight.setName("right");
 		btnRight.setBounds(341, 100, 25, 275);
+		btnRight.addMouseListener(new RepositionButtonController(app, model));
 		contentPane.add(btnRight);
 		
 		JButton btnLeft = new JButton("<");
+		btnLeft.setName("left");
 		btnLeft.setBounds(6, 100, 22, 275);
+		btnLeft.addMouseListener(new RepositionButtonController(app, model));
 		contentPane.add(btnLeft);
 		
 		JLabel lblNewLabel = new JLabel("GAME ID:");
@@ -130,12 +141,14 @@ public class WordSweeper extends JFrame {
 		btnLock = new JButton("LOCK");
 		btnLock.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnLock.setBounds(469, 412, 148, 66);
+		btnLock.addMouseListener(new LockButtonController(app, model));
 		contentPane.add(btnLock);
 		btnLock.setVisible(model.game.isManagingUser);
 		
 		btnReset = new JButton("RESET");
 		btnReset.setFont(new Font("Wawati SC", Font.PLAIN, 23));
 		btnReset.setBounds(664, 412, 148, 66);
+		btnReset.addMouseListener(new ResetButtonController(app, model));
 		contentPane.add(btnReset);
 		btnReset.setVisible(model.game.isManagingUser);
 		

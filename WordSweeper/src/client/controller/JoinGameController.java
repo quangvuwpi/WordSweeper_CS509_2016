@@ -12,7 +12,7 @@ public class JoinGameController {
 
 	Application app;
 	ILogin login;	
-	
+
 	public JoinGameController(Application app, ILogin login) {
 		this.app = app;
 		this.login = login;
