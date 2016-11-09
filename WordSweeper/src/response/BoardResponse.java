@@ -52,12 +52,10 @@ public class BoardResponse extends Response implements Iterator<PlayerResponse> 
 
 	@Override
 	public PlayerResponse next() {
+		PlayerResponse pr = players.get(current);
 		current++;
-		return players.listIterator().next();
-	}
-
-	public void reset() {
-		current = 0;
+		
+		return pr;
 	}
 
 }
