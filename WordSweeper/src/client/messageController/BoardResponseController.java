@@ -38,6 +38,8 @@ public class BoardResponseController extends ChainableMessageController {
 		if (!type.equals("boardResponse")) {
 			return next.process(message);
 		}
+		
+		System.out.println(message.toString());
 
 		String user = model.game.currentUser;
 		BoardResponse br = parseMessage(message);
@@ -86,6 +88,9 @@ public class BoardResponseController extends ChainableMessageController {
 			model.game.updatePlayer(player);
 		}
 
+		// Update shared area
+		model.game.countPlayers();
+		
 		app.refresh();
 		return true;
 	}
