@@ -30,7 +30,6 @@ public class ResetButtonController extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Message m = new ResetGameRequest(model.game.gameId).toMessage();
-		app.switchToLogin();
 		app.getServerAccess().sendRequest(new IController() {
 			@Override
 			public void process(Message request, Message response) {

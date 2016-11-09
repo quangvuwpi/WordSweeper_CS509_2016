@@ -31,6 +31,7 @@ public class LockButtonController extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Message m = new LockGameRequest(model.game.gameId).toMessage();
+		System.out.print(m.toString());
 //		app.getServerAccess().sendRequest(new IController() {
 //			@Override
 //			public void process(Message request, Message response) {

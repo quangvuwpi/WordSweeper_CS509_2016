@@ -30,10 +30,10 @@ public class RepositionButtonController extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Message m = null;
-		if (e.getComponent().getName() == "up") m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, 0, 1).toMessage();
-		if (e.getComponent().getName() == "down") m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, 0, -1).toMessage();
-		if (e.getComponent().getName() == "left") m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, 1, 0).toMessage();
-		if (e.getComponent().getName() == "right") m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, -1, 0).toMessage();
+		if (e.getComponent().getName() == "up") m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, 1, 0).toMessage();
+		if (e.getComponent().getName() == "down") m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, -1, 0).toMessage();
+		if (e.getComponent().getName() == "left") m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, 0, -1).toMessage();
+		if (e.getComponent().getName() == "right") m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, 0, 1).toMessage();
 		System.out.println(m.toString());
 //		app.getServerAccess().sendRequest(new IController() {
 //		@Override
