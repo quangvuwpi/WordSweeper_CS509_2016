@@ -19,6 +19,8 @@ import xml.Message;
  * Tells the client whether the model is locked or not BY SOME OTHER CLIENT.
  * This will never be returned to a client to tell him that HE has the model
  * locked (that is job of LockResponse).
+ * 
+ * @author quangvu
  */
 public class BoardResponseController extends ChainableMessageController {
 
@@ -43,8 +45,11 @@ public class BoardResponseController extends ChainableMessageController {
 		/** May become the managing user here **/
 		model.game.isManagingUser = br.managingUser.equals(user);
 
+		/** Set game ID **/
+		model.game.setGameId(br.gameId);
+		
 		/** Remove or add Players **/
-		boolean add = br.size > model.game.playerCount();
+		boolean add = br.playerResponseCount() > model.game.playerCount();
 		if (!add) {
 			/**
 			 * If removing players, clear the current list; the ones who are
@@ -58,8 +63,19 @@ public class BoardResponseController extends ChainableMessageController {
 		while (br.hasNext()) {
 			PlayerResponse pr = br.next();
 
-			System.out.print("  " + pr.name + " " + pr.board.toString() + " " + pr.position.toString() + " "
-					+ String.valueOf(pr.score) + "\n");
+			String debug = "  " + pr.name;
+			if (pr.board != null) {
+				debug += " " + pr.board.toString();
+			} else {
+				debug += " " + "null";
+			}
+			if (pr.position != null) {
+				debug += " " + pr.position.toString();
+			} else {
+				debug += " " + "null";
+			}
+			debug += " " + pr.score + "\n";			
+			System.out.print(debug);
 
 			Player player = new Player(pr.name, pr.position, pr.score);
 
@@ -111,7 +127,7 @@ public class BoardResponseController extends ChainableMessageController {
 			String score = n.getAttributes().getNamedItem("score").getNodeValue();
 			long s = Long.valueOf(score);
 
-			response.add(new PlayerResponse(name, p, b, s));
+			response.addPlayerResponse(new PlayerResponse(name, p, b, s));
 		}
 
 		return response;

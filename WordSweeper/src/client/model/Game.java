@@ -15,7 +15,7 @@ import util.WordTable;
 public class Game implements IGame {
 
 	/** The current game ID **/
-	public String gameId = "";
+	public String gameId = null;
 
 	/** Name of the local player **/
 	public String currentUser = null;
@@ -34,32 +34,36 @@ public class Game implements IGame {
 
 	/** The table of valid words **/
 	final WordTable table = new WordTable();
-	
+
 	/** The game mode to switch on the countPlayers or not **/
 	public boolean offlineMode = false;
-	
+
 	/** The count of palyers shared same position **/
 	public int[][] playerCounts = new int[4][4];
-	
+
 	/** Count the number of players share the same area **/
 	public void countPlayers() {
-		if (offlineMode) return;
+		if (offlineMode)
+			return;
 		Position p = players.get(currentUser).position;
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				for (String player: players.keySet()){
-					if(player.equals(currentUser)) continue; 
+				for (String player : players.keySet()) {
+					if (player.equals(currentUser))
+						continue;
 					Position pplayer = players.get(player).position;
-					if (p != null && ((p.col + i) >= pplayer.col && (p.col + i) < (4 + pplayer.col)) && ((p.row + j) >= pplayer.row && (p.row + j) < (4 + pplayer.row))) {
+					if (p != null && ((p.col + i) >= pplayer.col && (p.col + i) < (4 + pplayer.col))
+							&& ((p.row + j) >= pplayer.row && (p.row + j) < (4 + pplayer.row))) {
 						playerCounts[i][j] = playerCounts[i][j] + 1;
 					}
 				}
 			}
 		}
 	}
-	
+
 	public int countPlayer(Position p) {
-		if (offlineMode) return 1;
+		if (offlineMode)
+			return 1;
 		return playerCounts[p.col][p.row];
 	}
 
@@ -68,6 +72,21 @@ public class Game implements IGame {
 			return WordTable.isWord(currentWord.toString());
 		}
 		return false;
+	}
+
+	/**
+	 * Set game ID only once in case server sends us multiple game ID; only the
+	 * first takes effect, ignore everything else until we reset it
+	 * 
+	 * @param id
+	 *            the game ID to set
+	 */
+	public void setGameId(String id) {
+		if (id == null) {
+			gameId = null;
+		} else if (gameId == null) {
+			gameId = id;
+		}
 	}
 
 	/**
