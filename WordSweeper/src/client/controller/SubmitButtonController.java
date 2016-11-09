@@ -12,6 +12,8 @@ import client.model.Model;
 import client.model.Word;
 import client.view.Application;
 import client.view.WordHistory;
+import request.FindWordRequest;
+import xml.Message;
 
 /**
  * The controller for the SUBMIT button
@@ -42,7 +44,7 @@ public class SubmitButtonController extends MouseAdapter {
 			wh.addWord(word.toString());
 			
 			// Create a submit message to send to server
-//			Message m = new Message("");			
+			Message m = new FindWordRequest(game.currentUser, word.toString(), game.gameId, word.getCell()).toMessage();
 //			app.getServerAccess().sendRequest(new IController() {
 //				
 //				@Override

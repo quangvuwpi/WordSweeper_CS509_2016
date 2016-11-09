@@ -24,6 +24,10 @@ public class Word implements Iterator<Cell> {
     	return false;
     }
     
+    public Cell[] getCell() {
+    	return (Cell[]) cell.toArray();
+    }
+    
     public int length() {
     	return cell.size();
     }
