@@ -77,8 +77,6 @@ public class XMLParserTest extends TestCase {
 		// malformed string case
 		xml = "ABCDEFGHI,KLMNOP";
 		assertNull(XMLParser.parseXmlBoard(xml));
-		xml = "ABCDEFdbHIKLMNOP";
-		assertNull(XMLParser.parseXmlBoard(xml));
 		xml = "ABCDEF1HIHKLMNOP";
 		assertNull(XMLParser.parseXmlBoard(xml));
 		
@@ -94,6 +92,12 @@ public class XMLParserTest extends TestCase {
 		xml = "QuBCDQuFGHIQuQuLMNOP";
 		assertNotNull(XMLParser.parseXmlBoard(xml));
 		xml = "QuBCQQuFGHIQQuLMNOP";
+		assertNotNull(XMLParser.parseXmlBoard(xml));
+		
+		// mixed-case strings with commas and spaces
+		xml = "Qu,B,C,Q,Qu,F,G,H,I,Q,Qu,L,M,N,O,P";
+		assertNotNull(XMLParser.parseXmlBoard(xml));
+		xml = "Qu,B,c,Q,Qu,F ,G,h,I, Q , Qu,L,M,n, O,P";
 		assertNotNull(XMLParser.parseXmlBoard(xml));
 	}
 

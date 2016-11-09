@@ -46,10 +46,14 @@ public class XMLParser {
 	 *            the XML string
 	 * @return the new Board, or null if string is invalid
 	 */
-	public static Board parseXmlBoard(String xml) {
+	public static Board parseXmlBoard(String xml) {		
 		if (xml != null && xml.length() >= 16) {
-			String regex = "([A-Z]|Qu){16}";
-			Matcher m = Pattern.compile(regex).matcher(xml);
+			// Have to preprocess since board can have commas between the characters
+			String xmlUp = xml.toUpperCase();
+			String xml2  = xmlUp.replaceAll(",| ", "");
+			
+			String regex = "([A-Z]|QU){16}";
+			Matcher m = Pattern.compile(regex).matcher(xml2);
 
 			if (m.matches()) {
 				String array[][] = new String[Board.COL_COUNT][Board.ROW_COUNT];
@@ -57,16 +61,16 @@ public class XMLParser {
 				int i = 0;
 				int col = 0;
 				int row = 0;				
-				while (i < xml.length()) {
-					if (xml.charAt(i) != 'Q') {  // Not Qu, but might be Q
-						array[col][row] = String.valueOf(xml.charAt(i));
+				while (i < xml2.length()) {
+					if (xml2.charAt(i) != 'Q') {  // Not QU, but might be Q
+						array[col][row] = String.valueOf(xml2.charAt(i));
 						i++;
-					} else if (i < (xml.length() - 1) && xml.charAt(i+1) == 'u') {  // Qu
-						char qu[] = {xml.charAt(i), xml.charAt(i+1)};
+					} else if (i < (xml2.length() - 1) && xml2.charAt(i+1) == 'U') {  // QU
+						char qu[] = {xml2.charAt(i), Character.toLowerCase(xml2.charAt(i+1))};
 						array[col][row] = String.valueOf(qu);
 						i += 2;
 					} else {  // Q
-						array[col][row] = String.valueOf(xml.charAt(i));
+						array[col][row] = String.valueOf(xml2.charAt(i));
 						i++;
 					}
 					
