@@ -34,7 +34,7 @@ public class Position {
 	
 	@Override
 	public String toString() {
-		return "(" + String.valueOf(col) + "," + String.valueOf(row) + ")";
+		return String.valueOf(col) + "," + String.valueOf(row);
 	}
 
 }
