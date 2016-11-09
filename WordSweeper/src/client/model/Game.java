@@ -184,6 +184,50 @@ public class Game implements IGame {
 	}
 
 	/**
+	 * Return whether the given Player is in the list
+	 * 
+	 * @param player
+	 *            the Player
+	 * @return true if player is in list; false if not
+	 */
+	public boolean playerExist(String name) {
+		if (name != null) {
+			return players.containsKey(name);
+		}
+		return false;
+	}
+
+	/**
+	 * Return the current score of the current player
+	 * 
+	 * @return the current score
+	 */
+	public long getScore() {
+		if (playerExist(currentUser)) {
+			return players.get(currentUser).score;
+		}
+		return -1;
+	}
+
+	/**
+	 * Update the score of the current player
+	 * 
+	 * @param score
+	 *            the new score
+	 * @return true if score is updated; false if not
+	 */
+	public boolean updateScore(long score) {
+		if (playerExist(currentUser)) {
+			Player p = players.get(currentUser);
+
+			p.score = score;
+
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Add a Word to the history of submitted Word's
 	 * 
 	 * @param word
