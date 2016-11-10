@@ -4,7 +4,6 @@
 package client.controller;
 
 import client.model.Model;
-import client.model.Player;
 import client.view.Application;
 import utility.BoardFactory;
 
