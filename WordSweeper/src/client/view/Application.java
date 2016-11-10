@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 import client.ServerAccess;
+import client.messageController.ClientMessageHandler;
 import client.model.Model;
 import util.WordTable;
 
@@ -22,11 +23,14 @@ public class Application {
 	public final Model model;
 	ServerAccess serverAccess;
 	
+	// The message handler
+	public ClientMessageHandler handler;
+	
 	//public final WordSweeperFrame frame;
 	JFrame current;
 	
 	public Application(Model model) {
-		this.model = model;		
+		this.model = model;
 		//this.frame = new WordSweeperFrame(this, model);
 	}
 	
@@ -76,6 +80,10 @@ public class Application {
 			model.game.countPlayers();
 			ws.refresh();
 		}
+	}
+	
+	public void setMessageHandler(ClientMessageHandler handler) {
+		this.handler = handler;
 	}
 	
 	/** Record the means to communicate with server. */

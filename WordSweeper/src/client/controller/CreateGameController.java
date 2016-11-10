@@ -2,7 +2,6 @@ package client.controller;
 
 
 import client.IController;
-import client.messageController.BoardResponseController;
 import client.view.Application;
 import client.view.ILogin;
 import request.CreateGameRequest;
@@ -26,19 +25,13 @@ public class CreateGameController {
 		// send the request to create the game.
 		Message m = new CreateGameRequest(name, password).toMessage();
 
-		// Request the lock (this might not succeed).
-		System.out.print(m.toString());
-		System.out.print("\n");
-
-		// Only switch to Board view on first response
+		// Only switch to Board view on first response		
 		app.getServerAccess().sendRequest(new IController() {
 
 			@Override
 			public void process(Message request, Message response) {
-				if (response.success()) {
-					new BoardResponseController(app, app.model).process(response);
-					app.switchToBoard();					
-				}				
+				app.handler.process(response);
+				app.switchToBoard();				
 			}
 		}, m);
 	}

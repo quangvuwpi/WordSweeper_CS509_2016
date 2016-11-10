@@ -4,6 +4,7 @@ import client.messageController.BoardResponseController;
 import client.messageController.ClientMessageHandler;
 import client.messageController.ConnectResponseController;
 import client.messageController.DefaultMessageController;
+import client.messageController.FindWordResponseController;
 import client.model.Model;
 import client.view.Application;
 import request.ConnectRequest;
@@ -13,7 +14,9 @@ import xml.Message;
 public class ClientLauncher {
 
 	// If requested by ClientLauncher (pass in '-server' as argument).
-	public static final String serverHost = "72.249.186.243";
+	public static final String serverHost = "cs509.frankgh.com";
+	// cs509.frankgh.com:11425
+	// 72.249.186.243
 	
 	/**
 	 * Note that to simplify the coding of this command-client, it declares that it can throw an Exception,
@@ -28,19 +31,21 @@ public class ClientLauncher {
 		
 		// select dedicated server with '-server' options
 		String host = "localhost";
-		if (args.length > 0 && args[0].equals("-server")) {
+		//if (args.length > 0 && args[0].equals("-server")) {
 			host = serverHost;
-		}
+		//}
 		
 		// Initialize the client application and its corresponding model
 		Model model = new Model();
-		Application app = new Application(model);
+		Application app = new Application(model);		
 		
 		// Initialize the message handler
 		ClientMessageHandler handler = new ClientMessageHandler();
 		handler.addController(new ConnectResponseController());
 		handler.addController(new BoardResponseController(app, model));
+		handler.addController(new FindWordResponseController(app, model));
 		handler.addController(new DefaultMessageController());
+		app.setMessageHandler(handler);
 		
 		// try to connect to the server. Once connected, messages are going to be processed by 
 		// SampleClientMessageHandler. For now we just continue on with the initialization because
