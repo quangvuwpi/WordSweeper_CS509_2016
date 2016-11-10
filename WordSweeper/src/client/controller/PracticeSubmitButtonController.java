@@ -15,7 +15,6 @@ import client.model.Word;
 import client.view.Application;
 import client.view.WordHistory;
 import utility.LetterFactory;
-import utility.ScoreCalculator;
 
 /**
  * @author quangvu
@@ -26,13 +25,11 @@ public class PracticeSubmitButtonController extends MouseAdapter {
 	Application app;
 	Model model;
 	WordHistory history;
-	final ScoreCalculator sc;
 	
 	public PracticeSubmitButtonController(Application app, Model model, WordHistory wh) {
 		this.app = app;
 		this.model = model;
 		this.history = wh;
-		this.sc = new ScoreCalculator(model.game);
 	}
 	
 	@Override
@@ -44,7 +41,6 @@ public class PracticeSubmitButtonController extends MouseAdapter {
 		
 		if (game.validate(word)) {
 			history.addWord(word.toString());
-			game.updateScore(sc.getScore(word));
 			/** Pack each collumn upward **/
 			Position p;
 			LinkedList<Cell> queue = new LinkedList<Cell>();

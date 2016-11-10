@@ -1,40 +1,45 @@
 package client.view;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
+import java.util.Stack;
+
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import client.model.Game;
 
 @SuppressWarnings("serial")
 public class WordHistory extends JPanel implements IBoundary {
 
-	JList list;
-	DefaultListModel model;
-
+	private Dimension size;
+	private int count;
+	private Stack<JLabel> tempstack = new Stack<>();
+	private Stack<JLabel> labelstack = new Stack<>();
+	
 	final Game game;
-	Font myFont = new Font("Wawati SC", Font.PLAIN, 25);
-
+	
 	public WordHistory (Game game) {
 		this.game = game;
+		
+		this.count = 0;
 		setup();
 	}
-
+	
 	@Override
 	public boolean setup() {
 		// TODO Auto-generated method stub
-		setLayout(new BorderLayout());
-	    model = new DefaultListModel();
-	    list = new JList(model);
-	    list.setFont(myFont);
-	    list.setSelectionInterval(-1, -1); // not selectable
-	    JScrollPane pane = new JScrollPane(list);
-		Dimension d = new Dimension(148, 249);
-		pane.setPreferredSize(d);
-		add(pane, BorderLayout.NORTH);
+		this.size = new Dimension(122, 275);
+		setLayout(null);
+		setBorder(BorderFactory.createEmptyBorder());
+		setPreferredSize(size);
+		
+		JLabel lblYourWords = new JLabel("Your Words:");
+		lblYourWords.setFont(new Font("Wawati SC", Font.PLAIN, 20));
+		lblYourWords.setBounds(0, 0, 117, 17);
+		add(lblYourWords);
+		
 		return true;
 	}
 
@@ -44,10 +49,29 @@ public class WordHistory extends JPanel implements IBoundary {
 		removeAll();
 		return true;
 	}
-
+	
 	public void addWord(String word) {
-		model.addElement(word);
-		list.ensureIndexIsVisible(model.size() - 1); // Auto scroll
+		this.count++;
+		if (count <= 10) {
+			JLabel temp = new JLabel(word);
+			temp.setFont(new Font("Wawati SC", Font.PLAIN, 20));
+			temp.setBounds(10, 25 * count, 117, 17);
+			labelstack.push(temp);
+			add(temp);
+		} else {
+			String oldword = "";
+			for (int i = 0; i < 10; i++) {
+				JLabel temp = labelstack.pop();
+				String thisword = temp.getText();
+				if(i == 0) temp.setText(word);
+				else temp.setText(oldword);
+				oldword = thisword;
+				tempstack.push(temp);
+			}
+			for (int i = 0; i < 10; i++) {
+				labelstack.push(tempstack.pop());
+			}
+		}
 		this.validate();
 		this.repaint();
 	}
