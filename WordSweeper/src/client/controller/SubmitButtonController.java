@@ -46,6 +46,7 @@ public class SubmitButtonController extends MouseAdapter {
 			Message m = new FindWordRequest(game.currentUser, game.gameId, word).toMessage();
 			app.getServerAccess().sendRequest(m);
 			
+			wh.addWord(word.toString());
 //			app.getServerAccess().sendRequest(new IController() {
 //
 //				@Override

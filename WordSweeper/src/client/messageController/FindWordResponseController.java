@@ -8,8 +8,6 @@ import org.w3c.dom.Node;
 
 import client.model.Model;
 import client.view.Application;
-import client.view.WordHistory;
-import response.BoardResponse;
 import response.FindWordResponse;
 import xml.Message;
 
@@ -48,8 +46,6 @@ public class FindWordResponseController extends ChainableMessageController {
 	}
 	
 	FindWordResponse parseMessage(Message m) {
-		// this refers to the outer node of the Message DOM (in this case,
-		// updateResponse).
 		Node findWordRes = m.contents.getFirstChild();
 		NamedNodeMap map = findWordRes.getAttributes();
 		
