@@ -149,13 +149,23 @@ public class BoardPanel extends JPanel implements IBoundary {
 
 			int h = getHeight();
 			int w = getWidth();
+			
+			if (cell.bonus) {
+				g2.setColor(Color.RED);
+				g2.fillRoundRect(0, 0, w, h, 3, 3);
+			}
 
 			if (cell.selected) {
 				g2.setColor(Color.YELLOW);
 			} else {
-				g2.setColor(new Color(0, 255, 0, 15 * game.countPlayer(cell.position)));
+				g2.setColor(new Color(0, 255, 0, 30 * game.countPlayer(cell.position)));
 			}
-			g2.fillRect(0, 0, w, h);
+			
+			if (cell.bonus) {
+				g2.fillRect(5, 5, w - 10, h - 10);
+			} else {
+				g2.fillRect(0, 0, w, h);
+			}
 
 			g2.setFont(font);
 			FontMetrics fm = g2.getFontMetrics();

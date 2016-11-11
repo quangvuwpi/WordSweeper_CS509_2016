@@ -38,18 +38,25 @@ public class BoardResponseController extends ChainableMessageController {
 		if (!type.equals("boardResponse")) {
 			return next.process(message);
 		}
-		
+
 		System.out.println(message.toString());
 
 		String user = model.game.currentUser;
 		BoardResponse br = parseMessage(message);
 
 		/** May become the managing user here **/
-		model.game.isManagingUser = br.managingUser.equals(user);
+		if (br.managingUser != null) {
+			model.game.isManagingUser = br.managingUser.equals(user);
+		}
+
+		/** Set bonus cell **/
+		if (br.bonus != null) {
+			model.game.board.getCell(br.bonus).bonus = true;
+		}
 
 		/** Set game ID **/
 		model.game.setGameId(br.gameId);
-		
+
 		/** Remove or add Players **/
 		boolean add = br.playerResponseCount() > model.game.playerCount();
 		if (!add) {
@@ -76,12 +83,12 @@ public class BoardResponseController extends ChainableMessageController {
 			} else {
 				debug += " " + "null";
 			}
-			debug += " " + pr.score + "\n";			
+			debug += " " + pr.score + "\n";
 			System.out.print(debug);
 
 			Player player = new Player(pr.name, pr.position, pr.score);
 
-			if (player.name.equals(user)) {
+			if (pr.board != null && player.name.equals(user)) {
 				model.game.setBoard(pr.board);
 			}
 
@@ -90,7 +97,7 @@ public class BoardResponseController extends ChainableMessageController {
 
 		// Update shared area
 		model.game.countPlayers();
-		
+
 		app.refresh();
 		return true;
 	}
