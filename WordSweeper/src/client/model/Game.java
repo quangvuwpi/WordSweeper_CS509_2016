@@ -37,6 +37,7 @@ public class Game implements IGame {
 
 	/** The game mode to switch on the countPlayers or not **/
 	public boolean offlineMode = false;
+	public long offlineScore = 0;
 
 	/** The count of palyers shared same position **/
 	public int[][] playerCounts = new int[4][4];
@@ -206,7 +207,7 @@ public class Game implements IGame {
 		if (playerExist(currentUser)) {
 			return players.get(currentUser).score;
 		}
-		return -1;
+		return offlineScore;
 	}
 
 	/**
@@ -223,6 +224,8 @@ public class Game implements IGame {
 			p.score = score;
 
 			return true;
+		} else {
+			offlineScore += score;
 		}
 		return false;
 	}

@@ -37,6 +37,7 @@ public class WordSweeper extends JFrame {
 	JButton btnLock;
 	JButton btnReset;
 	JButton btnSubmit;
+	JLabel lb_score;
 	
 	BoardPanel gamePanel;
 	BoardInfoPanel boardInfo;
@@ -99,22 +100,22 @@ public class WordSweeper extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("GAME ID:");
 		lblNewLabel.setFont(new Font("Wawati SC", Font.PLAIN, 26));
-		lblNewLabel.setBounds(6, 6, 117, 51);
+		lblNewLabel.setBounds(6, 6, 124, 51);
 		contentPane.add(lblNewLabel);
 		
 		lbGameId = new JLabel(model.game.gameId);
-		lbGameId.setFont(new Font("Wawati SC", Font.PLAIN, 26));
-		lbGameId.setBounds(135, 6, 117, 51);
+		lbGameId.setFont(new Font("Wawati SC", Font.PLAIN, 20));
+		lbGameId.setBounds(142, 6, 321, 51);
 		contentPane.add(lbGameId);
 		
 		JLabel lblPlayer = new JLabel("PLAYER:");
 		lblPlayer.setFont(new Font("Wawati SC", Font.PLAIN, 26));
-		lblPlayer.setBounds(271, 6, 117, 51);
+		lblPlayer.setBounds(475, 6, 117, 51);
 		contentPane.add(lblPlayer);
 		
 		lbUserId = new JLabel(model.game.currentUser);
 		lbUserId.setFont(new Font("Wawati SC", Font.PLAIN, 26));
-		lbUserId.setBounds(396, 6, 117, 51);
+		lbUserId.setBounds(620, 6, 117, 51);
 		contentPane.add(lbUserId);
 		
 		JLabel lblYourScore = new JLabel("Your Score:");
@@ -122,7 +123,7 @@ public class WordSweeper extends JFrame {
 		lblYourScore.setBounds(475, 80, 117, 17);
 		contentPane.add(lblYourScore);
 		
-		JLabel lb_score = new JLabel("1,000,000");
+		lb_score = new JLabel("0");
 		lb_score.setFont(new Font("Wawati SC", Font.PLAIN, 20));
 		lb_score.setBounds(620, 80, 117, 17);
 		contentPane.add(lb_score);
@@ -153,7 +154,7 @@ public class WordSweeper extends JFrame {
 		btnReset.setVisible(model.game.isManagingUser);
 		
 		wordsHistory = new WordHistory(model.game);
-		wordsHistory.setBounds(391, 119, 122, 275);
+		wordsHistory.setBounds(378, 148, 166, 249);
 		contentPane.add(wordsHistory);
 		
 		boardInfo = new BoardInfoPanel(model.game, model.game.board);
@@ -214,12 +215,18 @@ public class WordSweeper extends JFrame {
 		socreBoard.add(label_18);
 		label_18.setForeground(Color.PINK);
 		label_18.setFont(new Font("Wawati SC", Font.PLAIN, 20));
+		
+		JLabel lblWordHistory = new JLabel("WORD HISTORY:");
+		lblWordHistory.setFont(new Font("Wawati SC", Font.PLAIN, 20));
+		lblWordHistory.setBounds(380, 119, 178, 17);
+		contentPane.add(lblWordHistory);
 	}
 	
 	public void refresh() {
 		btnLock.setVisible(model.game.isManagingUser);
 		btnReset.setVisible(model.game.isManagingUser);
 		
+		lb_score.setText(Long.toString(model.game.getScore()));
 		gamePanel.refresh();
 		boardInfo.refresh();
 		wordsHistory.refresh();
