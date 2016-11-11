@@ -5,7 +5,6 @@ package client.controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import client.IController;
 import client.model.Model;
 import client.view.Application;
 import request.RepositionBoardRequest;
@@ -13,8 +12,9 @@ import xml.Message;
 
 /**
  * The controller for the all Reposition button
- *  
+ * 
  * @author Jarway
+ * @author quangvu
  *
  */
 public class RepositionButtonController extends MouseAdapter {
@@ -29,22 +29,24 @@ public class RepositionButtonController extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Message m = null;
-		if (e.getComponent().getName() == "up") m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, 1, 0).toMessage();
-		if (e.getComponent().getName() == "down") m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, -1, 0).toMessage();
-		if (e.getComponent().getName() == "left") m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, 0, -1).toMessage();
-		if (e.getComponent().getName() == "right") m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, 0, 1).toMessage();
+		int dcol = 0;
+		int drow = 0;
+
+		String name = e.getComponent().getName();
+		if (name.equals("up")) {
+			drow = -1;
+		} else if (name.equals("down")) {
+			drow = 1;
+		} else if (name.equals("left")) {
+			dcol = 1;
+		} else if (name.equals("right")) {
+			dcol = -1;
+		}
+
+		Message m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, drow, dcol).toMessage();
 		System.out.println(m.toString());
-//		app.getServerAccess().sendRequest(new IController() {
-//		@Override
-//		public void process(Message request, Message response) {
-//			if (response.success()) {
-//				// Process response
-//				
-//				// Add word to history						
-//			}					
-//		}
-//		}, m);
+		
+		app.getServerAccess().sendRequest(m);
 	}
 
 }
