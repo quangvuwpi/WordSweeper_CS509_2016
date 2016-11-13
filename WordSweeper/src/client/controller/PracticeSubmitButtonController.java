@@ -32,6 +32,9 @@ public class PracticeSubmitButtonController extends MouseAdapter {
 	}
 	
 	@Override
+	/**
+	 * Method for mouse clicking to select word to submit
+	 */
 	public void mouseClicked(MouseEvent e) {
 		LetterFactory lf = new LetterFactory();
 		
@@ -40,7 +43,7 @@ public class PracticeSubmitButtonController extends MouseAdapter {
 		Word word = board.selectionToWord();
 		history.addWord(word.toString());
 		
-		/** Pack each collumn upward **/
+		/** Pack each column upward **/
 		Position p;
 		LinkedList<Cell> queue = new LinkedList<Cell>();
 		for (int col = 0; col < Board.COL_COUNT; col++) {

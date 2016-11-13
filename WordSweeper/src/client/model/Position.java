@@ -24,6 +24,9 @@ public class Position {
 	}
 	
 	@Override
+	/**
+	 * Check if they have same position
+	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof Position) {			
 			return col == ((Position) obj).col && 

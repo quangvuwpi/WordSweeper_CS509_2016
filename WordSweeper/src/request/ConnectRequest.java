@@ -9,11 +9,15 @@ import xml.Message;
  * @author quangvu
  *
  */
+
 public class ConnectRequest implements IRequest {
 	
 	@Override
 	public String toString() {
 		return new XmlStringBuilder("connectRequest").finish().toString();
+		/**
+		 * Define connect request to sever
+		 */
 	}
 
 	/* (non-Javadoc)

@@ -24,10 +24,14 @@ public class JoinGameController {
 		String gameId = login.getGameId();
 		String password = login.getPassword();
 		
-		// send the request to create the game.
+		/**
+		 * send the request to create the game.
+		 */
 		Message m = new JoinGameRequest(name, gameId, password).toMessage();
 
-		// Request the lock (this might not succeed).
+		/**
+		 * Request the lock (this might not succeed).
+		 */
 		System.out.print(m.toString());
 		System.out.print("\n");
 		

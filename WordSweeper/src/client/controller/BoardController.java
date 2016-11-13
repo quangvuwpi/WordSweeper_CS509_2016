@@ -59,6 +59,9 @@ public class BoardController extends MouseAdapter {
 	}
 
 	@Override
+	/**
+	 *  Defined a method for catching mouse click. If click right button means select.
+	 */
 	public void mouseClicked(MouseEvent e) {
 		if (SwingUtilities.isRightMouseButton(e)) {
 			board.clearSelection();
@@ -82,6 +85,9 @@ public class BoardController extends MouseAdapter {
 	}
 
 	@Override
+	/**
+	 * Define another method for drag method. CLient could do both drag or click to select character.
+	 */
 	public void mouseDragged(MouseEvent e) {
 		Position p = BoardPanel.pointToPosition(e.getPoint());
 

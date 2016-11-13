@@ -24,14 +24,20 @@ public class CreateGameController {
 		String name = login.getUserName();
 		String password = login.getPassword();
 		
-		// send the request to create the game.
+		/**
+		 *  send the request to create the game.
+		 */
 		Message m = new CreateGameRequest(name, password).toMessage();
 		
-		// Request the lock (this might not succeed).
+		/**
+		 * Request the lock (this might not succeed).
+		 */
 		System.out.print(m.toString());
 		System.out.print("\n");
 		
-		// Only switch to Board view on first response
+		/**
+		 * Only switch to Board view on first response
+		 */
 		app.getServerAccess().sendRequest(new IController() {
 			
 			@Override

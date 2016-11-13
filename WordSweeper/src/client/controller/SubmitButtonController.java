@@ -30,7 +30,10 @@ public class SubmitButtonController extends MouseAdapter {
 		this.app = app;
 		this.model = model;
 	}
-	
+	/**
+	 * Define submit controller in online game
+	 * Add word to word history after submission.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Game game = model.game;

@@ -5,7 +5,8 @@ package client.model;
 
 /**
  * The Cell entity class; representing the state of a position on the player's board
- * 
+ * Showing scores,state of the cell and if it has bonus score.
+ * Also shows it's position
  * @author quangvu
  *
  */

@@ -22,12 +22,14 @@ public class Application {
 	public final Model model;
 	ServerAccess serverAccess;
 	
-	//public final WordSweeperFrame frame;
+	/**
+	 * public final WordSweeperFrame frame;
+	 */
 	JFrame current;
 	
 	public Application(Model model) {
 		this.model = model;		
-		//this.frame = new WordSweeperFrame(this, model);
+		
 	}
 	
 	public void start() {

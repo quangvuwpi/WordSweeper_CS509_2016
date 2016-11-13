@@ -26,6 +26,9 @@ public class QuitButtonController extends MouseAdapter {
 	}
 	
 	@Override
+	/**
+	 * Call function to quit board the return to login phase
+	 */
 	public void mouseClicked(MouseEvent e) {
 		app.switchToLogin();
 	}

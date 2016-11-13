@@ -21,6 +21,9 @@ public class PracticeGameController {
 		this.model = model;
 	}
 	
+	/**
+	 * Generate random board
+	 */
 	public void process() {
 		model.game.setBoard(BoardFactory.randomBoard());
 		

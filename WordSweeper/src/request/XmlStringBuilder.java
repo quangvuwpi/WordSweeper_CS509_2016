@@ -11,7 +11,10 @@ import xml.Message;
  */
 public class XmlStringBuilder {
 	String xml;
-	
+	/**
+	 * define different string for XML
+	 * @param name
+	 */
 	public XmlStringBuilder(String name) {
 		this.xml = Message.requestHeader() + "<" + name;
 	}
