@@ -14,30 +14,50 @@ import xml.Message;
 public class ClientLauncher {
 
 	// If requested by ClientLauncher (pass in '-server' as argument).
-	public static final String serverHost = "cs509.frankgh.com";
+	public static final String serverHost = "localhost";
 	// cs509.frankgh.com:11425
 	// 72.249.186.243
+	
+	/** The XML protocol being used by WordSweeper **/
+	public static String xmlProtocol = "wordsweeper.xsd";
+	
+	/** The library file being used by WordSweeper **/
+	public static String wordLibrary = "WordTable.sort";
 	
 	/**
 	 * Note that to simplify the coding of this command-client, it declares that it can throw an Exception,
 	 * which is typically the failed connection to a server.
 	 */
 	public static void main(String[] args) throws Exception {
-		// FIRST thing to do is register the protocol being used. There will be a single class protocol
-		// that will be defined and which everyone will use. For now, demonstrate with skeleton protocol.
-		if (!Message.configure("wordsweeper.xsd")) {
+		String host = serverHost;
+		String protocol = xmlProtocol;
+		String library = wordLibrary;
+		
+		// Parse user inputs and override default values if given
+		int i = 0;
+		while (i < args.length - 1) {
+			if (args[i].equalsIgnoreCase("-server")) {
+				host = args[i+1];
+				i += 2;
+			} else if (args[i].equalsIgnoreCase("-protocol")) {
+				protocol = args[i+1];
+				i += 2;
+			} else if (args[i].equalsIgnoreCase("-library")) {
+				library = args[i+1];
+				i += 2;
+			} else {
+				i++;
+			}			
+		}
+		
+		// Register the XML protocol
+		if (!Message.configure(protocol)) {
 			System.exit(0);
 		}
 		
-		// select dedicated server with '-server' options
-		String host = "localhost";
-		//if (args.length > 0 && args[0].equals("-server")) {
-			host = serverHost;
-		//}
-		
 		// Initialize the client application and its corresponding model
 		Model model = new Model();
-		Application app = new Application(model);		
+		Application app = new Application(model, library);		
 		
 		// Initialize the message handler
 		ClientMessageHandler handler = new ClientMessageHandler();

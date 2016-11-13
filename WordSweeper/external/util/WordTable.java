@@ -18,6 +18,23 @@ public class WordTable {
 	 * 
 	 * @throws IOException   if unable to find file 
 	 */
+	public static void loadWordTable(String library) throws IOException {
+		table = new Hashtable<String,Boolean>();
+		
+		Iterator<String> it = new StringFileIterator(new File (".", library));
+		while (it.hasNext()) {
+			String word = it.next();
+			word = word.trim();
+			table.put(word, Boolean.TRUE);
+		}
+	}
+	
+	/**
+	 * Load up word table. Note that there may be superfluous spaces throughout for formatting
+	 * reasons, and these are excised before being added to the table.
+	 * 
+	 * @throws IOException   if unable to find file 
+	 */
 	public static void loadWordTable() throws IOException {
 		table = new Hashtable<String,Boolean>();
 		
