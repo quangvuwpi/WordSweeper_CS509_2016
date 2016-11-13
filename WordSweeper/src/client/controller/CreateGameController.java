@@ -24,7 +24,7 @@ public class CreateGameController {
 
 		// send the request to create the game.
 		Message m = new CreateGameRequest(name, password).toMessage();
-
+		System.out.print(m.toString());
 		// Only switch to Board view on first response		
 		app.getServerAccess().sendRequest(new IController() {
 
