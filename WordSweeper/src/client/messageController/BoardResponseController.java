@@ -49,11 +49,6 @@ public class BoardResponseController extends ChainableMessageController {
 			model.game.isManagingUser = br.managingUser.equals(user);
 		}
 
-		/** Set bonus cell **/
-		if (br.bonus != null) {
-			model.game.board.getCell(br.bonus).bonus = true;
-		}
-
 		/** Set game ID **/
 		model.game.setGameId(br.gameId);
 
@@ -90,6 +85,16 @@ public class BoardResponseController extends ChainableMessageController {
 
 			if (pr.board != null && player.name.equals(user)) {
 				model.game.setBoard(pr.board);
+				
+				if (br.bonus != null) {
+					int dcol = br.bonus.col - pr.position.col;
+					int drow = br.bonus.row - pr.position.row;
+					Position bp = new Position(dcol, drow);
+					
+					if (model.game.board.isValidPosition(bp)) {
+						model.game.board.getCell(bp).bonus = true;
+					}
+				}				
 			}
 
 			model.game.updatePlayer(player);

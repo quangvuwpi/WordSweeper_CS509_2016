@@ -30,9 +30,9 @@ public class Cell {
 	public void copy(Cell c) {
 		if (c != null && c instanceof Cell) {
 			this.letter = c.letter;
-			//this.bonus = c.bonus;
-
-			//this.selected = false;
+			
+			this.bonus = false;
+			this.selected = false;
 		}
 	}
 
