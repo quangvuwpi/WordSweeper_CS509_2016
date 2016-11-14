@@ -6,8 +6,6 @@ package client.controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import client.IController;
-import client.messageController.FindWordResponseController;
 import client.model.Board;
 import client.model.Game;
 import client.model.Model;
@@ -35,6 +33,10 @@ public class SubmitButtonController extends MouseAdapter {
 		this.model = model;
 	}
 
+	/**
+	 * Define submit controller in online game
+	 * Add word to word history after submission.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Game game = model.game;

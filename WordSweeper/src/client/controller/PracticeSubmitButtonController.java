@@ -36,12 +36,15 @@ public class PracticeSubmitButtonController extends MouseAdapter {
 	}
 	
 	@Override
+	/**
+	 * Method for mouse clicking to select word to submit
+	 */
 	public void mouseClicked(MouseEvent e) {
 		LetterFactory lf = new LetterFactory();
 		Game game = model.game;
 		Board board = model.game.board;
 		Word word = board.selectionToWord();
-		
+
 		if (game.validate(word)) {
 			history.addWord(word.toString());
 			game.updateScore(sc.getScore(word));

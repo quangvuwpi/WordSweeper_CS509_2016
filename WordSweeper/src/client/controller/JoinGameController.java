@@ -23,9 +23,16 @@ public class JoinGameController {
 		String gameId = login.getGameId();
 		String password = login.getPassword();
 		
-		// send the request to create the game.
+		/**
+		 * Send the request to create the game.
+		 */
 		Message m = new JoinGameRequest(name, gameId, password).toMessage();
+		System.out.print(m.toString() + "\n");
 		
+		/** Only switch to Board view on first response
+		 * 
+		 *  NOTE: This may not succeed	
+		 */
 		app.getServerAccess().sendRequest(new IController() {
 			
 			@Override

@@ -23,13 +23,13 @@ public class Application {
 	public final Model model;
 	ServerAccess serverAccess;
 
-	// The message handler
+	/** The application message handler **/
 	public ClientMessageHandler handler;
 
-	// The library being used
+	/** The library file being used **/
 	public String library = null;
 
-	// public final WordSweeperFrame frame;
+	/** The current frame being displayed */
 	JFrame current;
 
 	public Application(Model model) {
@@ -41,6 +41,7 @@ public class Application {
 		this.library = library;
 	}
 
+	/** Start the application */
 	public void start() {
 		try {
 			if (library != null) {

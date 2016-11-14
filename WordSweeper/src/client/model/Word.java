@@ -15,7 +15,11 @@ public class Word implements Iterator<Cell> {
     public Word(){
     	this.cell = new LinkedList<Cell>();
     }
-
+    /**
+     * Check if we need add new cell
+     * @param p
+     * @return
+     */
     public boolean addCell(Cell p) {
     	if (p != null){
     		cell.addLast(p);
@@ -52,6 +56,9 @@ public class Word implements Iterator<Cell> {
 	}
 
 	@Override
+	/**
+	 * Get next cell
+	 */
 	public Cell next() {
 		if (hasNext()) {
 			Cell c = cell.get(current);

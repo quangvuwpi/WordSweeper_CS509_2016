@@ -12,7 +12,12 @@ public class JoinGameRequest extends AbstractRequest {
 	public final String name;
 	public final String gameId;
 	public final String password;
-
+	/**
+	 * Send a request to join game
+	 * @param name
+	 * @param gameId
+	 * @param password
+	 */
 	public JoinGameRequest(String name, String gameId, String password) {
 		this.name = name;
 		this.gameId = gameId;

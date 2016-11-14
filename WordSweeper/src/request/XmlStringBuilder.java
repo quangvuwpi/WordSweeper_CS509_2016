@@ -13,6 +13,10 @@ public class XmlStringBuilder {
 	String xml;
 	String name;
 
+	/**
+	 * define different string for XML
+	 * @param name
+	 */
 	public XmlStringBuilder(String name) {
 		this.name = name;
 		this.xml = Message.requestHeader() + "<" + name;

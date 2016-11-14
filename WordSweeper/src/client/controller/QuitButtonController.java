@@ -27,6 +27,9 @@ public class QuitButtonController extends MouseAdapter {
 	}
 
 	@Override
+	/**
+	 * Call function to quit board the return to login phase
+	 */
 	public void mouseClicked(MouseEvent e) {
 		// Send exit game request to server
 		Message m = new ExitGameRequest(model.game.currentUser, model.game.gameId).toMessage();

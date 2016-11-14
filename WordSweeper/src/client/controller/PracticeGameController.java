@@ -4,7 +4,6 @@
 package client.controller;
 
 import client.model.Model;
-import client.model.Player;
 import client.view.Application;
 import utility.BoardFactory;
 
@@ -22,6 +21,9 @@ public class PracticeGameController {
 		this.model = model;
 	}
 	
+	/**
+	 * Generate random board
+	 */
 	public void process() {
 		model.game.offlineMode = true;
 		model.game.setBoard(BoardFactory.randomBoard());

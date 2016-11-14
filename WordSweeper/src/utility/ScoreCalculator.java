@@ -98,10 +98,14 @@ public class ScoreCalculator {
 			score += temp;
 		}
 
-		// Multiply number of letters
+		/**
+		 * Multiply number of letters
+		 */
 		score = (long) (score * Math.pow(2.0, count) * 10);
 
-		// Bonus x10 multiplier
+		/**
+		 *  Bonus x10 multiplier
+		 */
 		if (bonus) {
 			score = score * 10;
 		}

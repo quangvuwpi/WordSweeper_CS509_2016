@@ -11,6 +11,12 @@ public class CreateGameRequest extends AbstractRequest {
 
 	public final String name;
 	public final String password;
+	/**
+	 * creat new account for player
+	 * name is necessary ,password is nullable
+	 * @param name
+	 * @param password
+	 */
 
 	public CreateGameRequest(String name, String password) {
 		this.name = name;

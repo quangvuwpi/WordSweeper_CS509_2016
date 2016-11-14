@@ -21,13 +21,20 @@ public class BoardInfoPanel extends JPanel implements IBoundary {
 	final Board board;
 	final ScoreCalculator sc;
 	
+	/**
+	 * Show board information
+	 * @param game
+	 * @param board
+	 */
 	public BoardInfoPanel(IGame game, Board board) {
 		this.sc = new ScoreCalculator(game); 
 		this.board = board;
 		
 		setup();
 	}
-	
+	/**
+	 * setup view for board
+	 */
 	@Override
 	public boolean setup() {
 		// TODO Auto-generated method stub
@@ -56,7 +63,10 @@ public class BoardInfoPanel extends JPanel implements IBoundary {
 		removeAll();
 		return true;
 	}
-
+   
+	/**
+	 * after add new information to the board, refresh board 
+	 */
 	@Override
 	public void refresh() {
 		Word current = board.selectionToWord();

@@ -18,12 +18,19 @@ public class WordHistory extends JPanel implements IBoundary {
 	final Game game;
 	Font myFont = new Font("Wawati SC", Font.PLAIN, 25);
 
+	/**
+	 * Define this method for tracking word history
+	 * @param game
+	 */
 	public WordHistory (Game game) {
 		this.game = game;
 		setup();
 	}
 
 	@Override
+	/**
+	 * set up word history view
+	 */
 	public boolean setup() {
 		// TODO Auto-generated method stub
 		setLayout(new BorderLayout());
@@ -45,6 +52,10 @@ public class WordHistory extends JPanel implements IBoundary {
 		return true;
 	}
 
+	/**
+	 * add word in word history
+	 * @param word
+	 */
 	public void addWord(String word) {
 		model.addElement(word);
 		list.ensureIndexIsVisible(model.size() - 1); // Auto scroll
@@ -53,6 +64,9 @@ public class WordHistory extends JPanel implements IBoundary {
 	}
 
 	@Override
+	/**
+	 * after add new word, refresh the word history board 
+	 */
 	public void refresh() {
 		// TODO Auto-generated method stub
 		

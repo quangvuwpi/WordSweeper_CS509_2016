@@ -11,7 +11,7 @@ import xml.Message;
  */
 public class ConnectResponseController extends ChainableMessageController {
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see client.controller.ChainableMessageController#process(xml.Message)
 	 */
 	@Override

@@ -22,6 +22,9 @@ public class BoardResponse extends Response implements Iterator<PlayerResponse> 
 	public String content = null;
 	public Position bonus = null;
 
+	/**
+	 * This is for checking board response 
+	 */
 	protected int current = 0;
 	LinkedList<PlayerResponse> players = new LinkedList<PlayerResponse>();
 
@@ -46,11 +49,17 @@ public class BoardResponse extends Response implements Iterator<PlayerResponse> 
 	}
 
 	@Override
+	/**
+	 * check if has next player
+	 */
 	public boolean hasNext() {
 		return (current < players.size());
 	}
 
 	@Override
+	/**
+	 * receive response for last request
+	 */
 	public PlayerResponse next() {
 		PlayerResponse pr = players.get(current);
 		current++;

@@ -26,6 +26,9 @@ public class CancelButtonController extends MouseAdapter {
 	}
 	
 	@Override
+	/**
+	 * If hit cancel button, all previous selections are cleared. 
+	 */
 	public void mousePressed(MouseEvent e) {
 		model.game.board.clearSelection();
 		app.refresh();
