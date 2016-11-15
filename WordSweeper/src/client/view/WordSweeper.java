@@ -42,6 +42,7 @@ public class WordSweeper extends JFrame {
 	BoardPanel gamePanel;
 	BoardInfoPanel boardInfo;
 	WordHistory wordsHistory;
+	ScoreBoard scoreBoard;
 	
 	/**
 	 * Launch the application.
@@ -186,35 +187,9 @@ public class WordSweeper extends JFrame {
 		playerScore.setBounds(441, 69, 347, 38);
 		contentPane.add(playerScore);		
 		
-		JPanel socreBoard = new JPanel();
-		socreBoard.setBounds(560, 148, 287, 249);
-		contentPane.add(socreBoard);
-		
-		JLabel lblPlayer_1 = new JLabel("PLAYER0");
-		socreBoard.add(lblPlayer_1);
-		lblPlayer_1.setFont(new Font("Wawati SC", Font.PLAIN, 20));
-		
-		JLabel label_7 = new JLabel("1,000,000,000");
-		socreBoard.add(label_7);
-		label_7.setFont(new Font("Wawati SC", Font.PLAIN, 20));
-		
-		JLabel label_16 = new JLabel("PLAYER0");
-		socreBoard.add(label_16);
-		label_16.setFont(new Font("Wawati SC", Font.PLAIN, 20));
-		
-		JLabel label_19 = new JLabel("1,000,000,000");
-		socreBoard.add(label_19);
-		label_19.setFont(new Font("Wawati SC", Font.PLAIN, 20));
-		
-		JLabel label_17 = new JLabel("PLAYER0");
-		socreBoard.add(label_17);
-		label_17.setForeground(Color.PINK);
-		label_17.setFont(new Font("Wawati SC", Font.PLAIN, 20));
-		
-		JLabel label_18 = new JLabel("1,000,000,000");
-		socreBoard.add(label_18);
-		label_18.setForeground(Color.PINK);
-		label_18.setFont(new Font("Wawati SC", Font.PLAIN, 20));
+		scoreBoard = new ScoreBoard(model.game);
+		scoreBoard.setBounds(560, 143, 300, 250);
+		contentPane.add(scoreBoard);
 		
 		JLabel lblWordHistory = new JLabel("WORD HISTORY:");
 		lblWordHistory.setFont(new Font("Wawati SC", Font.PLAIN, 20));
@@ -230,5 +205,6 @@ public class WordSweeper extends JFrame {
 		gamePanel.refresh();
 		boardInfo.refresh();
 		wordsHistory.refresh();
+		scoreBoard.refresh();
 	}
 }
