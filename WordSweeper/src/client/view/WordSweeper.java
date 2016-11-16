@@ -197,14 +197,25 @@ public class WordSweeper extends JFrame {
 		contentPane.add(lblWordHistory);
 	}
 	
-	public void refresh() {
+	public void refreshPlayerStatus() {
 		btnLock.setVisible(model.game.isManagingUser);
-		btnReset.setVisible(model.game.isManagingUser);
-		
-		lb_score.setText(Long.toString(model.game.getScore()));
-		gamePanel.refresh();
+		btnReset.setVisible(model.game.isManagingUser);		
+	}
+	
+	public void refreshCurrentScore() {
 		boardInfo.refresh();
+	}
+	
+	public void refreshBoard() {
+		gamePanel.refresh();
+	}
+	
+	public void refreshWordHistory() {
 		wordsHistory.refresh();
+	}
+	
+	public void refreshScores() {
+		lb_score.setText(Long.toString(model.game.getScore()));
 		scoreBoard.refresh();
 	}
 }

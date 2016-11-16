@@ -30,6 +30,7 @@ public class Game implements IGame {
 	public final HashMap<String, Player> players = new HashMap<String, Player>();
 
 	/** The list of successful Word submission **/
+	public Word candidate = null;
 	public final LinkedList<Word> history = new LinkedList<Word>();
 
 	/** The table of valid words **/

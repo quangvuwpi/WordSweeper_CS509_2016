@@ -46,8 +46,9 @@ public class PracticeSubmitButtonController extends MouseAdapter {
 		Word word = board.selectionToWord();
 
 		if (game.validate(word)) {
-			history.addWord(word.toString());
+			game.addToWordHistory(word);		
 			game.updateScore(sc.getScore(word));
+			
 			/** Pack each collumn upward **/
 			Position p;
 			LinkedList<Cell> queue = new LinkedList<Cell>();
@@ -70,7 +71,9 @@ public class PracticeSubmitButtonController extends MouseAdapter {
 			}
 			
 			model.game.board.clearSelection();
-			app.refresh();
+			app.refreshBoard();
+			app.refreshScores();
+			app.refreshWordHistory();
 		}
 	}
 }

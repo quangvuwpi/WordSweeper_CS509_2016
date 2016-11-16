@@ -31,7 +31,9 @@ public class CancelButtonController extends MouseAdapter {
 	 */
 	public void mousePressed(MouseEvent e) {
 		model.game.board.clearSelection();
-		app.refresh();
+		
+		app.refreshBoard();
+		app.refreshCurrentScore();
 	}
 
 }

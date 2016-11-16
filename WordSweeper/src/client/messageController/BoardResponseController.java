@@ -100,10 +100,11 @@ public class BoardResponseController extends ChainableMessageController {
 			model.game.updatePlayer(player);
 		}
 
-		// Update shared area
+		/** Update shared area */
 		model.game.countPlayers();
 
-		app.refresh();
+		app.refreshBoard();
+		app.refreshScores();		
 		return true;
 	}
 

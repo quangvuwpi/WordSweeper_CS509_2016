@@ -86,12 +86,44 @@ public class Application {
 		current = new WordSweeper(this, model, true);
 		current.setVisible(true);
 	}
-
-	public void refresh() {
+	
+	/** Refresh player status **/
+	public void refreshPlayerStatus() {
 		if (current != null && current instanceof WordSweeper) {
 			WordSweeper ws = (WordSweeper) current;
-			model.game.countPlayers();
-			ws.refresh();
+			ws.refreshPlayerStatus();
+		}
+	}
+	
+	/** Refresh current score **/
+	public void refreshCurrentScore() {
+		if (current != null && current instanceof WordSweeper) {
+			WordSweeper ws = (WordSweeper) current;
+			ws.refreshCurrentScore();
+		}
+	}
+
+	/** Refresh board panel **/
+	public void refreshBoard() {
+		if (current != null && current instanceof WordSweeper) {
+			WordSweeper ws = (WordSweeper) current;
+			ws.refreshBoard();
+		}
+	}
+	
+	/** Refresh all scores **/
+	public void refreshScores() {
+		if (current != null && current instanceof WordSweeper) {
+			WordSweeper ws = (WordSweeper) current;			
+			ws.refreshScores();
+		}
+	}
+	
+	/** Refresh word history **/
+	public void refreshWordHistory() {
+		if (current != null && current instanceof WordSweeper) {
+			WordSweeper ws = (WordSweeper) current;			
+			ws.refreshWordHistory();
 		}
 	}
 

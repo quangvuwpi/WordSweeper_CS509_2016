@@ -44,26 +44,16 @@ public class SubmitButtonController extends MouseAdapter {
 		Word word = board.selectionToWord();
 
 		if (game.validate(word)) {
-			// Create a submit message to send to server			
+			/** Create a submit message to send to server */			
 			Message m = new FindWordRequest(game.currentUser, game.gameId, game.getPosition(), word).toMessage();
-			System.out.print(m.toString());
-			app.getServerAccess().sendRequest(m);
 			
-			wh.addWord(word.toString());
-//			app.getServerAccess().sendRequest(new IController() {
-//
-//				@Override
-//				public void process(Message request, Message response) {
-//					if (response.success() && new FindWordResponseController(app, model).process(response)) {
-//						game.addToWordHistory(word);
-//						wh.addWord(word.toString());
-//					}
-//				}
-//			}, m);
+			game.candidate = word;
+			app.getServerAccess().sendRequest(m);
 		}
 
 		board.clearSelection();
-		app.refresh();
+		app.refreshBoard();
+		app.refreshCurrentScore();
 	}
 
 }

@@ -36,9 +36,10 @@ public class FindWordResponseController extends ChainableMessageController {
 		FindWordResponse res = parseMessage(message);
 		if (res.name != null && res.name.equals(model.game.currentUser)) {
 			if (res.gameId != null && res.gameId.equals(model.game.gameId)) {				
-				model.game.updateScore(model.game.getScore() + res.score);
+				model.game.addToWordHistory(model.game.candidate);
+				model.game.candidate = null;
 				
-				app.refresh();
+				app.refreshWordHistory();
 			}
 		}
 		

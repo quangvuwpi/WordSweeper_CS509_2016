@@ -66,7 +66,8 @@ public class BoardController extends MouseAdapter {
 		if (SwingUtilities.isRightMouseButton(e)) {
 			board.clearSelection();
 
-			app.refresh();
+			app.refreshBoard();
+			app.refreshCurrentScore();
 		} else {
 			Position p = BoardPanel.pointToPosition(e.getPoint());
 
@@ -77,7 +78,8 @@ public class BoardController extends MouseAdapter {
 					board.deselectLastCell();
 				}
 
-				app.refresh();
+				app.refreshBoard();
+				app.refreshCurrentScore();
 			}
 		}
 
@@ -94,7 +96,8 @@ public class BoardController extends MouseAdapter {
 		if (canSelect(p)) {
 			board.selectCell(p);
 
-			app.refresh();
+			app.refreshBoard();
+			app.refreshCurrentScore();
 		}
 
 		e.consume();
