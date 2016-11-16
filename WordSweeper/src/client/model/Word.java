@@ -21,8 +21,11 @@ public class Word implements Iterator<Cell> {
      * @return
      */
     public boolean addCell(Cell p) {
-    	if (p != null){
-    		cell.addLast(p);
+    	if (p != null) {
+    		Cell c = new Cell(p.position);
+    		c.copy(p);
+    		
+    		cell.addLast(c);
     		return true;
     	}
     	return false;
