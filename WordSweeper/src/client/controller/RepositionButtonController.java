@@ -38,9 +38,9 @@ public class RepositionButtonController extends MouseAdapter {
 		} else if (name.equals("down")) {
 			drow = 1;
 		} else if (name.equals("left")) {
-			dcol = 1;
-		} else if (name.equals("right")) {
 			dcol = -1;
+		} else if (name.equals("right")) {
+			dcol = 1;
 		}
 
 		Message m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, drow, dcol).toMessage();
