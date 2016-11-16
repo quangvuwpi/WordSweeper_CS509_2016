@@ -42,7 +42,7 @@ public class Game implements IGame {
 	/** The count of palyers shared same position **/
 	public int[][] playerCounts = new int[4][4];
 
-	//test the playerCounts
+	// test the playerCounts
 	private void countTest() {
 		System.out.print("\n PlayerCounts: \n");
 		for (int i = 0; i < 4; i++) {
@@ -222,6 +222,18 @@ public class Game implements IGame {
 			return players.get(currentUser).score;
 		}
 		return offlineScore;
+	}
+
+	/**
+	 * Return the current position of the current player
+	 * 
+	 * @return the current position
+	 */
+	public Position getPosition() {
+		if (playerExist(currentUser)) {
+			return players.get(currentUser).position;
+		}
+		return null;
 	}
 
 	/**

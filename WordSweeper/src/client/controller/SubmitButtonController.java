@@ -44,8 +44,8 @@ public class SubmitButtonController extends MouseAdapter {
 		Word word = board.selectionToWord();
 
 		if (game.validate(word)) {
-			// Create a submit message to send to server
-			Message m = new FindWordRequest(game.currentUser, game.gameId, word).toMessage();
+			// Create a submit message to send to server			
+			Message m = new FindWordRequest(game.currentUser, game.gameId, game.getPosition(), word).toMessage();
 			System.out.print(m.toString());
 			app.getServerAccess().sendRequest(m);
 			
