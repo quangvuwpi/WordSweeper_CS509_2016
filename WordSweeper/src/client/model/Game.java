@@ -43,7 +43,7 @@ public class Game implements IGame {
 	public int[][] playerCounts = new int[4][4];
 
 	//test the playerCounts
-	private void countTest() {
+	private void countShow() {
 		System.out.print("\n PlayerCounts: \n");
 		for (int i = 0; i < 4; i++) {
 			System.out.print("[");
@@ -73,7 +73,7 @@ public class Game implements IGame {
 				}
 			}
 		}
-		countTest();
+		countShow();
 	}
 
 	public int countPlayer(Position p) {
