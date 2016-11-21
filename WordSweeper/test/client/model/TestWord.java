@@ -1,6 +1,5 @@
 package client.model;
 
-import java.util.LinkedList;
 import junit.framework.TestCase;
 
 /**
@@ -17,7 +16,7 @@ public class TestWord extends TestCase{
 	public void testword()
     {
 		Word  w=new Word();
-    	w.cell = new LinkedList<Cell>();
+    	
     	
     	/** List of cells **/
     	
