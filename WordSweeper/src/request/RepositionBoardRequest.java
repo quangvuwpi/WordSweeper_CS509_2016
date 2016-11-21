@@ -2,10 +2,10 @@ package request;
 
 public class RepositionBoardRequest extends AbstractRequest {
 
-	private String name;
-	private String gameId;
-	private int rowChange;
-	private int colChange;
+	public final String name;
+	public final String gameId;
+	public final int rowChange;
+	public final int colChange;
 
 	public RepositionBoardRequest(String name, String gameId, int rowChange, int colChange) {
 		this.name = name;

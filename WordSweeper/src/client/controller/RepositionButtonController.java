@@ -29,24 +29,37 @@ public class RepositionButtonController extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int dcol = 0;
-		int drow = 0;
-
-		String name = e.getComponent().getName();
-		if (name.equals("up")) {
-			drow = -1;
-		} else if (name.equals("down")) {
-			drow = 1;
-		} else if (name.equals("left")) {
-			dcol = -1;
-		} else if (name.equals("right")) {
-			dcol = 1;
-		}
-
-		Message m = new RepositionBoardRequest(model.game.currentUser, model.game.gameId, drow, dcol).toMessage();
+		Message m = processMouseClicked(e.getComponent().getName()).toMessage();
 		System.out.println(m.toString());
-		
+
 		app.getServerAccess().sendRequest(m);
+	}
+
+	/**
+	 * Return a repositionBoardRequest with the appropriate data filled out
+	 * 
+	 * @param direction
+	 *            the direction to move the board
+	 * @return the Message to send to server
+	 */
+	public RepositionBoardRequest processMouseClicked(String direction) {
+		if (direction != null) {
+			int dcol = 0;
+			int drow = 0;
+
+			if (direction.equals("up")) {
+				drow = -1;
+			} else if (direction.equals("down")) {
+				drow = 1;
+			} else if (direction.equals("left")) {
+				dcol = -1;
+			} else if (direction.equals("right")) {
+				dcol = 1;
+			}
+
+			return new RepositionBoardRequest(model.game.currentUser, model.game.gameId, drow, dcol);
+		}
+		return null;
 	}
 
 }
