@@ -43,8 +43,8 @@ public class Game implements IGame {
 	/** The count of palyers shared same position **/
 	public int[][] playerCounts = new int[4][4];
 
-	// test the playerCounts
-	private void countTest() {
+	/** Test the playerCounts method */
+	private void countShow() {
 		System.out.print("\n PlayerCounts: \n");
 		for (int i = 0; i < 4; i++) {
 			System.out.print("[");
@@ -74,7 +74,7 @@ public class Game implements IGame {
 				}
 			}
 		}
-		countTest();
+		countShow();
 	}
 
 	public int countPlayer(Position p) {
