@@ -74,12 +74,12 @@ public class Game implements IGame {
 				}
 			}
 		}
-		countShow();
+		//countShow();
 	}
 
 	public int countPlayer(Position p) {
 		if (offlineMode)
-			return 1;
+			return 0;
 		return playerCounts[p.col][p.row];
 	}
 

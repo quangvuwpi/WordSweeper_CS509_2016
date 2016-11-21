@@ -71,6 +71,8 @@ public class PracticeSubmitButtonController extends MouseAdapter {
 			}
 			
 			model.game.board.clearSelection();
+			app.refreshCurrentScore();
+			
 			app.refreshBoard();
 			app.refreshScores();
 			app.refreshWordHistory();
