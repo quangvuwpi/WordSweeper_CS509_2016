@@ -1,1 +1,13 @@
+client
+client.controller
+client.messageController
 client.model
+client.view
+request
+response
+server
+server.controller
+server.model
+util
+utility
+xml
