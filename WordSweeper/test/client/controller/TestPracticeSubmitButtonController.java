@@ -4,6 +4,8 @@ import client.model.Board;
 import junit.framework.TestCase;
 import utility.XMLParser;
 
+
+
 public class TestPracticeSubmitButtonController extends TestCase {
 
 	protected void setUp() throws Exception {

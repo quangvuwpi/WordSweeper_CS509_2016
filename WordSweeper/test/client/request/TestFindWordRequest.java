@@ -7,6 +7,13 @@ import client.model.Word;
 import junit.framework.TestCase;
 import request.FindWordRequest;
 
+/**
+ * Test case of Find Word Request
+ * 
+ * @author Qihang
+ *
+ */
+
 public class TestFindWordRequest extends TestCase{
 	
 	public void testFindWordRequest(){

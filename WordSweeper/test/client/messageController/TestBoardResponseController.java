@@ -4,16 +4,9 @@
 package client.messageController;
 
 import java.util.UUID;
-
-import client.MockServerAccess;
-import client.model.Board;
 import client.model.Model;
-import client.model.Player;
-import client.model.Position;
 import client.view.Application;
 import junit.framework.TestCase;
-import response.BoardResponse;
-import response.PlayerResponse;
 import utility.XMLParser;
 import xml.Message;
 
