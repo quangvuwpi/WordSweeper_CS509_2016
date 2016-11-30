@@ -34,6 +34,10 @@ public class WordSweeper extends JFrame {
 	
 	JLabel lbUserId;
 	JLabel lbGameId;
+	JButton btnUp;
+	JButton btnDown;
+	JButton btnLeft;
+	JButton btnRight;
 	JButton btnLock;
 	JButton btnReset;
 	JButton btnSubmit;
@@ -75,29 +79,33 @@ public class WordSweeper extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnUp = new JButton("^");
+		btnUp = new JButton("^");
 		btnUp.setName("up");
 		btnUp.setBounds(31, 80, 308, 17);
 		btnUp.addMouseListener(new RepositionButtonController(app, model));
 		contentPane.add(btnUp);
+		btnUp.setVisible(model.game.repositionable[0]);
 		
-		JButton btnDown = new JButton("v");
+		btnDown = new JButton("v");
 		btnDown.setName("down");
 		btnDown.setBounds(31, 380, 308, 17);
 		btnDown.addMouseListener(new RepositionButtonController(app, model));
 		contentPane.add(btnDown);
+		btnDown.setVisible(model.game.repositionable[1]);
 		
-		JButton btnRight = new JButton(">");
+		btnRight = new JButton(">");
 		btnRight.setName("right");
 		btnRight.setBounds(341, 100, 25, 275);
 		btnRight.addMouseListener(new RepositionButtonController(app, model));
 		contentPane.add(btnRight);
+		btnRight.setVisible(model.game.repositionable[3]);
 		
-		JButton btnLeft = new JButton("<");
+		btnLeft = new JButton("<");
 		btnLeft.setName("left");
 		btnLeft.setBounds(6, 100, 22, 275);
 		btnLeft.addMouseListener(new RepositionButtonController(app, model));
 		contentPane.add(btnLeft);
+		btnLeft.setVisible(model.game.repositionable[2]);
 		
 		JLabel lblNewLabel = new JLabel("GAME ID:");
 		lblNewLabel.setFont(new Font("Wawati SC", Font.PLAIN, 26));
@@ -200,6 +208,14 @@ public class WordSweeper extends JFrame {
 	public void refreshPlayerStatus() {
 		btnLock.setVisible(model.game.isManagingUser);
 		btnReset.setVisible(model.game.isManagingUser);		
+	}
+	
+	public void refreshRepositionStatus() {
+		boolean[] movable = model.game.repositionable;
+		btnUp.setVisible(movable[0]);	
+		btnDown.setVisible(movable[1]);	
+		btnLeft.setVisible(movable[2]);	
+		btnRight.setVisible(movable[3]);	
 	}
 	
 	public void refreshCurrentScore() {

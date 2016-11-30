@@ -51,7 +51,10 @@ public class BoardResponseController extends ChainableMessageController {
 
 		/** Set game ID **/
 		model.game.setGameId(br.gameId);
-
+		
+		/** Set Board Size **/
+		model.game.boardSize = br.size;
+		
 		/** Remove or add Players **/
 		boolean add = br.playerResponseCount() > model.game.playerCount();
 		if (!add) {
@@ -100,8 +103,19 @@ public class BoardResponseController extends ChainableMessageController {
 			model.game.updatePlayer(player);
 		}
 
+		if (model.game.players.size() >= 1) {
+			Position current = model.game.players.get(model.game.currentUser).position;
+			if (model.game.boardSize >= Math.max(current.col, current.row) + 4) {
+				model.game.repositionable[0] = current.row > 0;
+				model.game.repositionable[1] = current.row < model.game.boardSize - 4;
+				model.game.repositionable[2] = current.col > 0;
+				model.game.repositionable[3] = current.col < model.game.boardSize - 4;
+			}
+		}
+		
 		/** Update shared area */
 		model.game.countPlayers();
+		app.refreshRepositionableStatus();
 		app.refreshPlayerStatus();
 		app.refreshBoard();
 		app.refreshScores();		

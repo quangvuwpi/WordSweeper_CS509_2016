@@ -87,6 +87,14 @@ public class Application {
 		current.setVisible(true);
 	}
 	
+	/** Refresh repositionable status **/
+	public void refreshRepositionableStatus() {
+		if (current != null && current instanceof WordSweeper) {
+			WordSweeper ws = (WordSweeper) current;
+			ws.refreshRepositionStatus();
+		}
+	}
+	
 	/** Refresh player status **/
 	public void refreshPlayerStatus() {
 		if (current != null && current instanceof WordSweeper) {

@@ -57,6 +57,14 @@ public class RepositionButtonController extends MouseAdapter {
 				dcol = 1;
 			}
 
+			//refresh before sending request message
+			boolean[] movable = model.game.repositionable;
+			if (direction.equals("up") && movable[0] || direction.equals("down") && movable[1] || direction.equals("left") && movable[2] || direction.equals("right") || movable[3]) {
+				model.game.board.clearSelection();
+				app.refreshBoard();
+				app.refreshCurrentScore();
+			}
+			
 			return new RepositionBoardRequest(model.game.currentUser, model.game.gameId, drow, dcol);
 		}
 		return null;

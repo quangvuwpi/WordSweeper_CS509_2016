@@ -42,6 +42,10 @@ public class Game implements IGame {
 
 	/** The count of palyers shared same position **/
 	public int[][] playerCounts = new int[4][4];
+	
+	/** Check the board is repositionable or not **/
+	public boolean[] repositionable = new boolean[4]; // 0 - up, 1 - down, 2 - left, 3 - right
+	public int boardSize = 7;
 
 	/** Test the playerCounts method */
 	private void countShow() {
