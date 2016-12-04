@@ -33,11 +33,19 @@ public class TestGame extends TestCase {
     	w.addCell(c3);
 		
 		assertTrue(g.validate(w) == true);
+		
+		Word w1 = null;
+		
+		assertTrue(g.validate(w1) == false);
 	}
 	
 	public void testPlayer(){
 		
 		Game g = new Game();
+		
+		Player Null = null;
+		assertTrue(g.playerExist(Null) == false);
+		
 		String id=new String ("qihang");
         Position p= new Position(0,0);
         Player player=new Player(id,p,100);
@@ -46,6 +54,7 @@ public class TestGame extends TestCase {
     	 * player is not in list
     	 */
         g.addToPlayerList(player);
+        g.updatePlayer(player);
         /**
     	 * player is already added in list
     	 */
@@ -54,6 +63,14 @@ public class TestGame extends TestCase {
         /**
     	 * player is removed from the list
     	 */
+        assertTrue(g.playerExist(player) == false);
+        assertTrue(g.removeFromPlayerList(player) == false);
+        
+        /**
+    	 * Test Clears the player list
+    	 */
+        g.addToPlayerList(player);
+        g.clearPlayerList();
         assertTrue(g.playerExist(player) == false);
         
 	}
@@ -94,11 +111,41 @@ public class TestGame extends TestCase {
     	 */
         assertTrue(g.countPlayer(ptest2) == 2);
         
+        
+        /**
+    	 * Test offlineMode
+    	 */
+        Game g1 = new Game();
+        g1.offlineMode = true;
+        
+        assertTrue(g1.countPlayer(ptest2) == 0);
 		
 	}
 	
-
-	
+	public void testPlayerfunction(){
+		
+		Game g = new Game();
+		g.currentUser = "player1";
+		String id1=new String ("player1");
+        Position p1= new Position(0,0);
+        Player player1=new Player(id1,p1,100);
+        g.addToPlayerList(player1);
+        
+        assertTrue(g.getScore() == 100);
+        Position ptest = g.getPosition();
+        assertEquals(0, ptest.col);
+		assertEquals(0, ptest.row);
+		g.updateScore(0);
+		assertEquals(0, player1.score);
+        
+        g.currentUser = null;
+        g.offlineScore = 200;
+        g.clearPlayerList();
+        assertTrue(g.getScore() == 200);
+        assertTrue(g.getPosition() == null);
+        assertTrue(g.updateScore(0) == false);
+        
+	}
 	
 
 }

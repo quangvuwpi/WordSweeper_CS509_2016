@@ -52,6 +52,9 @@ public class TestRepositionButtonController extends TestCase {
 		assertEquals("testId", right.gameId);
 		assertEquals(1, right.colChange);
 		assertEquals(0, right.rowChange);
+		
+		RepositionBoardRequest NULL = bc.processMouseClicked(null);
+		assertEquals(null, NULL);
 	}
 
 }

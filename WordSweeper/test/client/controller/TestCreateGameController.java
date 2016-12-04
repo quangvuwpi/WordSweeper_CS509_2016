@@ -7,6 +7,7 @@ import client.view.ILogin;
 import junit.framework.TestCase;
 
 
+
 /**
  * Test case for controller to send a Create Game Request to the server.
  * 

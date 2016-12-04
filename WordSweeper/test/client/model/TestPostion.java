@@ -17,6 +17,10 @@ public class TestPostion extends TestCase {
 		Position p = new Position(4,5);
 		assertEquals(4, p.col);
 		assertEquals(5, p.row);
+		
+		Object obj = null;
+        
+        assertTrue(p.equals(obj)==false);
 	}
 
 }

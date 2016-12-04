@@ -1,9 +1,14 @@
 package client.controller;
 
 
+import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 import client.model.Model;
 import client.view.Application;
 import junit.framework.TestCase;
+import request.ExitGameRequest;
+import xml.Message;
+
 
 
 
@@ -16,14 +21,26 @@ import junit.framework.TestCase;
 
 public class TestQuitButtonController extends TestCase {
 	
-	Application app;
-	Model model;
+	protected void setUp() throws Exception {
+		super.setUp();
+	}
 
 	
 	public void testQuit() {
+		
+		Model model = new Model();
+		Application app = new Application(model);
 					
-		new QuitButtonController(app,model);
+		QuitButtonController QBC = new QuitButtonController(app,model);
 	
+		JButton button = new JButton();
+		MouseEvent e = new MouseEvent(button, 0, 0, 0, 0, 0, 0, false);
+						
+		model.game.setGameId(null);
+
+		app.switchToLogin();
+		
+		assertTrue(QBC.model.game.gameId == null);
 		
 	}
 
