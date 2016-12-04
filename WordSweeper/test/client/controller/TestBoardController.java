@@ -45,6 +45,9 @@ public class TestBoardController extends TestCase{
 		assertTrue(BC.canSelect(testp1) == false);
 		assertTrue(BC.canSelect(testp2) == true);
 		
+		Position testp3 = null;
+		assertTrue(BC.canSelect(testp3) == false);
+		
     }
 	
 	

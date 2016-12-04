@@ -23,7 +23,7 @@ public class TestCreateGameRequest extends TestCase{
 		
 		CreateGameRequest CGR2 = new CreateGameRequest("AAA",null);
 		
-		System.out.print(CGR1.toString());
+		System.out.print(CGR2.toString());
 		
 		assertTrue(CGR2.password == "");
 	}
