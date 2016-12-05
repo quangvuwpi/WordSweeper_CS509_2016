@@ -4,9 +4,7 @@
 package client.view;
 
 import java.io.IOException;
-
 import javax.swing.JFrame;
-
 import client.ServerAccess;
 import client.messageController.ClientMessageHandler;
 import client.model.Model;
