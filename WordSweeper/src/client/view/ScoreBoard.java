@@ -55,6 +55,8 @@ public class ScoreBoard extends JPanel implements IBoundary {
 		Dimension d = new Dimension(300, 250);
 		pane.setPreferredSize(d);
 		add(pane, BorderLayout.NORTH);
+		this.validate();
+		this.repaint();
 	}
 
 	@Override
