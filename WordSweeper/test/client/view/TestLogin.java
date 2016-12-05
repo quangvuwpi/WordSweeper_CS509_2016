@@ -9,7 +9,7 @@ import client.model.Model;
 import xml.Message;
 import junit.framework.TestCase;
 
-public class TestLogin extends TestCase{
+public class TestLogin extends MouseEventTestCase{
 	
 	Application app;
 	Model model;
@@ -40,7 +40,7 @@ public class TestLogin extends TestCase{
 		log.getGameId();
 		log.getPassword();
 		
-		
+		testMouseClicked(log, log.btnPracticeGame);
 	}
 
 }

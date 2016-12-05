@@ -32,11 +32,11 @@ public class Login extends JFrame implements MouseListener, IBoundary, ILogin {
 	public JPasswordField password;
 	private JLabel lbGameId;
 	public JTextField gameId;
-	private JLabel btnNewGame;
-	private JLabel btnJoinGame;
-	private JLabel btnPracticeGame;
+	public JLabel btnNewGame;
+	public JLabel btnJoinGame;
+	public JLabel btnPracticeGame;
 	private HashMap<String, Boolean> clickMap = new HashMap<String, Boolean>();
-	private JButton btnStart;
+	public JButton btnStart;
 
 	/**
 	 * Create the frame.
