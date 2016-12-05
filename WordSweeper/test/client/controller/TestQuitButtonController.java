@@ -3,8 +3,12 @@ package client.controller;
 
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
+
+import client.ClientLauncher;
+import client.MockServerAccess;
 import client.model.Model;
 import client.view.Application;
+import client.view.MouseEventTestCase;
 import junit.framework.TestCase;
 import request.ExitGameRequest;
 import xml.Message;
@@ -19,17 +23,22 @@ import xml.Message;
  *
  */
 
-public class TestQuitButtonController extends TestCase {
+public class TestQuitButtonController extends MouseEventTestCase {
+	
+	Application app;
+	Model model;
 	
 	protected void setUp() throws Exception {
-		super.setUp();
+		Message.configure(ClientLauncher.xmlProtocol);
+		
+		model = new Model();
+		app = new Application(model);
+		
+		app.setServerAccess(new MockServerAccess("dummy"));
 	}
 
 	
 	public void testQuit() {
-		
-		Model model = new Model();
-		Application app = new Application(model);
 					
 		QuitButtonController QBC = new QuitButtonController(app,model);
 	
@@ -42,6 +51,10 @@ public class TestQuitButtonController extends TestCase {
 		
 		assertTrue(QBC.model.game.gameId == null);
 		
+	}
+	
+	public void testMouseClickedMouseEvent() {
+		testMouseClicked(new QuitButtonController(app, model));		
 	}
 
 }

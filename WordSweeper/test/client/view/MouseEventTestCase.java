@@ -16,7 +16,7 @@ public abstract class MouseEventTestCase extends TestCase {
 	 * @param listener
 	 * @param component
 	 */
-	void testMouseClicked(MouseListener listener, Component component) {
+	protected void testMouseClicked(MouseListener listener, Component component) {
 		MouseEvent e = new MouseEvent(component,0,0,0,0,0,0,0,1,false,0);
 		listener.mouseClicked(e);
 	}
@@ -26,7 +26,7 @@ public abstract class MouseEventTestCase extends TestCase {
 	 * 
 	 * @param listener
 	 */
-	void testMouseClicked(MouseListener listener) {
+	protected void testMouseClicked(MouseListener listener) {
 		MouseEvent e = new MouseEvent(new JButton(),0,0,0,0,0,0,0,1,false,0);
 		listener.mouseClicked(e);
 	}
