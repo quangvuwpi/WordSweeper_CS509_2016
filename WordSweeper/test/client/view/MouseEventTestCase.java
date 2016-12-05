@@ -8,7 +8,7 @@ import javax.swing.JButton;
 
 import junit.framework.TestCase;
 
-public class MouseEventTestCase extends TestCase {
+public abstract class MouseEventTestCase extends TestCase {
 	
 	/**
 	 * Generate a dummy MouseEvent to test MouseListeners
