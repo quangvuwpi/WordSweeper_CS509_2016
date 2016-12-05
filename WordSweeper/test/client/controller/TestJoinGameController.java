@@ -4,6 +4,7 @@ import client.view.Application;
 import client.view.ILogin;
 import junit.framework.TestCase;
 
+
 /**
  * Test case for controller to send a Join Game Request to the server.
  * 
@@ -43,6 +44,7 @@ public class TestJoinGameController extends TestCase {
 		
 		assertEquals("abc", JGC.login.getUserName());		
 		assertEquals("123", JGC.login.getPassword());
+		
 
 	}
 

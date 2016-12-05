@@ -41,6 +41,9 @@ public class TestLogin extends MouseEventTestCase{
 		log.getPassword();
 		
 		testMouseClicked(log, log.btnPracticeGame);
+		testMouseClicked(log, log.btnStart);
+		testMouseClicked(log, log.btnNewGame);
+		testMouseClicked(log, log.btnJoinGame);
 	}
 
 }
