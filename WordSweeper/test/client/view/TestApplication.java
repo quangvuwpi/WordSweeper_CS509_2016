@@ -5,6 +5,14 @@ import client.model.Model;
 import xml.Message;
 import junit.framework.TestCase;
 
+
+/**
+ * Test case of the Application class
+ * 
+ * @author Qihang
+ *
+ */
+
 public class TestApplication extends TestCase{
 	
 	Model model;

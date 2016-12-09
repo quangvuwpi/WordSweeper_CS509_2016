@@ -7,6 +7,14 @@ import javax.swing.JLabel;
 import junit.framework.TestCase;
 import xml.Message;
 
+/**
+ * Test case of the WordSweeper class
+ * 
+ * @author Qihang
+ *
+ */
+
+
 public class TestWordSweeper extends TestCase{
 	
 

@@ -1,13 +1,17 @@
 package client.view;
 
-import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import client.model.Model;
 import xml.Message;
-import junit.framework.TestCase;
+
+/**
+ * Test case of the Login class
+ * 
+ * @author Qihang
+ *
+ */
 
 public class TestLogin extends MouseEventTestCase{
 	

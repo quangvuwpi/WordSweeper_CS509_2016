@@ -1,5 +1,13 @@
 package client.model;
 
+/**
+ * The Player entity class;
+ * Showing name,position and score.
+ * 
+ * @author Qihang
+ *
+ */
+
 public class Player {
 	
 	public final String name;
