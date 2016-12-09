@@ -3,14 +3,11 @@ package client.controller;
 
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
-
 import client.ClientLauncher;
 import client.MockServerAccess;
 import client.model.Model;
 import client.view.Application;
 import client.view.MouseEventTestCase;
-import junit.framework.TestCase;
-import request.ExitGameRequest;
 import xml.Message;
 
 

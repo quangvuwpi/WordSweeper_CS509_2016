@@ -1,11 +1,9 @@
 package client.view;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import client.controller.BoardController;
 import client.controller.CancelButtonController;
 import client.controller.LockButtonController;
@@ -15,11 +13,10 @@ import client.controller.RepositionButtonController;
 import client.controller.ResetButtonController;
 import client.controller.SubmitButtonController;
 import client.model.Model;
-
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
-import java.awt.Color;
+
 
 public class WordSweeper extends JFrame {
 

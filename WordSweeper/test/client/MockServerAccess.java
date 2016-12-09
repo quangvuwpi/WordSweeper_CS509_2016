@@ -11,16 +11,7 @@ import xml.Message;
 /**
  * Mock Server Access replaces the entire functionality of the ServerAccess
  * class and provides a "simulation of it". 
- * <p>
- * One cardinal rule regarding constructors is that the method should do as little
- * as possible; this is often violated in GUI programming. However, when it is the
- * case, note that this object states it offers the behavior but completely does
- * things without actually communicating to a server.
- * <p>
- * Use the {@link #getAndClearMessages()} and {@link #getAndClearWaitingMessages()}
- * methods to retrieve the requests that were "processed" by this mock server.
- * 
- * @author heineman
+ *
  */
 public class MockServerAccess extends ServerAccess {
 
