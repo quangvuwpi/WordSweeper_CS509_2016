@@ -14,6 +14,12 @@ import javax.swing.ListCellRenderer;
 import client.model.Game;
 import client.model.Word;
 
+/**
+ * Boundary class to show previously submitted words
+ * 
+ * @author Jarway
+ *
+ */
 @SuppressWarnings("serial")
 public class WordHistory extends JPanel implements IBoundary {
 

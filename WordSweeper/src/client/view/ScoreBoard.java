@@ -7,6 +7,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import client.model.Game;
 
+/**
+ * Boundary class to show the current score board
+ * 
+ * @author Jarway
+ *
+ */
 public class ScoreBoard extends JPanel implements IBoundary {
 
 	final Game game;

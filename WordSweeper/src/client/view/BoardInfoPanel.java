@@ -11,6 +11,12 @@ import client.model.IGame;
 import client.model.Word;
 import utility.ScoreCalculator;
 
+/**
+ * Boundary class for current board information
+ * 
+ * @author Jarway
+ *
+ */
 @SuppressWarnings("serial")
 public class BoardInfoPanel extends JPanel implements IBoundary {
 

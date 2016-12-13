@@ -16,6 +16,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
+/**
+ * Boundary class to show the current board
+ * 
+ * @author quangvu
+ *
+ */
 @SuppressWarnings("serial")
 public class BoardPanel extends JPanel implements IBoundary {
 
@@ -129,7 +135,7 @@ public class BoardPanel extends JPanel implements IBoundary {
 	}
 
 	/**
-	 * Private cell panel class
+	 * Private cell renderer class
 	 */
 	public class CellPanel extends JPanel {
 		final Cell cell;

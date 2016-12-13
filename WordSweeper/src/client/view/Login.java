@@ -19,6 +19,12 @@ import client.controller.JoinGameController;
 import client.controller.PracticeGameController;
 import client.model.Model;
 
+/**
+ * Boundary class for login screen
+ * 
+ * @author Jarway
+ *
+ */
 @SuppressWarnings("serial")
 public class Login extends JFrame implements MouseListener, IBoundary, ILogin {
 	

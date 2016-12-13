@@ -68,7 +68,6 @@ public class Game implements IGame {
 				}
 			}
 		}
-		//countShow();
 	}
 
 	public int countPlayer(Position p) {

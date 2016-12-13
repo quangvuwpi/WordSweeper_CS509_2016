@@ -17,7 +17,12 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
 
-
+/**
+ * Main boundary class for WordSweeper client
+ * 
+ * @author quangvu
+ *
+ */
 public class WordSweeper extends JFrame {
 
 	/**
