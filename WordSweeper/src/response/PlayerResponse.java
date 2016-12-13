@@ -7,6 +7,8 @@ import client.model.Board;
 import client.model.Position;
 
 /**
+ * This class encapsulates the player response object from the server
+ * 
  * @author quangvu
  *
  */

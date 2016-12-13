@@ -4,6 +4,8 @@
 package response;
 
 /**
+ * Abstract server response object
+ * 
  * @author quangvu
  *
  */

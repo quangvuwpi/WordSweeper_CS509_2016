@@ -1,5 +1,11 @@
 package response;
 
+/**
+ * This class encapsulates the find word response object from the server
+ * 
+ * @author quangvu
+ *
+ */
 public class FindWordResponse extends Response{
 
 	public final String gameId;
