@@ -7,6 +7,12 @@ import client.view.ILogin;
 import request.CreateGameRequest;
 import xml.Message;
 
+/**
+ * Controller class for CreateGame request
+ * 
+ * @author quangvu
+ *
+ */
 public class CreateGameController {
 
 	Application app;

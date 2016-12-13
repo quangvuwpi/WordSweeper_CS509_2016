@@ -7,6 +7,12 @@ import client.view.ILogin;
 import request.JoinGameRequest;
 import xml.Message;
 
+/**
+ * Controller class for JoinGame request
+ * 
+ * @author quangvu
+ *
+ */
 public class JoinGameController {
 
 	Application app;

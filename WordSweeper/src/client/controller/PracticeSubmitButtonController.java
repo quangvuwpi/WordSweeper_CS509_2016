@@ -18,6 +18,8 @@ import utility.LetterFactory;
 import utility.ScoreCalculator;
 
 /**
+ * Controller for SUBMIT button in Practice game mode
+ * 
  * @author quangvu
  *
  */

@@ -8,6 +8,8 @@ import client.view.Application;
 import utility.BoardFactory;
 
 /**
+ * Controller class for Practice mode request
+ * 
  * @author quangvu
  *
  */
