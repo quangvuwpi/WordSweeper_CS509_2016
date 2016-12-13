@@ -6,6 +6,8 @@ package request;
 import xml.Message;
 
 /**
+ * Utility class to build XML request
+ * 
  * @author quangvu
  *
  */

@@ -1,5 +1,11 @@
 package request;
 
+/**
+ * Lock current game request
+ * 
+ * @author Qihang
+ *
+ */
 public class LockGameRequest extends AbstractRequest {
 
 	private String gameId;

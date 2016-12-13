@@ -4,6 +4,8 @@
 package request;
 
 /**
+ * Connect to server request
+ * 
  * @author quangvu
  *
  */

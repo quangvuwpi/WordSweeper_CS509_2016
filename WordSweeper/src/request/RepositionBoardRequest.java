@@ -1,5 +1,11 @@
 package request;
 
+/**
+ * Reposition board request
+ * 
+ * @author Jarway
+ *
+ */
 public class RepositionBoardRequest extends AbstractRequest {
 
 	public final String name;

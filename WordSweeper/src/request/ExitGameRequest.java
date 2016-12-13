@@ -1,5 +1,11 @@
 package request;
 
+/**
+ * Exit current game request
+ * 
+ * @author quangvu
+ *
+ */
 public class ExitGameRequest extends AbstractRequest {
 
 	private String name;

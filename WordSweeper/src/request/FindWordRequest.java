@@ -4,6 +4,12 @@ import client.model.Cell;
 import client.model.Position;
 import client.model.Word;
 
+/**
+ * Find word request
+ * 
+ * @author quangvu
+ *
+ */
 public class FindWordRequest extends AbstractRequest {
 
 	public final String name;

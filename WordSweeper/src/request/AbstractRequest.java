@@ -6,6 +6,8 @@ package request;
 import xml.Message;
 
 /**
+ * Abstract client request
+ * 
  * @author quangvu
  *
  */

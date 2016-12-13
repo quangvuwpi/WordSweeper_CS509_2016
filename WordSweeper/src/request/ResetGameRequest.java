@@ -1,5 +1,11 @@
 package request;
 
+/**
+ * Reset current game request
+ * 
+ * @author Jarway
+ *
+ */
 public class ResetGameRequest extends AbstractRequest {
 
 	private String gameId;

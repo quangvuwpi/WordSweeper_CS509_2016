@@ -4,6 +4,8 @@
 package request;
 
 /**
+ * Create new game request
+ * 
  * @author quangvu
  *
  */

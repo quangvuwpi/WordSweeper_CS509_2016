@@ -6,6 +6,8 @@ package request;
 import xml.Message;
 
 /**
+ * Request common interface
+ * 
  * @author quangvu
  *
  */
