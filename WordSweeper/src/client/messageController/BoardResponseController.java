@@ -12,13 +12,12 @@ import client.view.Application;
 import client.view.WordSweeper;
 import response.BoardResponse;
 import response.PlayerResponse;
+import utility.Debug;
 import utility.XMLParser;
 import xml.Message;
 
 /**
- * Tells the client whether the model is locked or not BY SOME OTHER CLIENT.
- * This will never be returned to a client to tell him that HE has the model
- * locked (that is job of LockResponse).
+ * Controller to process BoardResponse
  * 
  * @author quangvu
  */
@@ -38,8 +37,6 @@ public class BoardResponseController extends ChainableMessageController {
 		if (!type.equals("boardResponse")) {
 			return next.process(message);
 		}
-
-		System.out.println(message.toString());
 
 		String user = model.game.currentUser;
 		BoardResponse br = parseMessage(message);
@@ -65,8 +62,8 @@ public class BoardResponseController extends ChainableMessageController {
 			model.game.clearPlayerList();
 		}
 
-		System.out.print("Board Message received for game:" + br.gameId + "\n ManagingUser:" + br.managingUser + "\n");
-		System.out.print("Players:\n");
+		Debug.print("Board Message received for game:" + br.gameId + "\n ManagingUser:" + br.managingUser + "\n");
+		Debug.print("Players:\n");
 		while (br.hasNext()) {
 			PlayerResponse pr = br.next();
 
@@ -82,7 +79,7 @@ public class BoardResponseController extends ChainableMessageController {
 				debug += " " + "null";
 			}
 			debug += " " + pr.score + "\n";
-			System.out.print(debug);
+			Debug.print(debug);
 
 			Player player = new Player(pr.name, pr.position, pr.score);
 

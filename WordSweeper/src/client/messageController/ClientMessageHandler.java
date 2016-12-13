@@ -4,12 +4,7 @@ import client.IMessageHandler;
 import xml.Message;
 
 /**
- * Sample implementation of a protocol handler to respond to messages received
- * from the server. You should follow this template when designing YOUR message
- * handler.
- * 
- * Note: This one does nothing more than dump the XML message into the client
- * window. Nothing that special.
+ * WordSweeper client message handler
  */
 public class ClientMessageHandler implements IMessageHandler {
 	

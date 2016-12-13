@@ -3,9 +3,12 @@
  */
 package client.messageController;
 
+import utility.Debug;
 import xml.Message;
 
 /**
+ * Controller to process ConnectResponse
+ * 
  * @author quangvu
  *
  */
@@ -22,7 +25,7 @@ public class ConnectResponseController extends ChainableMessageController {
 		}
 		
 		/** Consumes the message **/
-		System.out.print(message.toString() + "\n");
+		Debug.print(message.toString() + "\n");
 		
 		return true;
 	}

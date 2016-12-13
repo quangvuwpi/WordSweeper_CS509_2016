@@ -6,7 +6,7 @@ package client.messageController;
 import xml.Message;
 
 /**
- * Chainable controller abstract class
+ * Chainable message controller abstract class
  * 
  * @author quangvu
  *

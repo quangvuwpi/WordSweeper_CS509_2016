@@ -6,6 +6,8 @@ package client.messageController;
 import xml.Message;
 
 /**
+ * Dummy controller for unhandled responses
+ * 
  * @author quangvu
  *
  */

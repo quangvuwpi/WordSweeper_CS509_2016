@@ -12,7 +12,7 @@ import response.FindWordResponse;
 import xml.Message;
 
 /**
- * Chainable message handler for FindWordResponse
+ * Controller to process FindWordResponse
  * 
  * @author quangvu
  *
