@@ -6,6 +6,8 @@ package utility;
 import java.util.Random;
 
 /**
+ * Factory class to generate new letters with given probability
+ * 
  * @author quangvu
  *
  */

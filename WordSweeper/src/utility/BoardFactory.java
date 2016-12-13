@@ -3,13 +3,13 @@
  */
 package utility;
 
-import java.util.Random;
-
 import client.model.Board;
 import client.model.Cell;
 import client.model.Position;
 
 /**
+ * Factory class to generate Board objects
+ * 
  * @author quangvu
  *
  */
